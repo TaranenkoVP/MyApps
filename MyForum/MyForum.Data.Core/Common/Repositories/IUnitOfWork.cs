@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyForum.Data.Core.Models;
 
 namespace MyForum.Data.Core.Common.Repositories
 {
@@ -13,6 +14,10 @@ namespace MyForum.Data.Core.Common.Repositories
     /// </summary>
     public interface IUnitOfWork : IDisposable
     {
+        IDeletableEntityRepository<Post> PostRepository { get; }
+        IDeletableEntityRepository<Answer> AnswerRepository { get; }
+        IDeletableEntityRepository<Topic> TopicRepository { get; }
+
         /// <summary>
         /// Commit all changes
         /// </summary>

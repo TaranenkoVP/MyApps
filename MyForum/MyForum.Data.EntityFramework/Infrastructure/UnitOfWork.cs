@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using MyForum.Data;
 using MyForum.Data.Core.Common.Repositories;
 using MyForum.Data.Core.Models;
-using MyForum.Data.EntityFramework.Repositories;
+using MyForum.Data.EF.Repositories;
 
-namespace MyForum.Data.EntityFramework.Infrastructure
+namespace MyForum.Data.EF.Infrastructure
 {
     /// <summary>
 	/// Class <see cref="IUnitOfWork"/> define database unit of work with Entity Framework context

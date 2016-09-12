@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Repositories;
 
-namespace MyForum.Data.EntityFramework.Repositories
+namespace MyForum.Data.EF.Repositories
 {
     /// <summary>
     /// Class <see cref="GenericRepository"/> define generic repository

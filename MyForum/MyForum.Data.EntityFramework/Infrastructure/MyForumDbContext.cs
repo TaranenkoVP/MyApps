@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MyForum.Data.Core.Models;
 
-namespace MyForum.Data.EntityFramework.Infrastructure
+namespace MyForum.Data.EF.Infrastructure
 {
     public class MyForumDbContext : IdentityDbContext<User>
     {

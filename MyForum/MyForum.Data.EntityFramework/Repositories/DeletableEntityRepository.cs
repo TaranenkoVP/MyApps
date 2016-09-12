@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Common.Repositories;
 
-namespace MyForum.Data.EntityFramework.Repositories
+namespace MyForum.Data.EF.Repositories
 {
     public class DeletableEntityRepository<TEntity> : GenericRepository<TEntity>, IDeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity

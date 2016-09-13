@@ -12,7 +12,7 @@ namespace MyForum.Business.Core.Entities
     public class UserBusiness
     {
         private ICollection<PostBusiness> _posts;
-        private ICollection<AnswerBusiness> _answers;
+        private ICollection<TopicCategoryBusiness> _answers;
         private ICollection<TopicBusiness> _topics;
 
         #region Constructors
@@ -20,7 +20,7 @@ namespace MyForum.Business.Core.Entities
         public UserBusiness()
         {
             _posts = new HashSet<PostBusiness>();
-            _answers = new HashSet<AnswerBusiness>();
+            _answers = new HashSet<TopicCategoryBusiness>();
             _topics = new HashSet<TopicBusiness>();
         }
 
@@ -47,7 +47,7 @@ namespace MyForum.Business.Core.Entities
             set { _posts = value; }
         }
 
-        public virtual ICollection<AnswerBusiness> Answers
+        public virtual ICollection<TopicCategoryBusiness> Answers
         {
             get { return _answers; }
             set { _answers = value; }

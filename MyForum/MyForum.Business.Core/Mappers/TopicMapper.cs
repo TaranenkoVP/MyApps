@@ -11,11 +11,11 @@ namespace MyForum.Business.Core.Mappers
 {
     public class TopicMapper
     {
-        private IMapper _productMapper;
+        private IMapper _topicMapper;
 
         public TopicMapper()
         {
-            _productMapper = new MapperConfiguration(cfg =>
+            _topicMapper = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Topic, TopicBusiness>();
 
@@ -26,17 +26,17 @@ namespace MyForum.Business.Core.Mappers
 
         public TopicBusiness GetWrapped(Topic product)
         {
-            return _productMapper.Map<Topic, TopicBusiness>(product);
+            return _topicMapper.Map<Topic, TopicBusiness>(product);
         }
 
         public List<TopicBusiness> GetWrapped(IEnumerable<Topic> products)
         {
-            return _productMapper.Map<IEnumerable<Topic>, List<TopicBusiness>>(products);
+            return _topicMapper.Map<IEnumerable<Topic>, List<TopicBusiness>>(products);
         }
 
         public Topic GetWrapped(TopicBusiness product)
         {
-            return _productMapper.Map<TopicBusiness, Topic>(product);
+            return _topicMapper.Map<TopicBusiness, Topic>(product);
         }
     }
 }

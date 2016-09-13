@@ -24,7 +24,7 @@ namespace MyForum.Data.EF.Infrastructure
         private bool _disposed;
 
         private IDeletableEntityRepository<Post> _postRepository;
-        private IDeletableEntityRepository<Answer> _answerRepository;
+        private IDeletableEntityRepository<TopicCategory> _topicCategoryRepository;
         private IDeletableEntityRepository<Topic> _topicRepository;
 
         #endregion
@@ -39,11 +39,11 @@ namespace MyForum.Data.EF.Infrastructure
             }
         }
 
-        public IDeletableEntityRepository<Answer> AnswerRepository
+        public IDeletableEntityRepository<TopicCategory> TopicCategoryRepository
         {
             get
             {
-                return _answerRepository ?? (_answerRepository = new DeletableEntityRepository<Answer>(_context));
+                return _topicCategoryRepository ?? (_topicCategoryRepository = new DeletableEntityRepository<TopicCategory>(_context));
             }
         }
 

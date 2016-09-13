@@ -1,6 +1,7 @@
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\MyForum.Business.Core.dll.config
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\MyForum.Business.Core.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\MyForum.Business.Core.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\AutoMapper.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.Extensions.Caching.Memory.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -24,6 +25,7 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.AspN
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\MyForum.Data.Core.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\MyForum.Data.EF.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\AutoMapper.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.Extensions.Caching.Memory.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\Microsoft.Extensions.Configuration.xml

@@ -18,12 +18,12 @@ namespace MyForum.Data.EF.Repositories
         {
         }
 
-        public override IQueryable<TEntity> GetAll()
+        public override IEnumerable<TEntity> GetAll()
         {
             return base.GetAll().Where(x => !x.IsDeleted);
         }
 
-        public IQueryable<TEntity> AllWithDeleted()
+        public IEnumerable<TEntity> AllWithDeleted()
         {
             return base.GetAll();
         }

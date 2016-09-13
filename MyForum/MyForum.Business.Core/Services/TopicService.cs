@@ -22,7 +22,7 @@ namespace MyForum.Business.Core.Services
             _database = uow;
         }
 
-        public IEnumerable<TopicBusiness> GetTopics()
+        public IQueryable<TopicBusiness> GetAllTopics()
         {
             var topics = new TopicMapper().GetWrapped(_database.TopicRepository.GetAll());
 
@@ -31,7 +31,7 @@ namespace MyForum.Business.Core.Services
                 throw new ValidationException("Topics not found");
             }
 
-            return topics;
+            return topics.AsQueryable();
         }
 
         public TopicBusiness GetTopic(int? id)
@@ -51,7 +51,7 @@ namespace MyForum.Business.Core.Services
             return topic;
         }
 
-        public void Create(TopicBusiness entity)
+        public void Add(TopicBusiness entity)
         {
             if (entity == null)
             {
@@ -82,17 +82,6 @@ namespace MyForum.Business.Core.Services
             }
 
             _database.TopicRepository.Delete(new TopicMapper().GetWrapped(entity));
-            _database.Commit();
-        }
-
-        public virtual void Delete(int? id)
-        {
-            if (id == null)
-            {
-                throw new ValidationException("Invalid product ID");
-            }
-
-            _database.TopicRepository.Delete(id.Value);
             _database.Commit();
         }
 

@@ -1,0 +1,1 @@
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\obj\Debug\ForumSystem.Web.MVC.csprojResolveAssemblyReference.cache

@@ -16,8 +16,9 @@ namespace MyForum.Data.Core.Common.Repositories
     {
         /// <summary>
         /// Get all entities from db
-        /// </summary> 
-        IQueryable<TEntity> GetAll();
+        /// </summary>
+        /// <returns>An IEnumerable object.</returns> 
+        IEnumerable<TEntity> GetAll();
 
         /// <summary>
         /// Provide additional filtering and sorting flexibility without requiring
@@ -25,19 +26,18 @@ namespace MyForum.Data.Core.Common.Repositories
         /// </summary>
         /// <param name="query">sql query string</param>
         /// <param name="parameters">parameters for sql query </param>
-        /// <returns>IQueryable object.</returns>
-        IQueryable<TEntity> GetWithRawSql(string query, params object[] parameters);
+        /// <returns>IEnumerable object.</returns>
+        IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters);
 
         /// <summary>
         /// Allow the calling code to specify a filter condition
         /// and a column to order the results by, and a string parameter 
-        /// lets the caller provide a comma-delimited list of navigation properties for eager loading
         /// </summary>
         /// <param name="filter">Filter expression for the return Entities</param>
         /// <param name="orderBy">Represents the order of the return Entities</param>
         /// <param name="includeProperties">Include Properties for the navigation properties</param>
-        /// <returns>An IQueryable object.</returns>
-        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
+        /// <returns>An IEnumerable object.</returns>
+        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 

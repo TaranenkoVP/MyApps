@@ -15,7 +15,7 @@ namespace MyForum.Data.Core.Common.Repositories
     public interface IUnitOfWork : IDisposable
     {
         IDeletableEntityRepository<Post> PostRepository { get; }
-        IDeletableEntityRepository<Answer> AnswerRepository { get; }
+        IDeletableEntityRepository<TopicCategory> TopicCategoryRepository { get; }
         IDeletableEntityRepository<Topic> TopicRepository { get; }
 
         /// <summary>

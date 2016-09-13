@@ -10,15 +10,13 @@ namespace MyForum.Data.Core.Models
 {
     public class Post : BaseModel<int>
     {
-        private ICollection<Answer> answers;
+        private ICollection<TopicCategory> answers;
 
         #region Constructors
 
-        public Post(User author, Topic topic )
+        public Post( )
         {
-            this.answers = new HashSet<Answer>();
-            this.Author = author;
-            this.Topic = topic;
+            this.answers = new HashSet<TopicCategory>();
         }
 
         #endregion Constructors
@@ -37,7 +35,7 @@ namespace MyForum.Data.Core.Models
 
         public virtual Topic Topic { get; set; }
 
-        public virtual ICollection<Answer> Answers
+        public virtual ICollection<TopicCategory> Answers
         {
             get { return this.answers; }
             set { this.answers = value; }

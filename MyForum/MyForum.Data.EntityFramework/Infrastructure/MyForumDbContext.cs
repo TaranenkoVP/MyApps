@@ -9,7 +9,7 @@ namespace MyForum.Data.EF.Infrastructure
     {
         public IDbSet<Post> Posts { get; set; }
         public IDbSet<Topic> Topics { get; set; }
-        public IDbSet<Answer> Answers { get; set; }
+        public IDbSet<TopicCategory> Answers { get; set; }
 
         public MyForumDbContext(string connectionString)
             : base(connectionString)

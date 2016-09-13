@@ -41,12 +41,12 @@ namespace MyForum.Data.EF.Repositories
         #region Methods
         #region Search Functionality
 
-        public virtual IQueryable<TEntity> GetWithRawSql(string query, params object[] parameters)
+        public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
         {
             return DbSet.SqlQuery(query, parameters).AsQueryable();
         }
 
-        public virtual IQueryable<TEntity> Get(
+        public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func< IQueryable<TEntity>, IOrderedQueryable < TEntity >> orderBy = null,
             string includeProperties = "")
@@ -74,7 +74,7 @@ namespace MyForum.Data.EF.Repositories
                 }
         }
   
-        public virtual IQueryable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return DbSet.AsQueryable();
         }

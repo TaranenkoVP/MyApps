@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MyForum.Web.MVC.Models.TopicCategoriesViewModel.TopicCategoriesViewModel>
+@{
+    ViewBag.Title = "_ForumTopicCategoriesPartial";
+}
+
+@foreach (var category in Model)
+{
+    <tbody>
+        <tr>
+            <td class="text-left">
+                
+                <p class="list-group-item-text">@category.Description</p>
+            </td>
+    </tbody>
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,15 +17,28 @@ namespace MyForum.Data.Core.Models
         /// <summary>
         /// The class constructor
         /// </summary>
-        public Topic(User author)
+        public Topic()
         {
             _posts = new HashSet<Post>();
-            Author = author;
         }
 
         #endregion Constructors
 
-        public virtual User Author { get; }
+        [Required]
+        [MaxLength(150)]
+        public string Title { get; set; }
+
+        [Required]
+        [MaxLength(1000)]
+        public string Content { get; set; }
+
+        public string AuthorId { get; set; }
+
+        public virtual User Author { get; set; }
+
+        public int TopicCategoryId { get; set; }
+
+        public virtual TopicCategory Category { get; set; }
 
         public virtual ICollection<Post> Posts
         {

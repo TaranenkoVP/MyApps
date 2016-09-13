@@ -14,7 +14,7 @@ namespace MyForum.Data.Core.Models
     public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
         private ICollection<Post> _posts;
-        private ICollection<Answer> _answers;
+        private ICollection<TopicCategory> _topicCategories;
         private ICollection<Topic> _topics;
 
         #region Constructors
@@ -22,7 +22,7 @@ namespace MyForum.Data.Core.Models
         public User()
         {
             _posts = new HashSet<Post>();
-            _answers = new HashSet<Answer>();
+            _topicCategories = new HashSet<TopicCategory>();
             _topics = new HashSet<Topic>();
         }
 
@@ -50,10 +50,10 @@ namespace MyForum.Data.Core.Models
             set { _posts = value; }
         }
 
-        public virtual ICollection<Answer> Answers
+        public virtual ICollection<TopicCategory> TopicCategories
         {
-            get { return _answers; }
-            set { _answers = value; }
+            get { return _topicCategories; }
+            set { _topicCategories = value; }
         }
 
         public virtual ICollection<Topic> Topics

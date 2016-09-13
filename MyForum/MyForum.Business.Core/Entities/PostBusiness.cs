@@ -10,13 +10,13 @@ namespace MyForum.Business.Core.Entities
 {
     public class PostBusiness : BaseModel<int>
     {
-        private ICollection<AnswerBusiness> answers;
+        private ICollection<TopicCategoryBusiness> answers;
 
         #region Constructors
 
         public PostBusiness(UserBusiness author, TopicBusiness topic )
         {
-            this.answers = new HashSet<AnswerBusiness>();
+            this.answers = new HashSet<TopicCategoryBusiness>();
             this.Author = author;
             this.Topic = topic;
         }
@@ -35,7 +35,7 @@ namespace MyForum.Business.Core.Entities
 
         public virtual TopicBusiness Topic { get; set; }
 
-        public virtual ICollection<AnswerBusiness> Answers
+        public virtual ICollection<TopicCategoryBusiness> Answers
         {
             get { return this.answers; }
             set { this.answers = value; }

@@ -15,7 +15,7 @@ namespace MyForum.Web.MVC.Areas.User
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "User_default",
+                "User_defaultnew",
                 "User/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );

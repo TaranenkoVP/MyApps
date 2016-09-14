@@ -52,5 +52,6 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\bin\Debug\System.Web.Razor.x
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\bin\Debug\System.Web.WebPages.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\bin\Debug\System.Web.WebPages.Deployment.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\bin\Debug\System.Web.WebPages.Razor.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\obj\Debug\MyForum.Data.Core.csprojResolveAssemblyReference.cache
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\obj\Debug\MyForum.Data.Core.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\obj\Debug\MyForum.Data.Core.pdb

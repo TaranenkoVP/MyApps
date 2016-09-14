@@ -12,6 +12,7 @@ namespace MyForum.Web.MVC
     {
         protected void Application_Start()
         {
+           // DependencyResolver.SetResolver(new NinjectDependencyResolver());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

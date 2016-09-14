@@ -114,10 +114,12 @@
     <Compile Include="Entities\PostBusiness.cs" />
     <Compile Include="Entities\TopicBusiness.cs" />
     <Compile Include="Entities\UserBusiness.cs" />
+    <Compile Include="Services\Interfaces\IServiceCreator.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Mappers\TopicCategoryMapper.cs" />
     <Compile Include="Mappers\TopicMapper.cs" />
+    <Compile Include="Services\ServiceCreator.cs" />
     <Compile Include="Services\TopicCategoriesService.cs" />
     <Compile Include="Services\Interfaces\ITopicCategoriesService.cs" />
     <Compile Include="Services\Interfaces\IPostsService.cs" />

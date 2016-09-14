@@ -123,7 +123,6 @@
     <Compile Include="Repositories\DeletableEntityRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Repositories\Util\NinjectDependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -15,7 +15,7 @@ namespace MyForum.Web.MVC.Areas.Moderator
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Moderator_default",
+                "Moderator_defaultnew",
                 "Moderator/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );

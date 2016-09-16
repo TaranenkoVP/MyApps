@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Models;
+using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Data.Core.Models
 {

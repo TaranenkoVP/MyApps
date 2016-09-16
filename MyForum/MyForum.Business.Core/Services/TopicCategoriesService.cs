@@ -9,13 +9,16 @@ using MyForum.Business.Core.Mappers;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Data.Core.Common.Repositories;
 using MyForum.Data.Core.Models;
+using Ninject;
 
 namespace MyForum.Business.Core.Services
 {
+    
     public class TopicCategoriesService : ITopicCategoriesService
     {
+        //[Inject]
         private readonly IUnitOfWork _database;
-
+       // [Inject]
         public TopicCategoriesService(IUnitOfWork uow)
         {
             _database = uow;

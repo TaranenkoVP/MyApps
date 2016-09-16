@@ -13,40 +13,29 @@ namespace MyForum.Web.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ITopicCategoriesService _topicCategoriesService;
+        private readonly ITopicCategoriesService _topicCategoriesService;
 
-        //public HomeController(ITopicCategoriesService topicCategoriesService)
-        //{
-        //    this._topicCategoriesService = topicCategoriesService;
-        //}
-
-        private readonly IPostsService _topicCategoriesService;
-
-        public HomeController(IPostsService topicCategoriesService)
+        public HomeController(ITopicCategoriesService topicCategoriesService)
         {
             this._topicCategoriesService = topicCategoriesService;
         }
 
         public ActionResult Index()
         {
+
             return View();
         }
 
-        //[HttpGet]
-        //[ChildActionOnly]
-        //public ActionResult GetCategoriesPartial()
-        //{
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult GetTopicCategoriesPartial()
+        {
 
-          //  var cat = _forumCategoriesService.GetAll();
-           
-            //var categories = new GenericMapper<TopicCategoryBusiness, TopicCategoriesViewModel>().GetWrapped(_forumCategoriesService.GetAll());
+            var categories = new GenericMapper<TopicCategoryBusiness, TopicCategoriesViewModel>()
+                    .GetWrapped(_topicCategoriesService.GetAll());
 
-            //var forumTopicCategoriesData = new GenericMapper<TopicCategoryBusiness, TopicCategoriesViewModel>(_forumCategoriesService.GetAll());
+            return this.PartialView("_TopicCategoriesPartial", categories);
 
-
-
-          //  return this.PartialView("_TopicCategoriesPartial", cat);
-            
-       // }
+        }
     }
 }

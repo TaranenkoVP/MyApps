@@ -4,9 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MyForum.Data;
 using MyForum.Data.Core.Common.Repositories;
+using MyForum.Data.Core.Identity;
 using MyForum.Data.Core.Models;
+using MyForum.Data.Core.Models.Identity;
 using MyForum.Data.EF.Repositories;
 
 namespace MyForum.Data.EF.Infrastructure
@@ -26,6 +29,9 @@ namespace MyForum.Data.EF.Infrastructure
         private IDeletableEntityRepository<Post> _postRepository;
         private IDeletableEntityRepository<TopicCategory> _topicCategoryRepository;
         private IDeletableEntityRepository<Topic> _topicRepository;
+
+        private UserManager userManager;
+        private RoleManager roleManager;
 
         #endregion
 
@@ -55,6 +61,10 @@ namespace MyForum.Data.EF.Infrastructure
             }
         }
 
+        public UserManager UserManager => userManager;
+
+        public RoleManager RoleManager => roleManager;
+
         #endregion
 
         #region .ctor
@@ -62,10 +72,13 @@ namespace MyForum.Data.EF.Infrastructure
         /// <summary>
         /// The class constructor
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="connectionString"></param>
         public UnitOfWork(string connectionString)
         {
             _context = new MyForumDbContext(connectionString);
+
+            userManager = new UserManager(new UserStore<User>(_context));
+            roleManager = new RoleManager(new RoleStore<Role>(_context));
         }
         
         #endregion

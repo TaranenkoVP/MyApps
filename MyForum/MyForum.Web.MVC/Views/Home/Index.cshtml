@@ -5,4 +5,11 @@
     <div class="panel-heading text-center">
         <h1>Categories</h1>
     </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table text-center">
+                @{Html.RenderAction("GetTopicCategoriesPartial");}
+            </table>
+        </div>
+    </div>
 </div>

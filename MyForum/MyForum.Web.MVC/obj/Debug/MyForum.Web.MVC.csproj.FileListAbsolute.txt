@@ -18,7 +18,6 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\AutoMapper.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\EntityFramework.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\EntityFramework.SqlServer.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Core.dll
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Owin.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.Owin.dll
@@ -35,6 +34,7 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Business.Core.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Newtonsoft.Json.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Common.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Mvc.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Owin.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Helpers.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Mvc.dll
@@ -47,11 +47,14 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\WebActivatorEx.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\WebGrease.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Data.Core.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Data.EF.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Business.Core.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\AutoMapper.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Owin.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Common.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Mvc.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Mvc.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Helpers.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Optimization.xml
@@ -64,8 +67,6 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Newtonsoft.Json.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\EntityFramework.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\EntityFramework.SqlServer.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Core.xml
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Owin.xml
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.Owin.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.Owin.Host.SystemWeb.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.Owin.Security.xml
@@ -77,8 +78,7 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.Owin.Security.Tw
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Data.Core.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Data.EF.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.csprojResolveAssemblyReference.cache
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.pdb
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Mvc.dll
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Mvc.xml

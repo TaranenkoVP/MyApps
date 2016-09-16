@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyForum.Data.Core.Identity;
 using MyForum.Data.Core.Models;
 
 namespace MyForum.Data.Core.Common.Repositories
@@ -18,6 +19,13 @@ namespace MyForum.Data.Core.Common.Repositories
         IDeletableEntityRepository<TopicCategory> TopicCategoryRepository { get; }
         IDeletableEntityRepository<Topic> TopicRepository { get; }
 
+        /// <summary>
+        /// here we use Identities entities
+        /// </summary>
+        UserManager UserManager { get; }
+        RoleManager RoleManager { get; }
+
+        // TODO Task CommitAsync()
         /// <summary>
         /// Commit all changes
         /// </summary>

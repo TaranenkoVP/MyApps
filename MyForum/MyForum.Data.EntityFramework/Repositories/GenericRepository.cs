@@ -43,7 +43,7 @@ namespace MyForum.Data.EF.Repositories
 
         public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
         {
-            return DbSet.SqlQuery(query, parameters).AsQueryable();
+            return DbSet.SqlQuery(query, parameters).ToList();
         }
 
         public virtual IEnumerable<TEntity> Get(
@@ -76,7 +76,7 @@ namespace MyForum.Data.EF.Repositories
   
         public virtual IEnumerable<TEntity> GetAll()
         {
-            return DbSet.AsQueryable();
+            return DbSet.ToList();
         }
 
         public virtual TEntity GetById(int id)

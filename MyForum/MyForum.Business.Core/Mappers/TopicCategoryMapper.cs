@@ -11,7 +11,7 @@ namespace MyForum.Business.Core.Mappers
 {
     public class TopicCategoryMapper
     {
-        private IMapper _topicCategoryMapper;
+        private readonly IMapper _topicCategoryMapper;
 
         public TopicCategoryMapper()
         {

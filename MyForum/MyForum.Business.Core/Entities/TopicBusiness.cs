@@ -7,7 +7,7 @@ using MyForum.Data.Core.Common.Models;
 
 namespace MyForum.Business.Core.Entities
 {
-    public class TopicBusiness : BaseModel<int>
+    public class TopicBusiness : BaseModelBusiness<int>
     {
         private ICollection<PostBusiness> _posts;
 

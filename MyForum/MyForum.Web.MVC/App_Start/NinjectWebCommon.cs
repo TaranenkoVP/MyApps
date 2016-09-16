@@ -1,5 +1,8 @@
+using Microsoft.AspNet.Identity;
+using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services;
 using MyForum.Business.Core.Services.Interfaces;
+using Ninject.Modules;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MyForum.Web.MVC.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MyForum.Web.MVC.App_Start.NinjectWebCommon), "Stop")]
@@ -42,7 +45,8 @@ namespace MyForum.Web.MVC.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var modules = new INinjectModule[] { new ServiceModule("DefaultConnection") };
+            var kernel = new StandardKernel(modules);
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -67,6 +71,7 @@ namespace MyForum.Web.MVC.App_Start
             kernel.Bind<ITopicCategoriesService>().To<TopicCategoriesService>();
             kernel.Bind<ITopicsService>().To<TopicsService>();
             kernel.Bind<IPostsService>().To<PostsService>();
+            kernel.Bind<IUserService>().To<UserService>();
         }        
     }
 }

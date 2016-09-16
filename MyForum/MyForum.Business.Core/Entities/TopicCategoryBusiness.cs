@@ -8,10 +8,9 @@ using MyForum.Data.Core.Common.Models;
 
 namespace MyForum.Business.Core.Entities
 {
-    public class TopicCategoryBusiness : BaseModel<int>
+    public class TopicCategoryBusiness : BaseModelBusiness<int>
     {
-        [Required]
-        [MaxLength(1000)]
+        public string Name { get; set; }
         public string Content { get; set; }
 
         public virtual UserBusiness Author { get; set; }

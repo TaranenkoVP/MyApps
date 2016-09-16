@@ -146,6 +146,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Identity\RoleManager.cs" />
+    <Compile Include="Identity\UserManager.cs" />
+    <Compile Include="Models\Identity\Role.cs" />
     <Compile Include="Models\TopicCategory.cs" />
     <Compile Include="Common\Models\BaseModel.cs" />
     <Compile Include="Common\Models\IAuditInfo.cs" />
@@ -156,7 +159,7 @@
     <Compile Include="Common\Repositories\IUnitOfWork.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Topic.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Identity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

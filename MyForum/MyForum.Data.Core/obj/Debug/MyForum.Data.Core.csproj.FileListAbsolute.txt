@@ -111,3 +111,4 @@ D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\bin\Debug\System.Web.WebPage
 D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\obj\Debug\MyForum.Data.Core.csprojResolveAssemblyReference.cache
 D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\obj\Debug\MyForum.Data.Core.dll
 D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\obj\Debug\MyForum.Data.Core.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data.Core\obj\Debug\MyForum.Data.Core.csprojResolveAssemblyReference.cache

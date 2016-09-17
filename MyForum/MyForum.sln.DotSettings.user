@@ -3,4 +3,5 @@
   &lt;Assembly Path="E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\Bin\System.Web.Mvc.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.Web.dll" /&gt;&#xD;
   &lt;Assembly Path="E:\OneDrive\c#\epam\forum\MyForum\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll" /&gt;&#xD;
+  &lt;Assembly Path="E:\OneDrive\c#\epam\forum\MyForum\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

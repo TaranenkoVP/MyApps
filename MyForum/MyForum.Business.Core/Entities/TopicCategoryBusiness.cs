@@ -11,7 +11,7 @@ namespace MyForum.Business.Core.Entities
     public class TopicCategoryBusiness : BaseModelBusiness<int>
     {
         public string Name { get; set; }
-        public string Content { get; set; }
+        public string Description { get; set; }
 
         public virtual UserBusiness Author { get; set; }
 

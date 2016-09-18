@@ -16,7 +16,7 @@ using Ninject;
 namespace MyForum.Business.Core.Services
 {
     
-    public class TopicCategoriesService : BaseService<TopicCategory, TopicCategoryBusiness>, ITopicCategoriesService
+    public class TopicCategoriesService : DeletableBaseService<TopicCategory, TopicCategoryBusiness>, ITopicCategoriesService
     {
         public TopicCategoriesService(IUnitOfWork uow)
            : base(uow , uow.TopicCategoryRepository)

@@ -120,13 +120,16 @@
   <ItemGroup>
     <Compile Include="Infrastructure\AdminSeeder.cs" />
     <Compile Include="Infrastructure\Configuration.cs" />
-    <Compile Include="Infrastructure\TopicCategorySeeder.cs" />
+    <Compile Include="Infrastructure\MainTopicCategorySeeder.cs" />
     <Compile Include="Infrastructure\MyForumDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DeletableEntityRepository.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Common\DeletableEntityRepository.cs" />
+    <Compile Include="Repositories\Common\GenericRepository.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\TopicCategoryRepository.cs" />
+    <Compile Include="Repositories\TopicRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

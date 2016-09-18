@@ -37,7 +37,7 @@ namespace MyForum.Data.Core.Models
 
         public virtual ApplicationUser Author { get; set; }
 
-        public virtual TopicCategory Category { get; set; }
+        public virtual TopicCategory TopicCategory { get; set; }
 
         public virtual ICollection<Post> Posts
         {

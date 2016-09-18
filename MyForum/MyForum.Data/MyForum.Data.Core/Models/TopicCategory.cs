@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Models;
+using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Data.Core.Models
 {
@@ -24,6 +25,10 @@ namespace MyForum.Data.Core.Models
         [Required]
         [MaxLength(1000)]
         public string Description { get; set; }
+
+        public virtual MainCategory MainCategory { get; set; }
+
+        public virtual ApplicationUser Author { get; set; }
 
         public ICollection<Topic> Topics
         {

@@ -15,9 +15,10 @@ namespace MyForum.Data.Core.Common.Repositories
     /// </summary>
     public interface IUnitOfWork : IDisposable
     {
-        IDeletableEntityRepository<Post> PostRepository { get; }
-        IDeletableEntityRepository<TopicCategory> TopicCategoryRepository { get; }
-        IDeletableEntityRepository<Topic> TopicRepository { get; }
+        IRepository<MainCategory> MainCategoryRepository { get; }
+        ITopicCategoryRepository TopicCategoryRepository { get; }
+        ITopicRepository TopicRepository { get; }
+        IPostRepository PostRepository { get; }
 
         /// <summary>
         /// here we use Identities entities

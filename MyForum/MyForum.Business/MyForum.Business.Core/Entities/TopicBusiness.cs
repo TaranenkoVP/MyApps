@@ -26,7 +26,6 @@ namespace MyForum.Business.Core.Entities
 
         #endregion Constructors
 
-
         public virtual UserBusiness Author { get; }
 
         public virtual ICollection<PostBusiness> Posts

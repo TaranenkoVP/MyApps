@@ -72,6 +72,8 @@ namespace MyForum.Web.MVC.App_Start
             kernel.Bind<ITopicsService>().To<TopicsService>();
             kernel.Bind<IPostsService>().To<PostsService>();
             kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IMainCategoriesService>().To<MainCategoriesService>();
+            
         }        
     }
 }

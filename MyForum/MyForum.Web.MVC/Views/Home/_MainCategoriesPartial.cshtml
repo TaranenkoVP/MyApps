@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MyForum.Web.MVC.Models.MainCategoriesViewModel>
+@{
+    ViewBag.Title = "_MainCategoriesPartial";
+}
+
+@foreach (var mainCategory in Model)
+{
+    <tbody>
+        <tr>
+            <td class="text-left">
+                <h4 class="list-group-item-heading">@Html.ActionLink(mainCategory.Name, "Topics/" + mainCategory.Id, "Topics")</h4>
+                <p class="list-group-item-text">@mainCategory.Description</p>
+            </td>
+            <td>@mainCategory.TopicCount</td>
+            <td>@mainCategory.PostCount</td>
+            <td>@mainCategory.Latest</td>
+
+            @foreach (var topicCategory in mainCategory.TopicCategories)
+            {
+                <td class="text-left">
+                    <h4 class="list-group-item-heading">@Html.ActionLink(topicCategory.Name, "Topics/" + topicCategory.Id, "Topics")</h4>
+                    <p class="list-group-item-text">@topicCategory.Description</p>
+                </td>
+            }
+
+        </tr>
+    </tbody>
+}

@@ -7,18 +7,19 @@ using AutoMapper;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Services;
 using MyForum.Business.Core.Services.Interfaces;
-using MyForum.Web.MVC.Models.Post;
-using MyForum.Web.MVC.Models.TopicCategories;
+using MyForum.Web.MVC.Models;
 
 namespace MyForum.Web.MVC.Controllers
 {
     public class HomeController : BaseController
     {
+        private readonly IMainCategoriesService _mainCategoriesService;
         private readonly ITopicCategoriesService _topicCategoriesService;
         private readonly ITopicsService _topicsService;
 
-        public HomeController(ITopicCategoriesService topicCategoriesService, ITopicsService topicsService)
+        public HomeController(IMainCategoriesService mainCategoriesService, ITopicCategoriesService topicCategoriesService, ITopicsService topicsService )
         {
+            this._mainCategoriesService = mainCategoriesService;
             this._topicCategoriesService = topicCategoriesService;
             this._topicsService = topicsService;
         }
@@ -30,38 +31,51 @@ namespace MyForum.Web.MVC.Controllers
 
         [HttpGet]
         [ChildActionOnly]
-        public ActionResult GetTopicCategoriesPartial()
+        public ActionResult GetMainCategoriesPartial()
         {
-            var viewModel = new List<TopicCategoriesViewModel>();
-
-            var categories = Mapper.Map<List<TopicCategoriesViewModel>>(_topicCategoriesService.GetAll());
+            var categories = Mapper.Map<List<MainCategoriesViewModel>>(_mainCategoriesService.GetAll());
 
             foreach (var category in categories)
             {
+                
+                //var topicCategories = Mapper.Map<TopicViewModel>(_topicsService.GetLastCreatedByCategoryId(category.Id));
+               // var topicCategories = Mapper.Map<List<TopicCategoriesViewModel>>(_topicCategoriesService.GetAll());
+                //var topicCategories = Mapper.Map<List<TopicCategoriesViewModel>>(_topicCategoriesService.GetAll());
 
-                var f = _topicsService.GetLastCreatedByCategoryId(category.Id);
-                var lastPost = Mapper.Map<PostViewModel>(f
-                                    );
+                //foreach (var topiccategory in topicCategories)
+                //{
+
+                //}
 
 
-                var model = new TopicCategoriesViewModel
-                {
 
-                    //Category = category,
-                    //LatestTopic = latestTopicInCategory,
-                    //Permissions = permissionSet,
-                    //PostCount = postCount,
-                    //TopicCount = topicCount,
-                    //ShowUnSubscribedLink = true
-                };
-                viewModel.Add(model);
+
+                //var lastPost = Mapper.Map<TopicViewModel>(_topicsService.GetLastCreatedByCategoryId(category.Id));
+
+                //category.LatestPost = lastPost;
+
+                //category.TopicCount = _topicsService.GetCountByCategoryId(category.Id);
+
+
+                //var model = new TopicCategoriesViewModel
+                //{
+
+
+                //public int Id { get; set; }
+
+                //public string Name { get; set; }
+
+                //public string Description { get; set; }
+
+                ////public TopicViewModel LatestTopic { get; set; }
+                //public TopicViewModel LatestPost { get; set; }
+                //public int TopicCount { get; set; }
+                //public int PostCount { get; set; }
+
             }
+           
 
-            
-
-            
-
-            return this.PartialView("_TopicCategoriesPartial", categories);
+            return this.PartialView("_MainCategoriesPartial", categories);
 
         }
     }

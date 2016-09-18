@@ -17,12 +17,12 @@ namespace MyForum.Business.Core.Services
     public abstract class BaseService<TEntity, TEntityBusiness> where TEntity : class
                                                                 where TEntityBusiness : class        //: IBaseService<T>
     {
-        private readonly IDeletableEntityRepository<TEntity> _repository;
+        private readonly IRepository<TEntity> _repository;
         protected IUnitOfWork Database;
         private static IMapper _mapper;
 
 
-        protected BaseService(IUnitOfWork uow, IDeletableEntityRepository<TEntity> repository)
+        protected BaseService(IUnitOfWork uow, IRepository<TEntity> repository)
         {
             Database = uow;
             _repository = repository;

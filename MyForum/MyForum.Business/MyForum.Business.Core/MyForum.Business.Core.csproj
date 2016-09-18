@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\BaseModelBusiness.cs" />
+    <Compile Include="Entities\MainCategoryBusiness.cs" />
     <Compile Include="Entities\TopicCategoryBusiness.cs" />
     <Compile Include="Entities\PostBusiness.cs" />
     <Compile Include="Entities\TopicBusiness.cs" />
@@ -135,11 +136,14 @@
     <Compile Include="Infrastructure\Mappers\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mappers\IMap.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
+    <Compile Include="Services\DeletableBaseService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Services\Interfaces\IBaseService.cs" />
+    <Compile Include="Services\Interfaces\IMainCategoriesService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\MainCategoriesService.cs" />
     <Compile Include="Services\TopicCategoriesService.cs" />
     <Compile Include="Services\Interfaces\ITopicCategoriesService.cs" />
     <Compile Include="Services\Interfaces\IPostsService.cs" />

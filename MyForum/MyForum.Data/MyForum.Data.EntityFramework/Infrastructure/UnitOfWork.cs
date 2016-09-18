@@ -11,6 +11,7 @@ using MyForum.Data.Core.Identity;
 using MyForum.Data.Core.Models;
 using MyForum.Data.Core.Models.Identity;
 using MyForum.Data.EF.Repositories;
+using MyForum.Data.EF.Repositories.Common;
 
 namespace MyForum.Data.EF.Infrastructure
 {
@@ -26,9 +27,10 @@ namespace MyForum.Data.EF.Infrastructure
         private readonly MyForumDbContext _context;
         private bool _disposed;
 
-        private IDeletableEntityRepository<Post> _postRepository;
-        private IDeletableEntityRepository<TopicCategory> _topicCategoryRepository;
-        private IDeletableEntityRepository<Topic> _topicRepository;
+        private IRepository<MainCategory> _mainCategoryRepository;
+        private ITopicCategoryRepository _topicCategoryRepository;
+        private ITopicRepository _topicRepository;
+        private IPostRepository _postRepository;
 
         private UserManager userManager;
         private RoleManager roleManager;
@@ -37,27 +39,35 @@ namespace MyForum.Data.EF.Infrastructure
 
         #region Properties
 
-        public IDeletableEntityRepository<Post> PostRepository
+        public IRepository<MainCategory> MainCategoryRepository
         {
             get
             {
-                return _postRepository ?? (_postRepository = new DeletableEntityRepository<Post>(_context));
+                return _mainCategoryRepository ?? (_mainCategoryRepository = new GenericRepository<MainCategory>(_context));
             }
         }
 
-        public IDeletableEntityRepository<TopicCategory> TopicCategoryRepository
+        public ITopicCategoryRepository TopicCategoryRepository
         {
             get
             {
-                return _topicCategoryRepository ?? (_topicCategoryRepository = new DeletableEntityRepository<TopicCategory>(_context));
+                return _topicCategoryRepository ?? (_topicCategoryRepository = new TopicCategoryRepository(_context));
             }
         }
 
-        public IDeletableEntityRepository<Topic> TopicRepository
+        public ITopicRepository TopicRepository
         {
             get
             {
-                return _topicRepository ?? (_topicRepository = new DeletableEntityRepository<Topic>(_context));
+                return _topicRepository ?? (_topicRepository = new TopicRepository(_context));
+            }
+        }
+
+        public IPostRepository PostRepository
+        {
+            get
+            {
+                return _postRepository ?? (_postRepository = new PostRepository(_context));
             }
         }
 

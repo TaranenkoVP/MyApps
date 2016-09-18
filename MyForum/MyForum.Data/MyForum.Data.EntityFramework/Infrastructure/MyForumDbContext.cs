@@ -11,9 +11,12 @@ namespace MyForum.Data.EF.Infrastructure
 {
     public class MyForumDbContext : IdentityDbContext<ApplicationUser>
     {
-        public IDbSet<Post> Posts { get; set; }
-        public IDbSet<Topic> Topics { get; set; }
+        public IDbSet<MainCategory> MainCategory { get; set; }
         public IDbSet<TopicCategory> TopicCategory { get; set; }
+        public IDbSet<Topic> Topic { get; set; }
+        public IDbSet<Post> Post { get; set; }
+        
+        
 
         public MyForumDbContext() { }
 

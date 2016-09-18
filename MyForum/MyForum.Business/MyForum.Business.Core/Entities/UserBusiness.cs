@@ -5,11 +5,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using MyForum.Business.Core.Infrastructure.Mappers;
 using MyForum.Data.Core.Common.Models;
+using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Business.Core.Entities
 {
-    public class UserBusiness
+    public class UserBusiness : IMapFrom<ApplicationUser>
     {
         private ICollection<PostBusiness> _posts;
         private ICollection<TopicCategoryBusiness> _answers;

@@ -24,7 +24,7 @@ namespace MyForum.Data.EF.Infrastructure
         protected override void Seed(MyForumDbContext context)
         {
             new AdminSeeder().Seed(context);
-            new TopicCategorySeeder().Seed(context);
+            new MainTopicCategorySeeder().Seed(context);
         }
     }
 }

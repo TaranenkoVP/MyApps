@@ -13,7 +13,7 @@ using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services
 {
-    public class PostsService : BaseService<Post, PostBusiness>, IPostsService
+    public class PostsService : DeletableBaseService<Post, PostBusiness>, IPostsService
     {
         public PostsService(IUnitOfWork uow)
             : base(uow, uow.PostRepository)

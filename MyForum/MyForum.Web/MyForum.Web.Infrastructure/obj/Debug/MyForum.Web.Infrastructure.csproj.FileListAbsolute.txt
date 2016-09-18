@@ -1,0 +1,6 @@
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\MyForum.Web.Infrastructure\bin\Debug\Infrastructure.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\MyForum.Web.Infrastructure\bin\Debug\Infrastructure.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\MyForum.Web.Infrastructure\bin\Debug\AutoMapper.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\MyForum.Web.Infrastructure\bin\Debug\AutoMapper.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\MyForum.Web.Infrastructure\obj\Debug\Infrastructure.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web\MyForum.Web.Infrastructure\obj\Debug\Infrastructure.pdb

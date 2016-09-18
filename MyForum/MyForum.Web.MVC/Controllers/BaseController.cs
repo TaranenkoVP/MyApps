@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using MyForum.Web.MVC.App_Start;
+using MyForum.Web.MVC.Infrastructure.Mappers;
 
 namespace MyForum.Web.MVC.Controllers
 {

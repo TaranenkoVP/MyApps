@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using MyForum.Web.MVC.App_Start;
 using System.Reflection;
+using MyForum.Web.MVC.Infrastructure.Mappers;
 
 namespace MyForum.Web.MVC
 {
@@ -19,6 +20,7 @@ namespace MyForum.Web.MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             var autoMapperConfig = new AutoMapperConfig();
             autoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly().GetName().Name);
         }

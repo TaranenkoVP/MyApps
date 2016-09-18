@@ -100,3 +100,5 @@ D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\obj\Debug\MyForum.Busine
 D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\obj\Debug\MyForum.Business.Core.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\EntityFramework.SqlServer.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business.Core\bin\Debug\EntityFramework.SqlServer.xml

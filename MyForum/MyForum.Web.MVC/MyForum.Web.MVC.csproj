@@ -199,13 +199,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Mappers\GenericMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mappers\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mappers\IMap.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\TopicCategoriesViewModel\TopicCategoriesViewModel.cs" />
+    <Compile Include="Models\Post\PostViewModel.cs" />
+    <Compile Include="Models\TopicCategories\TopicCategoriesViewModel.cs" />
+    <Compile Include="Models\Topic\TopicViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -288,7 +290,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyForum.Business.Core\MyForum.Business.Core.csproj">
+    <ProjectReference Include="..\MyForum.Business\MyForum.Business.Core\MyForum.Business.Core.csproj">
       <Project>{fda4f5de-8ef3-4471-96c8-f3a09bb8f927}</Project>
       <Name>MyForum.Business.Core</Name>
     </ProjectReference>

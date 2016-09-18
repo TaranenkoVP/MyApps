@@ -7,23 +7,24 @@ using AutoMapper;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Services;
 using MyForum.Business.Core.Services.Interfaces;
-using MyForum.Web.MVC.Infrastructure.Mappers;
-using MyForum.Web.MVC.Models.TopicCategoriesViewModel;
+using MyForum.Web.MVC.Models.Post;
+using MyForum.Web.MVC.Models.TopicCategories;
 
 namespace MyForum.Web.MVC.Controllers
 {
     public class HomeController : BaseController
     {
         private readonly ITopicCategoriesService _topicCategoriesService;
+        private readonly ITopicsService _topicsService;
 
-        public HomeController(ITopicCategoriesService topicCategoriesService)
+        public HomeController(ITopicCategoriesService topicCategoriesService, ITopicsService topicsService)
         {
             this._topicCategoriesService = topicCategoriesService;
+            this._topicsService = topicsService;
         }
 
         public ActionResult Index()
         {
-
             return View();
         }
 
@@ -31,15 +32,34 @@ namespace MyForum.Web.MVC.Controllers
         [ChildActionOnly]
         public ActionResult GetTopicCategoriesPartial()
         {
+            var viewModel = new List<TopicCategoriesViewModel>();
 
-            var categoriesBusiness = _topicCategoriesService.GetAll();
+            var categories = Mapper.Map<List<TopicCategoriesViewModel>>(_topicCategoriesService.GetAll());
 
-            var categories = Mapper.Map<TopicCategoriesViewModel>(categoriesBusiness);
+            foreach (var category in categories)
+            {
 
-           // new Mapper.Map<TopicCategoriesViewModel>(categoriesBusiness);
+                var f = _topicsService.GetLastCreatedByCategoryId(category.Id);
+                var lastPost = Mapper.Map<PostViewModel>(f
+                                    );
 
-            //var categories = new GenericMapper<TopicCategoryBusiness, TopicCategoriesViewModel>()
-            //        .GetWrapped(_topicCategoriesService.GetAll());
+
+                var model = new TopicCategoriesViewModel
+                {
+
+                    //Category = category,
+                    //LatestTopic = latestTopicInCategory,
+                    //Permissions = permissionSet,
+                    //PostCount = postCount,
+                    //TopicCount = topicCount,
+                    //ShowUnSubscribedLink = true
+                };
+                viewModel.Add(model);
+            }
+
+            
+
+            
 
             return this.PartialView("_TopicCategoriesPartial", categories);
 

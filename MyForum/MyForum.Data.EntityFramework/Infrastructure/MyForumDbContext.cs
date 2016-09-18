@@ -9,7 +9,7 @@ using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Data.EF.Infrastructure
 {
-    public class MyForumDbContext : IdentityDbContext<User>
+    public class MyForumDbContext : IdentityDbContext<ApplicationUser>
     {
         public IDbSet<Post> Posts { get; set; }
         public IDbSet<Topic> Topics { get; set; }

@@ -1,0 +1,16 @@
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\MyForum.Data.Models.dll.config
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\MyForum.Data.Models.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\MyForum.Data.Models.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\EntityFramework.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\MyForum.Data.Common.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\MyForum.Data.Common.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\EntityFramework.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\obj\Debug\MyForum.Models.csprojResolveAssemblyReference.cache
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\obj\Debug\MyForum.Data.Models.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Models\obj\Debug\MyForum.Data.Models.pdb

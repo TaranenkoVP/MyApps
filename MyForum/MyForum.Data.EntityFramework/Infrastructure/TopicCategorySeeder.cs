@@ -22,9 +22,9 @@ namespace MyForum.Data.EF.Infrastructure
 
             if (!isAuthorSeeded)
             {
-                var userManager = new UserManager<User>(new UserStore<User>(context));
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-                userManager.Create(new User() { UserName = authorUserName, Email = authorUserName, CreatedOn = DateTime.UtcNow, Photo = "http://cdn2.hubspot.net/hub/245562/file-306538470-png/v3/ninja2.png?t=1453934745802" }, "123456");
+                userManager.Create(new ApplicationUser() { UserName = authorUserName, Email = authorUserName, CreatedOn = DateTime.UtcNow, Photo = "http://cdn2.hubspot.net/hub/245562/file-306538470-png/v3/ninja2.png?t=1453934745802" }, "123456");
 
                 var author = context.Users.FirstOrDefault(u => u.UserName == authorUserName);
 

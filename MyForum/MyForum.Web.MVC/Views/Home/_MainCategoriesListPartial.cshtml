@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MyForum.Web.MVC.Models.MainCategoriesViewModel>
+@{
+    ViewBag.Title = "_MainCategoriesPartial";
+}
+
+
+@foreach (var mainCategory in Model)
+{
+    Html.RenderAction("GetListMainCategoriesPartial","MainCategory", mainCategory);
+}
+

@@ -23,7 +23,7 @@ namespace MyForum.Data.EF.Infrastructure
         public MyForumDbContext(string connectionString)
             : base(connectionString)
         {
-            //   Database.Log = (e) => { Debug.WriteLine(e); };
+            Database.Log = (e) => { Debug.WriteLine(e); };
             Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyForumDbContext, Configuration>());
         }

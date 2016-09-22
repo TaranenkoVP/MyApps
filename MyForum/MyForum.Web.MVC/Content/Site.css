@@ -1,6 +1,91 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 20px;
+}
+
+
+.forum-head-links {
+    color:#FFFAFA;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.forum-head {
+    display:block;
+    width: 100%;
+    font-weight:normal;
+    float: none;
+    height: 70px;
+    margin-top: 10px; 
+}
+
+.forum-head-title {
+    color:#e9e9e9;
+    -webkit-border-radius: 7px 7px 0px 0px;
+    background: none repeat-x scroll 0 0 #008B8B;
+    /*background: linear-gradient(to top, #006400, #20B2AA*/
+}
+
+.forum-head-description {
+    height: 37px;
+    background: none repeat-x scroll 0 0 #e9e9e9;
+ }
+
+.forumrow {
+    Height: 60px;
+    margin-top: 5px;
+}
+
+.foruminfo {
+    /*position: absolute;*/
+    width: 60%;
+    float: left;
+    height: inherit;
+    /*border: 10px;*/
+    border-bottom: 2px #00ced1;
+ /*background: none repeat-x scroll 0 0 #e9e9e9;*/
+    /*text-align: -webkit-match-parent;
+    font-weight: normal;
+    font-size: inherit;
+    border-collapse: collapse;
+    line-height: 1.230;
+    font: 13px/1.231 arial,helvetica,clean,sans-serif;*/
+}
+.forumdata {
+    float:none;
+}
+.datacontainer {
+    margin-left: 0;
+}
+.forumicon{
+    left:10px;
+    Height: auto;
+    display : inline;
+    float: left;
+}
+
+.titleline {
+    left:10px;
+    display : inline;
+    vertical-align: top;
+    /*float: left;*/
+    top: 0;
+}
+
+.forumtopicstatistic {
+    width: 15%;
+    float: left;
+    height: inherit;
+    text-align: right;
+    line-height: 0.7;
+}
+.forumlastpost {
+    padding-left: 5%;
+    width: 25%;
+    float: right;
+    height: inherit;
+    text-align: left;
+    line-height: 0.7;
 }
 
 /* Set padding to keep content from hitting the edges */

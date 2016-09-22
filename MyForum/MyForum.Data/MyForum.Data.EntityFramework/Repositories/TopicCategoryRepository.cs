@@ -16,6 +16,6 @@ namespace MyForum.Data.EF.Repositories
             : base(context)
         {
         }
-    
+
     }
 }

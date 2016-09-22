@@ -15,10 +15,11 @@ namespace MyForum.Web.MVC.Models
 
         public string Description { get; set; }
 
+        public int TopicsCount { get; set; }
+        public int PostsCount { get; set; }
+
         //public TopicViewModel LatestTopic { get; set; }
-        public TopicViewModel LatestPost { get; set; }
-        public int TopicCount { get; set; }
-        public int PostCount { get; set; }
+        public PostViewModel LatestPost { get; set; }
 
         public DateTime Latest { get; set; }
     }

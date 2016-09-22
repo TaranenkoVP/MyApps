@@ -13,7 +13,8 @@ namespace MyForum.Web.MVC.Models
 
         public DateTime CreatedOn { get; set; }
 
-       // public IEnumerable<PostViewModel> Answers { get; set; }
+        
+        // public IEnumerable<PostViewModel> Answers { get; set; }
 
         //public TopicCategoriesViewModel Category;
     }

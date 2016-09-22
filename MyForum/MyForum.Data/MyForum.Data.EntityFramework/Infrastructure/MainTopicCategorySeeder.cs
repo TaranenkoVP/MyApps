@@ -78,8 +78,59 @@ namespace MyForum.Data.EF.Infrastructure
                     MainCategory = mainCategory1,
                     CreatedOn = DateTime.Now.AddHours(-2)
                 };
+
+                var topicCategory3 = new TopicCategory()
+                {
+                    Name = "PHP",
+                    Description = "Discussion and technical support for using and deploying PHP based websites.",
+                    Author = author,
+                    MainCategory = mainCategory2,
+                    CreatedOn = DateTime.Now.AddHours(-1)
+                };
+
+                var topicCategory4 = new TopicCategory()
+                {
+                    Name = "Domain Names",
+                    Description = "Discussion of various issues involving domain names.",
+                    Author = author,
+                    MainCategory = mainCategory3,
+                    CreatedOn = DateTime.Now
+                };
+
+                var topicCategory5 = new TopicCategory()
+                {
+                    Name = "Forum, Blog, Wiki & CMS",
+                    Description = "Discuss the various forum/message board/blogging formats, customizations, settings, features, and troubleshooting here",
+                    Author = author,
+                    MainCategory = mainCategory3,
+                    CreatedOn = DateTime.Now.AddHours(-7)
+                };
+
+                var topicCategory6 = new TopicCategory()
+                {
+                    Name = "Forum Feedback",
+                    Description = "If you have feedback about the forums, we'd love to read it!",
+                    Author = author,
+                    MainCategory = mainCategory4,
+                    CreatedOn = DateTime.Now.AddHours(-9)
+                };
+
+                var topicCategory7 = new TopicCategory()
+                {
+                    Name = "ASP.NET",
+                    Description = "Discussion and technical support for using and deploying ASP.NET based websites.",
+                    Author = author,
+                    MainCategory = mainCategory2,
+                    CreatedOn = DateTime.Now
+                };
+
                 context.TopicCategory.Add(topicCategory1);
                 context.TopicCategory.Add(topicCategory2);
+                context.TopicCategory.Add(topicCategory3);
+                context.TopicCategory.Add(topicCategory4);
+                context.TopicCategory.Add(topicCategory5);
+                context.TopicCategory.Add(topicCategory6);
+                context.TopicCategory.Add(topicCategory7);
 
                 context.SaveChanges();
 
@@ -103,8 +154,38 @@ namespace MyForum.Data.EF.Infrastructure
                     CreatedOn = DateTime.Now.AddHours(-3)
                 };
 
+                var topic3 = new Topic()
+                {
+                    Title = "Domain Names",
+                    Content ="Discussion of various issues involving domain names.",
+                    Author = author,
+                    TopicCategory = topicCategory3,
+                    CreatedOn = DateTime.Now.AddHours(-3)
+                };
+
+                var topic4 = new Topic()
+                {
+                    Title = "Forum, Blog, Wiki & CMS",
+                    Content = "Discuss the various forum / message board / blogging formats,customizations,settings,features,and troubleshooting here",
+                    Author = author,
+                    TopicCategory = topicCategory3,
+                    CreatedOn = DateTime.Now.AddHours(-1)
+                };
+
+                var topic5 = new Topic()
+                {
+                    Title = "The Coffee Lounge",
+                    Content = "Relax and discuss the latest topics of the day.",
+                    Author = author,
+                    TopicCategory = topicCategory4,
+                    CreatedOn = DateTime.Now
+                };
+
                 context.Topic.Add(topic1);
                 context.Topic.Add(topic2);
+                context.Topic.Add(topic3);
+                context.Topic.Add(topic4);
+                context.Topic.Add(topic5);
 
                 context.SaveChanges();
 
@@ -124,8 +205,26 @@ namespace MyForum.Data.EF.Infrastructure
                     CreatedOn = DateTime.Now.AddHours(-3)
                 };
 
+                var post3 = new Post()
+                {
+                    Content = "getElementByID and iFrames",
+                    Author = author,
+                    Topic = topic1,
+                    CreatedOn = DateTime.Now.AddHours(-1)
+                };
+
+                var post4 = new Post()
+                {
+                    Content = "Extend Site to Fill Screen",
+                    Author = author,
+                    Topic = topic3,
+                    CreatedOn = DateTime.Now.AddHours(-3)
+                };
+
                 context.Post.Add(post1);
                 context.Post.Add(post2);
+                context.Post.Add(post3);
+                context.Post.Add(post4);
 
                 context.SaveChanges();
             }

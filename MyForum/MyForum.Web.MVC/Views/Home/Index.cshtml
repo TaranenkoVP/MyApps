@@ -1,17 +1,14 @@
-﻿@{
+﻿@using MyForum.Data.Core.Models
+@{
     ViewBag.Title = "Home Page";
 }
 <div class="panel panel-success">
     <div class="panel-heading text-center">
-        <h1>Categories</h1>
-    </div>
-    <div class="panel-body">
-        <div class="table-responsive">
-            <table class="table text-center ">
-                 @{Html.RenderAction("GetMainCategoriesPartial");}
-            </table>
-        </div>
+        <h1>Main</h1>
     </div>
 </div>
+
+@{ Html.RenderAction("GetListMainCategoriesPartial");}
+
 
 

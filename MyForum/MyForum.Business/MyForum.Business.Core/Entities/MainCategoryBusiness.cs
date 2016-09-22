@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using MyForum.Business.Core.Infrastructure.Mappers;
 using MyForum.Data.Core.Models;
 
@@ -32,5 +33,5 @@ namespace MyForum.Business.Core.Entities
             set { this._topicCategories = value; }
         }
 
-   }
+    }
 }

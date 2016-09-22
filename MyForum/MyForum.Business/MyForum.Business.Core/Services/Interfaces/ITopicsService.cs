@@ -13,7 +13,9 @@ namespace MyForum.Business.Core.Services.Interfaces
         IEnumerable<TopicBusiness> GetAllTopics();
         TopicBusiness GetTopic(int id);
         TopicBusiness GetLastCreatedByCategoryId(int id);
-        int GetCountByCategoryId(int id);
+        int GetTopicsCountByCategoryId(int id);
+        int GetPostsCountByCategoryId(int id);
+        PostBusiness GetLatestPostByCategoryId(int id);
         //void Add(TopicBusiness entity);
         //void Update(TopicBusiness entity);
         //void Delete(TopicBusiness entity);

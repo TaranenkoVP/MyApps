@@ -31,51 +31,11 @@ namespace MyForum.Web.MVC.Controllers
 
         [HttpGet]
         [ChildActionOnly]
-        public ActionResult GetMainCategoriesPartial()
+        public ActionResult GetListMainCategoriesPartial()
         {
             var categories = Mapper.Map<List<MainCategoriesViewModel>>(_mainCategoriesService.GetAll());
 
-            foreach (var category in categories)
-            {
-                
-                //var topicCategories = Mapper.Map<TopicViewModel>(_topicsService.GetLastCreatedByCategoryId(category.Id));
-               // var topicCategories = Mapper.Map<List<TopicCategoriesViewModel>>(_topicCategoriesService.GetAll());
-                //var topicCategories = Mapper.Map<List<TopicCategoriesViewModel>>(_topicCategoriesService.GetAll());
-
-                //foreach (var topiccategory in topicCategories)
-                //{
-
-                //}
-
-
-
-
-                //var lastPost = Mapper.Map<TopicViewModel>(_topicsService.GetLastCreatedByCategoryId(category.Id));
-
-                //category.LatestPost = lastPost;
-
-                //category.TopicCount = _topicsService.GetCountByCategoryId(category.Id);
-
-
-                //var model = new TopicCategoriesViewModel
-                //{
-
-
-                //public int Id { get; set; }
-
-                //public string Name { get; set; }
-
-                //public string Description { get; set; }
-
-                ////public TopicViewModel LatestTopic { get; set; }
-                //public TopicViewModel LatestPost { get; set; }
-                //public int TopicCount { get; set; }
-                //public int PostCount { get; set; }
-
-            }
-           
-
-            return this.PartialView("_MainCategoriesPartial", categories);
+            return PartialView("_MainCategoriesListPartial", categories);
 
         }
     }

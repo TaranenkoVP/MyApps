@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,40 @@ namespace MyForum.Business.Core.Services
 {
     public class MainCategoriesService : BaseService<MainCategory, MainCategoryBusiness>, IMainCategoriesService
     {
-        public MainCategoriesService(IUnitOfWork uow)
+        /// <summary>
+        /// Topics service
+        /// </summary>
+        private readonly ITopicsService _topicsService;
+
+        /// <summary>
+        /// Posts service
+        /// </summary>
+        private readonly IPostsService _postsService;
+
+        public MainCategoriesService(IUnitOfWork uow, ITopicsService topicsService, IPostsService postsService)
             : base(uow, uow.MainCategoryRepository)
         {
+            _topicsService = topicsService;
+            _postsService = postsService;
         }
 
         public IEnumerable<MainCategoryBusiness> GetAll()
         {
-            return Mapper.Map<List<MainCategoryBusiness>>(
+            var mainCategories = Mapper.Map<List<MainCategoryBusiness>>(
                 Database.MainCategoryRepository.Get(
-                    includeProperties: "TopicCategories")
-                    .ToList());
+                    includeProperties: "TopicCategories").ToList());//, TopicCategories.Topics, TopicCategories.Topics.Posts
+
+            foreach (var category in mainCategories)
+            {
+                foreach (var topicCategory in category.TopicCategories)
+                {
+                    topicCategory.TopicsCount = _topicsService.GetTopicsCountByCategoryId(topicCategory.Id);
+                    topicCategory.PostsCount = _topicsService.GetPostsCountByCategoryId(topicCategory.Id);
+                    topicCategory.LatestPost = _topicsService.GetLatestPostByCategoryId(topicCategory.Id);
+                }
+            }
+
+            return mainCategories;
         }
     }
 }

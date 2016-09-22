@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -52,6 +53,7 @@ namespace MyForum.Web.MVC
             {
                 mapperConfiguration.CreateMap(map.Source, map.Destination);
                 mapperConfiguration.CreateMap(map.Destination, map.Source);
+                Debug.WriteLine(map.Source + "   " + map.Destination);
             }
         }
 

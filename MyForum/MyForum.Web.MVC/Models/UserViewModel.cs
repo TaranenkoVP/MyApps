@@ -5,29 +5,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using MyForum.Business.Core.Infrastructure.Mappers;
-using MyForum.Data.Core.Common.Models;
-using MyForum.Data.Core.Models.Identity;
+using MyForum.Business.Core.Entities;
+using MyForum.Web.MVC.Infrastructure.Mappers;
 
-namespace MyForum.Business.Core.Entities
+namespace MyForum.Web.MVC.Models
 {
-    public class UserBusiness : IMapFrom<ApplicationUser>
+    public class UserViewModel : IMapFrom<UserBusiness>
     {
-
-        #region Constructors
-
-        public UserBusiness()
-        {
-
-        }
-
-        #endregion Constructors
-        //public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
-        //{
-        //    var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-        //    return userIdentity;
-        //}
-
         public string Photo { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -43,8 +27,6 @@ namespace MyForum.Business.Core.Entities
         public string UserName { get; set; }
         public string Address { get; set; }
         public string Role { get; set; }
-
-        
 
     }
 }

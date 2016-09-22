@@ -21,5 +21,10 @@ namespace MyForum.Data.EF.Repositories
         {
             return DbSet.Count(d => (d.TopicCategory.Id == id) && (!d.IsDeleted));
         }
+
+        //public int GetLatestPostByCategoryId(int id)
+        //{
+        //    return DbSet.Posts (d => (d.TopicCategory.Id == id) && (!d.IsDeleted));
+        //}
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,9 +63,56 @@ namespace MyForum.Business.Core.Services
             return topic;
         }
 
-        public int GetCountByCategoryId(int id)
+        public int GetTopicsCountByCategoryId(int id)
         {
-            return Database.TopicRepository.GetCountByCategoryId(id);
+            var topicCount = Database.TopicRepository.Get(
+                filter: d => d.TopicCategory.Id == id)
+                .Count();
+
+            return topicCount;
+        }
+
+        public int GetPostsCountByCategoryId(int id)
+        {
+            var topicCount = Database.TopicRepository.Get(
+                filter: d => d.TopicCategory.Id == id,
+                includeProperties: "Posts")
+                    .SelectMany(x => x.Posts)
+                    .Count();
+
+            return topicCount;
+        }
+
+        public PostBusiness GetLatestPostByCategoryId(int id)
+        {
+            var g = Database.TopicRepository.Get(
+                filter: d => d.TopicCategory.Id == id,
+                includeProperties: "Posts, Author").ToList();
+
+            var topics = Mapper.Map<List<TopicBusiness>>(g);
+
+            PostBusiness lastPost = null;
+
+            foreach (var topic in topics)
+            {
+                var post = topic.Posts.OrderByDescending(x => x.CreatedOn).FirstOrDefault();
+                if (lastPost == null)
+                {
+                    lastPost = post;
+                }
+                else
+                {
+                    if (post != null)
+                    {
+                        if (post.CreatedOn < lastPost.CreatedOn)
+                        {
+                            lastPost = post;
+                        }
+                    }
+                }
+            }
+
+            return lastPost;
         }
 
     }

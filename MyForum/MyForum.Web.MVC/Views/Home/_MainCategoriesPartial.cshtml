@@ -3,26 +3,46 @@
     ViewBag.Title = "_MainCategoriesPartial";
 }
 
+
 @foreach (var mainCategory in Model)
 {
-    <tbody>
-        <tr>
-            <td class="text-left">
-                <h4 class="list-group-item-heading">@Html.ActionLink(mainCategory.Name, "Topics/" + mainCategory.Id, "Topics")</h4>
-                <p class="list-group-item-text">@mainCategory.Description</p>
-            </td>
-            <td>@mainCategory.TopicCount</td>
-            <td>@mainCategory.PostCount</td>
-            <td>@mainCategory.Latest</td>
+    <div class="forum-head">
+        <div>
+            <h2 class="forum-head-title"> @Html.ActionLink(mainCategory.Name, "Topics/" + mainCategory.Id, "Topics", new { @class = "forum-head-links" } )</h2>
+            </div>
+        <div>
+            <p class="forum-head-description">@mainCategory.Description</p>
+        </div>
+    </div>
 
-            @foreach (var topicCategory in mainCategory.TopicCategories)
-            {
-                <td class="text-left">
-                    <h4 class="list-group-item-heading">@Html.ActionLink(topicCategory.Name, "Topics/" + topicCategory.Id, "Topics")</h4>
-                    <p class="list-group-item-text">@topicCategory.Description</p>
-                </td>
+    <div class="forumrow">
+        @foreach (var topicCategory in mainCategory.TopicCategories)
+        {
+            <div class="foruminfo">
+                <img src="http://www.webdeveloper.com/forum/images/statusicon/forum_new-48.png" class="forumicon" id="forum_statusicon_2" alt=""/>
+                     <div class="forumdata">
+                        <h3 class="titleline"> @Html.ActionLink(topicCategory.Name, "Topics/" + topicCategory.Id, "Topics")</h3>
+                        <p>@topicCategory.Description</p>
+                     </div>
+                </div>
             }
+        </div>
 
-        </tr>
-    </tbody>
-}
+
+                <!--
+                <table class="table text-center ">
+                    <tbody>
+                        @foreach (var topicCategory in mainCategory.TopicCategories)
+                        {
+                            <tr>
+                                <td class="text-left">
+                                    <h4 class="list-group-item-heading">@Html.ActionLink(topicCategory.Name, "Topics/" + topicCategory.Id, "Topics")</h4>
+                                    <p class="list-group-item-text">@topicCategory.Description</p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                -->
+    }
+

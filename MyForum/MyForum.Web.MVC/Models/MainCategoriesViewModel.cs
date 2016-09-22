@@ -16,8 +16,8 @@ namespace MyForum.Web.MVC.Models
         public string Description { get; set; }
 
         //public TopicViewModel LatestPost { get; set; }
-        public int TopicCount { get; set; }
-        public int PostCount { get; set; }
+        //public int TopicCategoriesCount { get; set; }
+        //public int PostCount { get; set; }
 
         public IEnumerable<TopicCategoriesViewModel> TopicCategories { get; set; }
 

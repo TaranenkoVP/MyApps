@@ -34,6 +34,15 @@ namespace MyForum.Business.Core.Services
             return topicCategory;
         }
 
+        public int GetPostsCountByTopicId(int id)
+        {
+            var postCount = Database.PostRepository.Get(
+                filter: d => d.Topic.Id == id)
+                .Count();
+
+            return postCount;
+        }
+
         public PostBusiness GetLastCreated()
         {
             throw new ValidationException("Topic Category not found");

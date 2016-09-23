@@ -11,5 +11,6 @@ namespace MyForum.Business.Core.Services.Interfaces
     public interface IPostsService : IBaseService<Post, PostBusiness>
     {
         PostBusiness GetLastCreated();
+        int GetPostsCountByTopicId(int id);
     }
 }

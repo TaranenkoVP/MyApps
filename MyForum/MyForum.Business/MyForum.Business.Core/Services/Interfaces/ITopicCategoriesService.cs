@@ -11,6 +11,7 @@ namespace MyForum.Business.Core.Services.Interfaces
     public interface ITopicCategoriesService : IBaseService<TopicCategory, TopicCategoryBusiness>
     {
         IEnumerable<TopicCategoryBusiness> GetAll();
+        TopicCategoryBusiness GetById(int id);
         //void Add(TopicCategoryBusiness entity);
         //void Update(TopicCategoryBusiness entity);
         //void Delete(TopicCategoryBusiness entity);

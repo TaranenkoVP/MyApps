@@ -1,0 +1,38 @@
+﻿@model MyForum.Web.MVC.Models.TopicViewModel
+
+<div class="forumrow">
+    <div class="foruminfo">
+        <img src="http://www.webdeveloper.com/forum/images/statusicon/thread_new-30.png" class="forumicon" id="forum_statusicon_2" alt="" />
+        <div class="forumdata">
+            <h4 class="titleline"> @Html.ActionLink(Model.Title, "Topic/" + Model.Id, "Topic")</h4>
+        </div>
+    </div>
+    <div class="forumtopicstatistic">
+        <p>Posts: @Model.PostsCount</p>
+    </div>
+    <div class="forumlastpost">
+        @if (Model.PostsCount > 0)
+        {
+            if (Model.LatestPost.Content.Length > 30)
+            {
+                <p>@Html.ActionLink(@Model.LatestPost.Content.Substring(0, 30) + "...", "Topics/" + Model.Id, "Topic")</p>
+            }
+            else
+            {
+                <p>@Html.ActionLink(@Model.LatestPost.Content, "Topic/" + Model.Id, "Topic")</p>
+            }
+
+            if (Model.LatestPost.Author.UserName.Length > 30)
+            {
+                <p>by: @Html.ActionLink(@Model.LatestPost.Author.UserName.Substring(0, 30) + "...", "Topic/" + Model.Id, "Topic")</p>
+            }
+            else
+            {
+                <p>by: @Html.ActionLink(@Model.LatestPost.Author.UserName, "Topic/" + Model.Id, "Topic")</p>
+            }
+
+            <p> @Model.LatestPost.CreatedOn.ToString("ddd dd MMM yyyy, hh:mm tt")</p>
+        }
+    </div>
+</div>
+

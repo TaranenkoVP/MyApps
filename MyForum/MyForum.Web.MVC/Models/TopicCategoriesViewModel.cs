@@ -19,8 +19,9 @@ namespace MyForum.Web.MVC.Models
         public int PostsCount { get; set; }
 
         //public TopicViewModel LatestTopic { get; set; }
+        public IEnumerable<TopicViewModel> Topics { get; set; }
+
         public PostViewModel LatestPost { get; set; }
 
-        public DateTime Latest { get; set; }
     }
 }

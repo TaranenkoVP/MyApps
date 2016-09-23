@@ -11,5 +11,6 @@ namespace MyForum.Business.Core.Services.Interfaces
     public interface IMainCategoriesService : IBaseService<MainCategory, MainCategoryBusiness>
     {
         IEnumerable<MainCategoryBusiness> GetAll();
+        MainCategoryBusiness GetById(int id);
     }
 }

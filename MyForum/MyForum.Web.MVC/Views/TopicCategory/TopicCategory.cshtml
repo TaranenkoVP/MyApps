@@ -1,0 +1,26 @@
+﻿
+@model MyForum.Web.MVC.Models.TopicCategoriesViewModel
+
+@*<div class="panel panel-success">
+    <div class="panel-heading text-center">
+        <h1>@Model.Name</h1>
+    </div>
+</div>*@
+
+<div class="forum-head">
+    <div class="forum-head-title">
+        @Html.ActionLink(Model.Name, "TopicCategory/" + Model.Id, "TopicCategory", new { @class = "forum-head-links" })
+    </div>
+    <div class="forum-head-description">
+        <p style="margin-left: 5px;">@Model.Description</p>
+    </div>
+</div>
+
+<div>
+    @foreach (var topic in Model.Topics)
+    {
+        @Html.Partial("~/Views/Topic/_TopicPartial.cshtml", topic)
+    }
+</div>
+
+@*@{ Html.RenderAction("GetListTopicsPartial");}*@

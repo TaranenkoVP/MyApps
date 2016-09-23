@@ -3,7 +3,7 @@
 
 <div class="forum-head">
     <div class="forum-head-title">
-        @Html.ActionLink(Model.Name, "Topic/" + Model.Id, "Topic", new {@class = "forum-head-links"})
+        @Html.ActionLink(Model.Name, "MainCategory/" + Model.Id, "MainCategory", new {@class = "forum-head-links"})
     </div>
     <div class="forum-head-description">
         <p style="margin-left: 5px;">@Model.Description</p>
@@ -13,50 +13,7 @@
 <div>
     @foreach (var topicCategory in Model.TopicCategories)
     {
-        <div class="forumrow">
-            <div class="foruminfo">
-                <img src="http://www.webdeveloper.com/forum/images/statusicon/forum_new-48.png" class="forumicon" id="forum_statusicon_2" alt="" />
-                <div class="forumdata">
-                    <h4 class="titleline"> @Html.ActionLink(topicCategory.Name, "Topic/" + topicCategory.Id, "Topic")</h4>
-                    @if (topicCategory.Description.Length > 150)
-                    {
-                        <p>@topicCategory.Description.Substring(0, 150)...</p>
-                    }
-                    else
-                    {
-                        <p>@topicCategory.Description</p>
-                    }
-                </div>
-            </div>
-            <div class="forumtopicstatistic">
-                <p>Threads: @topicCategory.TopicsCount</p>
-                <p>Posts: @topicCategory.PostsCount</p>
-            </div>
-            <div class="forumlastpost">
-                @if (topicCategory.PostsCount > 0)
-                {
-                    if (topicCategory.LatestPost.Content.Length > 30)
-                    {
-                        <p>@Html.ActionLink(@topicCategory.LatestPost.Content.Substring(0, 30) + "...", "Topics/" + Model.Id, "Topic")</p>
-                    }
-                    else
-                    {
-                        <p>@Html.ActionLink(@topicCategory.LatestPost.Content, "Topic/" + Model.Id, "Topic")</p>
-                    }
-
-                    if (topicCategory.LatestPost.Author.UserName.Length > 30)
-                    {
-                        <p>by: @Html.ActionLink(@topicCategory.LatestPost.Author.UserName.Substring(0, 30) + "...", "Topic/" + Model.Id, "Topic")</p>
-                    }
-                    else
-                    {
-                        <p>by: @Html.ActionLink(@topicCategory.LatestPost.Author.UserName, "Topic/" + Model.Id, "Topic")</p>
-                    }
-
-                    <p> @topicCategory.LatestPost.CreatedOn.ToString("ddd dd MMM yyyy, hh:mm tt")</p>
-                }
-            </div>
-        </div>
+        Html.RenderAction("GetTopicCategoryPartial", "TopicCategory", topicCategory);
     }
 </div>
 

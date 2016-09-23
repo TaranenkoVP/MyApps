@@ -21,7 +21,6 @@ namespace MyForum.Business.Core.Services
         public TopicCategoriesService(IUnitOfWork uow)
            : base(uow , uow.TopicCategoryRepository)
         {
-
         }
 
         public TopicCategoryBusiness GetTopicCategory(int id)
@@ -36,6 +35,37 @@ namespace MyForum.Business.Core.Services
 
             return topicCategory;
         }
+
+        public TopicCategoryBusiness GetById(int id)
+        {
+            var topicCategory = Mapper.Map<TopicCategoryBusiness>(
+                Database.TopicCategoryRepository
+                        .Get(includeProperties: "Topics, Topics.Posts, Topics.Posts.Author")
+                        .FirstOrDefault(x => x.Id == id));
+
+            foreach (var topic in topicCategory.Topics)
+            {
+               // topic.PostCount = GetPostsCountByTopicId
+            }
+            //topicCategory.PostsCount= GetPostsCountByTopicId
+
+            return topicCategory;
+        }
+
+        //public TopicCategoryBusiness GetTopicsByCategoryId(int id)
+        //{
+        //    var topics = Mapper.Map<TopicCategoryBusiness>(Database.TopicCategoryRepository.Get(
+
+        //        ));
+
+        //    if (topics == null)
+        //    {
+        //        throw new ValidationException("Topic Category not found");
+        //    }
+
+        //    return topics;
+        //}
+
 
         public IEnumerable<TopicCategoryBusiness> GetAll()
         {

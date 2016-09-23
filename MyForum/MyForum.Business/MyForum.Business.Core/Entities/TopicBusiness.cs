@@ -10,19 +10,21 @@ using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Entities
 {
-    public class TopicBusiness : BaseModelBusiness<int>, IMapFrom<Topic>//, IHaveCustomMappings
+    public class TopicBusiness : BaseModelBusiness<int>, IMapFrom<Topic>, IHaveCustomMappings
     {
         private ICollection<PostBusiness> _posts;
 
-        public int PostCount { get; set; }
-
         public virtual TopicCategory TopicCategory { get; set; }
-
-        public virtual UserBusiness Author { get; set; }
 
         public string Title { get; set; }
 
-        public string Content { get; set; }
+        public virtual UserBusiness Author { get; set; }
+
+        //statistic
+        public PostBusiness LatestPost { get; set; }
+
+        public int PostCount { get; set; }
+
 
         #region Constructors
 
@@ -42,10 +44,13 @@ namespace MyForum.Business.Core.Entities
             set { this._posts = value; }
         }
 
-        //public void CreateMappings(IMapperConfigurationExpression configuration)
-        //{
-        //    configuration.CreateMap<Topic, TopicBusiness>()
-        //       .ForMember(r => r.PostCount, opts => opts.MapFrom(x => x.Posts.Count));
-        //}
+        public void CreateMappings(IMapperConfigurationExpression configuration)
+        {
+            configuration.CreateMap<Topic, TopicBusiness>()
+                .ForMember(r => r.PostCount, opts => opts.MapFrom(x => x.Posts.Count))
+                .ForMember(r => r.LatestPost,
+                    opts => opts.MapFrom(x => x.Posts.OrderByDescending(t => t.CreatedOn).FirstOrDefault()));
+
+        }
     }
 }

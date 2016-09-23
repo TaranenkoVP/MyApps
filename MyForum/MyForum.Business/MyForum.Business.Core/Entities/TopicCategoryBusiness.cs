@@ -11,7 +11,7 @@ using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Entities
 {
-    public class TopicCategoryBusiness : BaseModelBusiness<int>, IMapFrom<TopicCategory>//, IHaveCustomMappings
+    public class TopicCategoryBusiness : BaseModelBusiness<int>, IMapFrom<TopicCategory>, IHaveCustomMappings
     {
         private ICollection<TopicBusiness> _topics;
 
@@ -39,11 +39,16 @@ namespace MyForum.Business.Core.Entities
             set { this._topics = value; }
         }
 
-        //public void CreateMappings(IMapperConfigurationExpression configuration)
-        //{
-        //    configuration.CreateMap<TopicCategory, TopicCategoryBusiness>()
-        //       .ForMember(r => r.TopicsCount, opts => opts.MapFrom(x => x.Topics.Count))
-        //       .ForMember(r => r.PostsCount, opts => opts.MapFrom(x => x.Topics.SelectMany(y => y.Posts).Count()));
-        //}
+        public void CreateMappings(IMapperConfigurationExpression configuration)
+        {
+            configuration.CreateMap<TopicCategory, TopicCategoryBusiness>()
+               .ForMember(r => r.TopicsCount, opts => opts.MapFrom(x => x.Topics.Count))
+               .ForMember(r => r.PostsCount, opts => opts.MapFrom(x => x.Topics.SelectMany(y => y.Posts).Count()))
+               .ForMember(r => r.LatestPost,
+                    opts => opts.MapFrom(x => x.Topics.SelectMany(y => y.Posts)
+                        .OrderByDescending(y => y.CreatedOn)
+                        .FirstOrDefault()));
+            //opts => opts.MapFrom(x => x.Topics.Select(y => y.Posts.OrderByDescending(t => t.CreatedOn).FirstOrDefault())));
+        }
     }
 }

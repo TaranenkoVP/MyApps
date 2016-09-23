@@ -1,17 +1,10 @@
 ﻿
-@{
-    Layout = null;
-}
+@model MyForum.Web.MVC.Models.TopicCategoriesViewModel
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Topics</title>
-</head>
-<body>
-    <div> 
+<div class="panel panel-success">
+    <div class="panel-heading text-center">
+        <h1>@Model.Name</h1>
     </div>
-</body>
-</html>
+</div>
+
+@Html.Partial("_TopicPartial", Model)

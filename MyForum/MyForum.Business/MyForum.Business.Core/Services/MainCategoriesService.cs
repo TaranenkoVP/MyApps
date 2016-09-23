@@ -34,19 +34,36 @@ namespace MyForum.Business.Core.Services
         {
             var mainCategories = Mapper.Map<List<MainCategoryBusiness>>(
                 Database.MainCategoryRepository.Get(
-                    includeProperties: "TopicCategories").ToList());//, TopicCategories.Topics, TopicCategories.Topics.Posts
+                    includeProperties: "TopicCategories, TopicCategories.Topics, TopicCategories.Topics.Posts, TopicCategories.Topics.Posts.Author"));//, 
 
-            foreach (var category in mainCategories)
-            {
-                foreach (var topicCategory in category.TopicCategories)
-                {
-                    topicCategory.TopicsCount = _topicsService.GetTopicsCountByCategoryId(topicCategory.Id);
-                    topicCategory.PostsCount = _topicsService.GetPostsCountByCategoryId(topicCategory.Id);
-                    topicCategory.LatestPost = _topicsService.GetLatestPostByCategoryId(topicCategory.Id);
-                }
-            }
+            //foreach (var mainCategory in mainCategories)
+            //{
+            //    GetTopicCategoriesStatistic(mainCategory.TopicCategories);
+            //}
 
             return mainCategories;
         }
+
+        public MainCategoryBusiness GetById(int id)
+        {
+            var mainCategory = Mapper.Map<MainCategoryBusiness>(
+                Database.MainCategoryRepository.Get(
+                    includeProperties: "TopicCategories, TopicCategories.Topics, TopicCategories.Topics.Posts, TopicCategories.Topics.Posts.Author")
+                        .FirstOrDefault(x => x.Id == id));
+
+           // GetTopicCategoriesStatistic(mainCategory.TopicCategories);
+
+            return mainCategory;
+        }
+
+        //private void GetTopicCategoriesStatistic(IEnumerable<TopicCategoryBusiness> topicCategories)
+        //{
+        //    foreach (var topicCategory in topicCategories)
+        //    {
+        //        topicCategory.TopicsCount = _topicsService.GetTopicsCountByCategoryId(topicCategory.Id);
+        //        topicCategory.PostsCount = _topicsService.GetPostsCountByCategoryId(topicCategory.Id);
+        //        topicCategory.LatestPost = _topicsService.GetLatestPostByCategoryId(topicCategory.Id);
+        //    }
+        //}
     }
 }

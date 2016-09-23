@@ -33,5 +33,14 @@ namespace MyForum.Business.Core.Entities
             set { this._topicCategories = value; }
         }
 
+        //public void CreateMappings(IMapperConfigurationExpression configuration)
+        //{
+        //    configuration.CreateMap<TopicCategory, TopicCategoryBusiness>()
+        //       .ForMember(r => r.TopicsCount, opts => opts.MapFrom(x => x.Topics.Count))
+        //       .ForMember(r => r.PostsCount, opts => opts.MapFrom(x => x.Topics.SelectMany(y => y.Posts).Count()))
+        //       .ForMember(r => r.LatestPost,
+        //            opts => opts.MapFrom(x => x.Topics.Select(y => y.Posts.OrderByDescending(t => t.CreatedOn).FirstOrDefault())));
+
+        //}
     }
 }

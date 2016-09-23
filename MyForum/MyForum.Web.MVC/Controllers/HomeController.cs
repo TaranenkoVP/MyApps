@@ -13,6 +13,8 @@ namespace MyForum.Web.MVC.Controllers
 {
     public class HomeController : BaseController
     {
+        private const int PageSize = 10;
+
         private readonly IMainCategoriesService _mainCategoriesService;
         private readonly ITopicCategoriesService _topicCategoriesService;
         private readonly ITopicsService _topicsService;

@@ -274,8 +274,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_MainCategoriesListPartial.cshtml" />
     <Content Include="Views\Topic\Topic.cshtml" />
-    <Content Include="Views\TopicCategories\Index.cshtml" />
     <Content Include="Views\MainCategory\_MainCategoryPartial.cshtml" />
+    <Content Include="Views\TopicCategory\_TopicCategoryPartial.cshtml" />
+    <Content Include="Views\MainCategory\MainCategory.cshtml" />
+    <Content Include="Views\TopicCategory\TopicCategory.cshtml" />
+    <Content Include="Views\Topic\_TopicPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

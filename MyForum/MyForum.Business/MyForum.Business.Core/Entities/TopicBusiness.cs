@@ -14,7 +14,11 @@ namespace MyForum.Business.Core.Entities
     {
         private ICollection<PostBusiness> _posts;
 
-        public virtual TopicCategory TopicCategory { get; set; }
+        //public TopicCategoryBusiness TopicCategory { get; set; }
+
+        public int TopicCategoryId { get; set; }
+
+        public string TopicCategoryName { get; set; }
 
         public string Title { get; set; }
 
@@ -47,6 +51,8 @@ namespace MyForum.Business.Core.Entities
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Topic, TopicBusiness>()
+                .ForMember(r => r.TopicCategoryId, opts => opts.MapFrom(x => x.TopicCategory.Id))
+                .ForMember(r => r.TopicCategoryName, opts => opts.MapFrom(x => x.TopicCategory.Name))
                 .ForMember(r => r.PostCount, opts => opts.MapFrom(x => x.Posts.Count))
                 .ForMember(r => r.LatestPost,
                     opts => opts.MapFrom(x => x.Posts.OrderByDescending(t => t.CreatedOn).FirstOrDefault()));

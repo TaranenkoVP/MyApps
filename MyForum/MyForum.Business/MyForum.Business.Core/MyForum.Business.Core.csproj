@@ -134,7 +134,7 @@
     <Compile Include="Entities\UserBusiness.cs" />
     <Compile Include="Infrastructure\Mappers\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mappers\IHaveCustomMappings.cs" />
-    <Compile Include="Infrastructure\Mappers\IMap.cs" />
+    <Compile Include="Infrastructure\Mappers\IMapFrom.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
     <Compile Include="Services\DeletableBaseService.cs" />
     <Compile Include="Services\BaseService.cs" />

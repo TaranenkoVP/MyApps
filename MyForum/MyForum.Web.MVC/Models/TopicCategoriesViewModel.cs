@@ -16,6 +16,7 @@ namespace MyForum.Web.MVC.Models
         public string Description { get; set; }
 
         public int TopicsCount { get; set; }
+
         public int PostsCount { get; set; }
 
         //public TopicViewModel LatestTopic { get; set; }

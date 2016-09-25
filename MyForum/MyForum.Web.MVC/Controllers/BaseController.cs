@@ -24,12 +24,16 @@ namespace MyForum.Web.MVC.Controllers
             }
         }
 
-        //protected string UserIp
-        //{
-        //    get
-        //    {
-        //        return this.Request.UserHostAddress;
-        //    }
-        //}
+        internal ActionResult ErrorToHomePage(string errorMessage)
+        {
+            // Use temp data as its a redirect
+            //TempData[AppConstants.MessageViewBagName] = new GenericMessageViewModel
+            //{
+            //    Message = errorMessage,
+            //    MessageType = GenericMessages.danger
+            //};
+            // Not allowed in here so
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

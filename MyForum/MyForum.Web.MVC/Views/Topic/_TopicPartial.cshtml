@@ -2,9 +2,9 @@
 
 <div class="forumrow">
     <div class="foruminfo">
-        <img src="http://www.webdeveloper.com/forum/images/statusicon/thread_new-30.png" class="forumicon" id="forum_statusicon_2" alt="" />
+        <img src="/Content/Images/forum_new-48.png" class="forumicon" id="forum_statusicon_2" alt="" />
         <div class="forumdata">
-            <h4 class="titleline"> @Html.ActionLink(Model.Title, "Topic/" + Model.Id, "Topic")</h4>
+            <h4 class="titleline"> @Html.RouteLink(Model.Title, new { controller = "Topic", action = "Show", id = Model.Id })</h4>
         </div>
     </div>
     <div class="forumtopicstatistic">

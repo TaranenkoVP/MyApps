@@ -21,11 +21,9 @@ namespace MyForum.Web.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult TopicCategory(int id)
+        public ActionResult Show(int id)
         {
             var topicCategory = Mapper.Map<TopicCategoriesViewModel>(_topicCategoriesService.GetById(id));
-
-
 
             return View("TopicCategory", topicCategory);
         }

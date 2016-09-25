@@ -1,10 +1,21 @@
 ﻿
-@model MyForum.Web.MVC.Models.TopicCategoriesViewModel
+@model MyForum.Web.MVC.Models.TopicViewModel
 
-<div class="panel panel-success">
-    <div class="panel-heading text-center">
-        <h1>@Model.Name</h1>
-    </div>
+<ol class="breadcrumb">
+    <li><a>@Html.ActionLink("Home", "Index", "Home")</a></li>
+    <li><a>@Html.RouteLink(@Model.TopicCategoryName, new { controller = "TopicCategory", action = "Show", id = Model.Id })</a></li>
+    <li class="active">@Model.Title</li>
+</ol>
+
+<div class="forum-head-title">
+    <p class="forum-head-links">@Model.Title</p>
 </div>
 
-@Html.Partial("_TopicPartial", Model)
+<div>
+    @foreach (var post in Model.Posts)
+    {
+        @Html.Partial("~/Views/Post/_PostPartial.cshtml", post)
+    }
+</div>
+
+@*@Html.Partial("_TopicPartial", Model)*@

@@ -24,7 +24,7 @@ namespace MyForum.Data.EF.Infrastructure
             {
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-                userManager.Create(new ApplicationUser() { UserName = authorUserName, Email = authorUserName, CreatedOn = DateTime.UtcNow, Photo = "http://cdn2.hubspot.net/hub/245562/file-306538470-png/v3/ninja2.png?t=1453934745802" }, "123456");
+                userManager.Create(new ApplicationUser() { UserName = authorUserName, Email = authorUserName, CreatedOn = DateTime.UtcNow, Photo = "/Content/Images/default_photo.png" }, "123456");
 
                 var author = context.Users.FirstOrDefault(u => u.UserName == authorUserName);
 

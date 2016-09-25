@@ -20,7 +20,7 @@ namespace MyForum.Web.MVC.Controllers
 
         // GET: MainCategory
         [HttpGet]
-        public ActionResult MainCategory(int id)
+        public ActionResult Show(int id)
         {
             var mainCategory = Mapper.Map<MainCategoriesViewModel>(_mainCategoriesService.GetById(id));
 

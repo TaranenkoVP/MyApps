@@ -3,9 +3,17 @@
     ViewBag.Title = "_MainCategoriesPartial";
 }
 
-
 @foreach (var mainCategory in Model)
 {
-    Html.RenderAction("GetMainCategoryPartial","MainCategory", mainCategory);
+    <div class="forum-head">
+        <div class="forum-head-title">
+            @Html.RouteLink(mainCategory.Name, new { controller = "MainCategory", action = "Show", id = mainCategory.Id }, new { @class = "forum-head-links" })
+        </div>
+        <div class="forum-head-description">
+            <p style="margin-left: 5px;">@mainCategory.Description</p>
+        </div>
+    </div>
+
+    Html.RenderAction("GetMainCategoryPartial", "MainCategory", mainCategory);
 }
 

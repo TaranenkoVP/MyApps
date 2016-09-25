@@ -1,13 +1,18 @@
 ﻿
-@using MyForum.Data.Core.Models
 @model MyForum.Web.MVC.Models.MainCategoriesViewModel
 
-<div class="panel panel-success">
-    <div class="panel-heading text-center">
-        <h1>@Model.Name</h1>
+<ol class="breadcrumb">
+    <li><a>@Html.ActionLink("Home", "Index", "Home")</a></li>
+    <li class="active">@Model.Name</li>
+</ol>
+
+<div class="forum-head">
+    <div class="forum-head-title">
+        <div class="forum-head-links">@Model.Name</div>
+    </div>
+    <div class="forum-head-description">
+        <p style="margin-left: 5px;">@Model.Description</p>
     </div>
 </div>
 
-@*@{Html.RenderAction("GetMainCategoryPartial");}
-@{Html.RenderAction("GetMainCategoryPartial");}*@
 @Html.Partial("_MainCategoryPartial", Model)

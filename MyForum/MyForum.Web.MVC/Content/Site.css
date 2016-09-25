@@ -3,6 +3,11 @@
     padding-bottom: 20px;
 }
 
+.forum-head-Name {
+    color:#FFFAFA;
+    font-size: 20px;
+    margin-left: 5px;
+}
 
 .forum-head-links {
     color:#FFFAFA;
@@ -87,6 +92,47 @@
     text-align: left;
     line-height: 0.7;
 }
+
+.postrow {
+   width: 100%;
+   height: auto;
+   min-height:90px;
+   /*display : inline;*/
+   margin-top: 5px;
+   background: #F5F5F5;
+ }
+
+.postprofile {
+    width: 15%;
+    float: left;
+    /*display: block;*/
+    /*margin-left: auto;
+    margin-right: auto;*/
+
+}
+.forumavatar {
+    display: block;
+    width:  70px;
+    height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nickname {
+    display: block;
+    text-align: center;
+}
+
+.postbody {
+    /*padding: 0;*/
+    /*line-height: 1.48em;*/
+    /*color: #333333;*/
+    min-height: inherit;
+    width: 85%;
+    float: right;
+    /*clear: right;*/
+ }
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {

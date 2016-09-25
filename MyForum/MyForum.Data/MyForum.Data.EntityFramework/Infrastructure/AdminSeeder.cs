@@ -25,7 +25,7 @@ namespace MyForum.Data.EF.Infrastructure
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-                userManager.Create(new ApplicationUser() { UserName = masterAdminUserName, Email = masterAdminUserName, CreatedOn = DateTime.UtcNow, Photo = "http://cdn2.hubspot.net/hub/245562/file-306538470-png/v3/ninja2.png?t=1453934745802" }, "123456");
+                userManager.Create(new ApplicationUser() { UserName = masterAdminUserName, Email = masterAdminUserName, CreatedOn = DateTime.UtcNow, Photo = "/Content/Images/default_photo.png" }, "123456");
 
                 roleManager.Create(new IdentityRole() { Name = roleName });
 

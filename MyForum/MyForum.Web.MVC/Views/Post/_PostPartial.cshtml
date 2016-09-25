@@ -1,0 +1,18 @@
+﻿@model MyForum.Web.MVC.Models.PostViewModel
+
+<div class="postrow">
+    <div class="postprofile">
+        <img src=@Model.Author.Photo class="forumavatar" alt=""/>
+        <div class="nickname" >@Model.Author.UserName</div>
+    </div>
+
+    <div class="postbody">
+        <div>
+            <p style="color:darkgreen;">Posted on: @Model.CreatedOn.ToString("ddd dd MMM yyyy, hh:mm tt")</p>
+        </div>
+
+        <div class="content">
+            <p>@Model.Content</p>
+        </div>
+    </div>
+</div>

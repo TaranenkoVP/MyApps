@@ -22,98 +22,101 @@ namespace MyForum.Business.Core.Services
 
         }
 
-        public IEnumerable<TopicBusiness> GetAllTopics()
+        public TopicBusiness GetById(int id)
         {
-            var topics = Mapper.Map<List<TopicBusiness>>(Database.TopicRepository.GetAll());
+            var topic = Database.TopicRepository
+                .Get(includeProperties: "TopicCategory, Posts, Posts.Author")
+                .FirstOrDefault(x => x.Id == id);
 
-            if (topics == null)
-            {
-                throw new ValidationException("Topics not found");
-            }
-
-            return topics;
+            return Mapper.Map<TopicBusiness>(topic);
         }
 
-        public TopicBusiness GetTopic(int id)
-        {
+        //public TopicBusiness GetTopic(int id)
+        //{
 
-            var topic = Mapper.Map<TopicBusiness>(Database.TopicRepository.GetById(id));
+        //    var topic = Mapper.Map<TopicBusiness>(Database.TopicRepository.GetById(id));
 
-            if (topic == null)
-            {
-                throw new ValidationException("Topic not found");
-            }
+        //    if (topic == null)
+        //    {
+        //        throw new ValidationException("Topic not found");
+        //    }
 
-            return topic;
-        }
+        //    return topic;
+        //}
 
-        public TopicBusiness GetLastCreatedByCategoryId(int id)
-        {
-            var topic = Mapper.Map<TopicBusiness>(
-                            Database.TopicRepository.GetFirstOrDefault(
-                                filter: d => d.TopicCategory.Id == id,
-                                orderBy: q => q.OrderByDescending(d => d.CreatedOn),
-                                includeProperties: "TopicCategory"));
-  
-            if (topic == null)
-            {
-                throw new ValidationException("Topic not found");
-            }
 
-            return topic;
-        }
 
-        public int GetTopicsCountByCategoryId(int id)
-        {
-            var topicCount = Database.TopicRepository.Get(
-                filter: d => d.TopicCategory.Id == id)
-                .Count();
+        //public TopicBusiness GetLastCreatedByCategoryId(int id)
+        //{
+        //    var topic = Mapper.Map<TopicBusiness>(
+        //                    Database.TopicRepository.GetFirstOrDefault(
+        //                        filter: d => d.TopicCategory.Id == id,
+        //                        orderBy: q => q.OrderByDescending(d => d.CreatedOn),
+        //                        includeProperties: "TopicCategory"));
 
-            return topicCount;
-        }
+        //    if (topic == null)
+        //    {
+        //        throw new ValidationException("Topic not found");
+        //    }
 
-        public int GetPostsCountByCategoryId(int id)
-        {
-            var topicCount = Database.TopicRepository.Get(
-                filter: d => d.TopicCategory.Id == id,
-                includeProperties: "Posts")
-                    .SelectMany(x => x.Posts)
-                    .Count();
+        //    return topic;
+        //}
 
-            return topicCount;
-        }
+        //public int GetTopicsCountByCategoryId(int id)
+        //{
+        //    var topicCount = Database.TopicRepository.Get(
+        //        filter: d => d.TopicCategory.Id == id)
+        //        .Count();
 
-        public PostBusiness GetLatestPostByCategoryId(int id)
-        {
-            var g = Database.TopicRepository.Get(
-                filter: d => d.TopicCategory.Id == id,
-                includeProperties: "Posts, Author").ToList();
+        //    return topicCount;
+        //}
 
-            var topics = Mapper.Map<List<TopicBusiness>>(g);
+        //public int GetPostsCountByCategoryId(int id)
+        //{
+        //    var topicCount = Database.TopicRepository.Get(
+        //        filter: d => d.TopicCategory.Id == id,
+        //        includeProperties: "Posts")
+        //            .SelectMany(x => x.Posts)
+        //            .Count();
 
-            PostBusiness lastPost = null;
+        //    return topicCount;
+        //}
 
-            foreach (var topic in topics)
-            {
-                var post = topic.Posts.OrderByDescending(x => x.CreatedOn).FirstOrDefault();
-                if (lastPost == null)
-                {
-                    lastPost = post;
-                }
-                else
-                {
-                    if (post != null)
-                    {
-                        if (post.CreatedOn < lastPost.CreatedOn)
-                        {
-                            lastPost = post;
-                        }
-                    }
-                }
-            }
+        //public PostBusiness GetLatestPostByCategoryId(int id)
+        //{
+        //    var g = Database.TopicRepository.Get(
+        //        filter: d => d.TopicCategory.Id == id,
+        //        includeProperties: "Posts, Author").ToList();
 
-            return lastPost;
-        }
+        //    var topics = Mapper.Map<List<TopicBusiness>>(g);
+
+        //    PostBusiness lastPost = null;
+
+        //    foreach (var topic in topics)
+        //    {
+        //        var post = topic.Posts.OrderByDescending(x => x.CreatedOn).FirstOrDefault();
+        //        if (lastPost == null)
+        //        {
+        //            lastPost = post;
+        //        }
+        //        else
+        //        {
+        //            if (post != null)
+        //            {
+        //                if (post.CreatedOn < lastPost.CreatedOn)
+        //                {
+        //                    lastPost = post;
+        //                }
+        //            }
+        //        }
+        //    }
+
+
+
+        //    return lastPost;
+        //}
+
+
 
     }
 }

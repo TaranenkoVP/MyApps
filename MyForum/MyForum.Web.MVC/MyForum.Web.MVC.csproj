@@ -204,7 +204,7 @@
     </Compile>
     <Compile Include="Infrastructure\Mappers\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\Mappers\IHaveCustomMappings.cs" />
-    <Compile Include="Infrastructure\Mappers\IMap.cs" />
+    <Compile Include="Infrastructure\Mappers\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MainCategoriesViewModel.cs" />
@@ -219,6 +219,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\default_photo.png" />
+    <Content Include="Content\Images\forum_new-48.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -279,6 +281,8 @@
     <Content Include="Views\MainCategory\MainCategory.cshtml" />
     <Content Include="Views\TopicCategory\TopicCategory.cshtml" />
     <Content Include="Views\Topic\_TopicPartial.cshtml" />
+    <Content Include="Views\Post\Post.cshtml" />
+    <Content Include="Views\Post\_PostPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

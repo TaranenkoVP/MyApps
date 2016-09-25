@@ -1,15 +1,6 @@
 ﻿
 @model MyForum.Web.MVC.Models.MainCategoriesViewModel
 
-<div class="forum-head">
-    <div class="forum-head-title">
-        @Html.ActionLink(Model.Name, "MainCategory/" + Model.Id, "MainCategory", new {@class = "forum-head-links"})
-    </div>
-    <div class="forum-head-description">
-        <p style="margin-left: 5px;">@Model.Description</p>
-    </div>
-</div>
-
 <div>
     @foreach (var topicCategory in Model.TopicCategories)
     {

@@ -118,7 +118,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\AdminSeeder.cs" />
+    <Compile Include="Infrastructure\UsersSeeder.cs" />
     <Compile Include="Infrastructure\Configuration.cs" />
     <Compile Include="Infrastructure\MainTopicCategorySeeder.cs" />
     <Compile Include="Infrastructure\MyForumDbContext.cs" />

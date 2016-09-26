@@ -29,34 +29,6 @@ namespace MyForum.Data.EF.Repositories.Common
             return DbSet.ToList();
         }
 
-        public override TEntity GetFirstOrDefault(
-              Expression<Func<TEntity, bool>> filter = null,
-              Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-              string includeProperties = "")
-        {
-            IQueryable<TEntity> query = DbSet;
-            
-            query = query.Where(x => !x.IsDeleted);
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                query = orderBy(query);
-            }
-
-            return query.FirstOrDefault();
-        }
-
         public override void Delete(TEntity entity)
         {
             entity.IsDeleted = true;

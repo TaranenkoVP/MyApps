@@ -21,7 +21,7 @@ namespace MyForum.Web.MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var autoMapperConfig = new AutoMapperConfig();
+            var autoMapperConfig = new AutoMapperConfigViewModel();
             autoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly().GetName().Name);
         }
     }

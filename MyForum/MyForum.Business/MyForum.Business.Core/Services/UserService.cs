@@ -4,35 +4,44 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Infrastructure;
+using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Data.Core.Common.Repositories;
 using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Business.Core.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseService, IUserService 
     {
-        private readonly IUnitOfWork _database;
-
         public UserService(IUnitOfWork uow)
+             : base(uow)
         {
-            _database = uow;
+
+        }
+
+        public async Task<IList<UserLoginInfo>> GetLoginsAsync(string userId)
+        {
+            var logins = await Database.UserManager.GetLoginsAsync(userId);
+            return logins;
         }
 
         public async Task<OperationDetails> Create(UserBusiness userBusiness)
         {
-            var user = await _database.UserManager.FindByEmailAsync(userBusiness.Email);
+            var user = await Database.UserManager.FindByEmailAsync(userBusiness.Email);
             if (user == null)
             {
-                user = new ApplicationUser { Email = userBusiness.Email, UserName = userBusiness.Email };
-                await _database.UserManager.CreateAsync(user, userBusiness.Password);
+                user = Mapper.Map<ApplicationUser>(userBusiness);
+                user.CreatedOn = DateTime.Now;
+                //user = new ApplicationUser { Email = userBusiness.Email, UserName = userBusiness.Email };
+                await Database.UserManager.CreateAsync(user, userBusiness.Password);
                 // adding role
-                await _database.UserManager.AddToRoleAsync(user.Id, userBusiness.Role);
+                await Database.UserManager.AddToRoleAsync(user.Id, userBusiness.Role);
 
-                _database.Commit();
+                Database.Commit();
                 return new OperationDetails(true, "Your registration has been successfully completed", "");
             }
             else
@@ -45,33 +54,36 @@ namespace MyForum.Business.Core.Services
         {
             ClaimsIdentity claim = null;
             // user search
-            var user = await _database.UserManager.FindAsync(userBusiness.Email, userBusiness.Password);
+            var user = await Database.UserManager.FindAsync(userBusiness.Email, userBusiness.Password);
             // authorizing him, and return the object ClaimsIdentity
             if (user != null)
             {
-                claim = await _database.UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                claim = await Database.UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
             }
             return claim;
         }
 
-        // initialization DB
-        public async Task SetInitialData(UserBusiness adminDto, List<string> roles)
+        
+        public UserBusiness FindById(string userId)
         {
-            foreach (var roleName in roles)
-            {
-                var role = await _database.RoleManager.FindByNameAsync(roleName);
-                if (role == null)
-                {
-                    role = new ApplicationRole { Name = roleName };
-                    await _database.RoleManager.CreateAsync(role);
-                }
-            }
-            await Create(adminDto);
+            var user = Database.UserManager.FindById(userId);
+            var userBusiness = Mapper.Map<UserBusiness>(user);
+            return userBusiness;
         }
 
-        public void Dispose()
-        {
-            _database.Dispose();
-        }
+        //// initialization DB
+        //public async Task SetInitialData(UserBusiness adminDto, List<string> roles)
+        //{
+        //    foreach (var roleName in roles)
+        //    {
+        //        var role = await Database.RoleManager.FindByNameAsync(roleName);
+        //        if (role == null)
+        //        {
+        //            role = new ApplicationRole { Name = roleName };
+        //            await Database.RoleManager.CreateAsync(role);
+        //        }
+        //    }
+        //    await Create(adminDto);
+        //}
     }
 }

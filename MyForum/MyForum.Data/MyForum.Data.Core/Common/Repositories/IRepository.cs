@@ -41,19 +41,6 @@ namespace MyForum.Data.Core.Common.Repositories
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
-        /// <summary>
-        /// Allow the calling code to specify a filter condition
-        /// and a column to order the results by, and a string parameter 
-        /// </summary>
-        /// <param name="filter">Filter expression for the return Entities</param>
-        /// <param name="orderBy">Represents the order of the return Entities</param>
-        /// <param name="includeProperties">Include Properties for the navigation properties</param>
-        /// <returns>An FirstOrDefault object.</returns>
-        TEntity GetFirstOrDefault(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "");
-
         TEntity GetById(int id);
         
         void Add(TEntity entity);

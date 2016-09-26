@@ -136,11 +136,12 @@
     <Compile Include="Infrastructure\Mappers\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mappers\IMapFrom.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
-    <Compile Include="Services\DeletableBaseService.cs" />
-    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\Common\BaseService.cs" />
+    <Compile Include="Services\Common\DeletableBaseService.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
-    <Compile Include="Services\Interfaces\IBaseService.cs" />
+    <Compile Include="Services\Common\IBaseService.cs" />
+    <Compile Include="Services\Common\IDeletableBaseService.cs" />
     <Compile Include="Services\Interfaces\IMainCategoriesService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\MainCategoriesService.cs" />

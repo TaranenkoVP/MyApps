@@ -20,7 +20,7 @@ namespace MyForum.Web.MVC.Controllers
         {
             get
             {
-                return AutoMapperConfig.Configuration.CreateMapper();
+                return AutoMapperConfigViewModel.Configuration.CreateMapper();
             }
         }
 

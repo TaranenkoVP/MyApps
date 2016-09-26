@@ -8,6 +8,7 @@ using AutoMapper;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Infrastructure.Mappers;
+using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Data.Core.Common.Repositories;
 using MyForum.Data.Core.Models;

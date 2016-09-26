@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyForum.Business.Core.Entities;
+using MyForum.Business.Core.Services.Common;
 using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services.Interfaces
 {
-    public interface IMainCategoriesService : IBaseService<MainCategory, MainCategoryBusiness>
+    public interface IMainCategoriesService : IDeletableBaseService<MainCategory, MainCategoryBusiness>
     {
         IEnumerable<MainCategoryBusiness> GetAll();
         MainCategoryBusiness GetById(int id);

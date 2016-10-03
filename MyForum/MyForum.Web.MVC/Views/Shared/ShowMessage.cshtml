@@ -1,0 +1,24 @@
+﻿@using MyForum.Web.MVC.Models
+@model MyForum.Web.MVC.Models.GenericMessageViewModel
+@{
+    ViewBag.Title = "Message";
+}
+
+@if (@Model.MessageType == GenericMessages.Danger)
+{
+    <h1 class="text-danger">Error.</h1>
+    <h2 class="text-danger">@Model.Message</h2>
+}
+else if (@Model.MessageType == GenericMessages.Warning)
+{
+    <h1 class="text-warning">Warning.</h1>
+    <h2 class="text-warning">@Model.Message</h2>
+}
+else if (@Model.MessageType == GenericMessages.Info)
+{
+    <h2 class="text-info">@Model.Message</h2>
+}
+else if (@Model.MessageType == GenericMessages.Success)
+{
+    <h2 class="text-success">@Model.Message</h2>
+}

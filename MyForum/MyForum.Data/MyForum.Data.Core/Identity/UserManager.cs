@@ -23,7 +23,6 @@ namespace MyForum.Data.Core.Identity
                 RequireLowercase = false,
                 RequireUppercase = false
             };
-
             // Configure user lockout defaults
             UserLockoutEnabledByDefault = true;
             DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);

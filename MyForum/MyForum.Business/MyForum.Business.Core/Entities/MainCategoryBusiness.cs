@@ -1,38 +1,30 @@
 ﻿using System.Collections.Generic;
+using AutoMapper;
 using MyForum.Business.Core.Infrastructure.Mappers;
 using MyForum.Data.Core.Models;
+using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Business.Core.Entities
 {
-    public class MainCategoryBusiness : IMapFrom<MainCategory>
+    public class MainCategoryBusiness : IMapFrom<MainCategory>, IHaveCustomMappings
     {
-        private ICollection<TopicCategoryBusiness> _topicCategories;
-
-        /// <summary>
-        ///     The class constructor
-        /// </summary>
-        public MainCategoryBusiness()
-        {
-            _topicCategories = new HashSet<TopicCategoryBusiness>();
-        }
-
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public virtual ICollection<TopicCategoryBusiness> TopicCategories
-        {
-            get { return _topicCategories; }
-            set { _topicCategories = value; }
-        }
+        public string AuthorId { get; set; }
 
-        //public void CreateMappings(IMapperConfigurationExpression configuration)
-        //            opts => opts.MapFrom(x => x.Topics.Select(y => y.Posts.OrderByDescending(t => t.CreatedOn).FirstOrDefault())));
-        //       .ForMember(r => r.LatestPost,
-        //       .ForMember(r => r.PostsCount, opts => opts.MapFrom(x => x.Topics.SelectMany(y => y.Posts).Count()))
-        //       .ForMember(r => r.TopicsCount, opts => opts.MapFrom(x => x.Topics.Count))
-        //}
+        public virtual UserBusiness Author { get; set; }
+
+        public virtual ICollection<TopicCategoryBusiness> TopicCategories { get; set; }
+
+        public void CreateMappings(IMapperConfigurationExpression configuration)
+        {
+            configuration.CreateMap<MainCategory, MainCategoryBusiness>()
+               .ForMember(r => r.AuthorId, opts => opts.MapFrom(x => x.ApplicationUserId))
+               .ForMember(r => r.Author, opts => opts.MapFrom(x => x.ApplicationUser));
+        }
     }
 }

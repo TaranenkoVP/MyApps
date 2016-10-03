@@ -8,6 +8,9 @@ using MyForum.Data.Core.Common.Repositories;
 
 namespace MyForum.Data.EF.Repositories.Common
 {
+    /// <summary>
+    ///     Interface <see cref="IDeletableEntityRepository{TEntity}" /> for operations with audits repositories
+    /// </summary>
     public class DeletableEntityRepository<TEntity> : GenericRepository<TEntity>, IDeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {

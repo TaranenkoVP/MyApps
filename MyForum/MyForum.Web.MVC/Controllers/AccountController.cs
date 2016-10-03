@@ -49,7 +49,7 @@ namespace MyForum.Web.MVC.Controllers
             {
                 var userBusiness = Mapper.Map<UserBusiness>(model);
 
-                ClaimsIdentity claim = await UserService.Authenticate(userBusiness);
+                ClaimsIdentity claim = await UserService.AuthenticateAsync(userBusiness);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Invalid username or password!");
@@ -85,10 +85,8 @@ namespace MyForum.Web.MVC.Controllers
             if (ModelState.IsValid)
             {
                 var userBusiness = Mapper.Map<UserBusiness>(model);
-
                 userBusiness.Roles.Add("user");
-
-                OperationDetails operationDetails = await UserService.Create(userBusiness);
+                var operationDetails = await UserService.CreateAsync(userBusiness);
                 if (operationDetails.Succedeed)
                     return View("SuccessRegister");
                 else

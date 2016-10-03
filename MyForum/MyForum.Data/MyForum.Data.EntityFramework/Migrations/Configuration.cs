@@ -1,20 +1,29 @@
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
+using System.Linq;
+using MyForum.Data.Core.Constants;
 using MyForum.Data.EF.Infrastructure;
 
 namespace MyForum.Data.EF.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<MyForumDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MyForumDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-
             // TODO: Remove in production
             AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(MyForumDbContext context)
         {
+            var masterAdminUserName = AppConstants.GetConstant("MasterAdminUserName");
+            var isMasterAdminSeeded = context.Users.Any(u => u.UserName == masterAdminUserName);
+
+            if (!isMasterAdminSeeded)
+            {
+                new UsersSeeder().Seed(context);
+                new MainTopicCategorySeeder().Seed(context);
+            }
         }
     }
 }

@@ -9,17 +9,12 @@ using MyForum.Data.Core.Common.Repositories;
 namespace MyForum.Data.EF.Repositories.Common
 {
     /// <summary>
-    ///     Class <see cref="GenericRepository" /> define generic repository
+    ///     <see cref="IDeletableEntityRepository{TEntity}" />
     /// </summary>
-    /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         #region .ctor
 
-        /// <summary>
-        ///     The class constructor
-        /// </summary>
-        /// <param name="context"></param>
         public GenericRepository(DbContext context)
         {
             Context = context;
@@ -65,7 +60,7 @@ namespace MyForum.Data.EF.Repositories.Common
 
             if (count > 0)
             {
-                return query.Take(count);
+                query = query.Take(count);
             }
 
             return query.ToList();

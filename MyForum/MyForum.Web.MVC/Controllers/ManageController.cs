@@ -47,15 +47,15 @@ namespace MyForum.Web.MVC.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
-                HasPassword = HasPassword(),
+                HasPassword = await HasPassword(),
                 Logins = await UserService.GetLoginsAsync(userId),
             };
             return View(model);
         }
 
-        private bool HasPassword()
+        private async Task<bool> HasPassword()
         {
-            var user = UserService.FindById(User.Identity.GetUserId());
+            var user = await UserService.FindByIdAsync(User.Identity.GetUserId());
             return user?.PasswordHash != null;
         }
 

@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Models;
 using MyForum.Data.Core.Models.Identity;
+using MyForum.Data.EF.Migrations;
 
 namespace MyForum.Data.EF.Infrastructure
 {
@@ -33,19 +34,52 @@ namespace MyForum.Data.EF.Infrastructure
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<MainCategory>()
+                .HasRequired(c => c.ApplicationUser)
+                .WithMany(t => t.MainCategories)
+                .HasForeignKey(m => m.ApplicationUserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TopicCategory>()
+                .HasRequired(c => c.ApplicationUser)
+                .WithMany(t => t.TopicCategories)
+                .HasForeignKey(m => m.ApplicationUserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TopicCategory>()
+                .HasRequired(m => m.MainCategory)
+                .WithMany(t => t.TopicCategories)
+                .HasForeignKey(m => m.MainCategoryId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Topic>()
+                .HasRequired(c => c.ApplicationUser)
+                .WithMany(t => t.Topics)
+                .HasForeignKey(m => m.ApplicationUserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Topic>()
+                .HasRequired(m => m.TopicCategory)
+                .WithMany(t => t.Topics)
+                .HasForeignKey(m => m.TopicCategoryId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Post>()
+                .HasRequired(c => c.ApplicationUser)
+                .WithMany(t => t.Posts)
+                .HasForeignKey(m => m.ApplicationUserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Post>()
+                .HasRequired(m => m.Topic)
+                .WithMany(t => t.Posts)
+                .HasForeignKey(m => m.TopicId)
+                .WillCascadeOnDelete(false);
         }
 
         public override int SaveChanges()
         {
-#if DEBUG
-            var entries =
-                ChangeTracker.Entries().Where(e => (e.State == EntityState.Added) || (e.State == EntityState.Modified));
-            foreach (var entry in entries)
-            {
-                Debug.WriteLine("Entity Name: {0}", entry.Entity.GetType().FullName);
-                Debug.WriteLine("Status: {0}", entry.State);
-            }
-#endif
             ApplyAuditInfoRules();
 
             return base.SaveChanges();

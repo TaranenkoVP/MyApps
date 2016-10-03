@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Repositories;
 using MyForum.Data.Core.Identity;
 using MyForum.Data.Core.Models;
@@ -18,16 +19,14 @@ namespace MyForum.Data.Core.Common
         IDeletableEntityRepository<Post> PostRepository { get; }
 
         /// <summary>
-        ///     here we use Identities entities
+        ///     here we use Identity entities
         /// </summary>
         UserManager UserManager { get; }
-
         RoleManager RoleManager { get; }
 
-        // TODO Task CommitAsync()
         /// <summary>
         ///     Commit all changes
         /// </summary>
-        void Commit();
+        Task CommitAsync();
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Infrastructure;
@@ -12,7 +14,7 @@ using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Business.Core.Services
 {
-    public class UserService : BaseService, IUserService
+    public class UserService : EntityService, IUserService
     {
         public UserService(IUnitOfWork uow)
             : base(uow)
@@ -25,7 +27,7 @@ namespace MyForum.Business.Core.Services
             return logins;
         }
 
-        public async Task<OperationDetails> Create(UserBusiness userBusiness)
+        public async Task<OperationDetails> CreateAsync(UserBusiness userBusiness)
         {
             var user = await Database.UserManager.FindByEmailAsync(userBusiness.Email);
             if (user == null)
@@ -40,13 +42,13 @@ namespace MyForum.Business.Core.Services
                     await Database.UserManager.AddToRoleAsync(user.Id, userRole);
                 }
 
-                Database.Commit();
+                await Database.CommitAsync();
                 return new OperationDetails(true, "Your registration has been successfully completed", "");
             }
             return new OperationDetails(false, "A user with this login already exists", "Email");
         }
 
-        public async Task<ClaimsIdentity> Authenticate(UserBusiness userBusiness)
+        public async Task<ClaimsIdentity> AuthenticateAsync(UserBusiness userBusiness)
         {
             ClaimsIdentity claim = null;
             // user search
@@ -60,9 +62,9 @@ namespace MyForum.Business.Core.Services
             return claim;
         }
 
-        public UserBusiness FindById(string userId)
+        public async Task<UserBusiness> FindByIdAsync(string userId)
         {
-            var user = Database.UserManager.FindById(userId);
+            var user = await Database.UserManager.FindByIdAsync(userId);
             var userBusiness = Mapper.Map<UserBusiness>(user);
             return userBusiness;
         }

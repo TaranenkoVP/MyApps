@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using MyForum.Business.Core.Entities;
-using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Data.Core.Common;
@@ -10,23 +10,16 @@ using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services
 {
-    public class PostsService : BaseService, IPostsService
+    public class PostsService : EntityService, IPostsService
     {
         public PostsService(IUnitOfWork uow)
             : base(uow)
         {
         }
 
-        public PostBusiness GetById(int id)
-        {
-            return Mapper.Map<PostBusiness>(Database.PostRepository.GetById(id));
-        }
-
         public int GetPostsCount(Expression<Func<Post, bool>> rule)
         {
-            var postCount = Database.PostRepository.GetCount(rule);
-
-            return postCount;
+            return Database.PostRepository.GetCount(rule);
         }
 
         public PostBusiness GetLatestPost(Expression<Func<Post, bool>> filter = null,
@@ -34,9 +27,6 @@ namespace MyForum.Business.Core.Services
             string includeProperties = "")
         {
             var posts = Database.PostRepository.Get(filter, orderBy, includeProperties, 1);
-
-            // if (posts.ToList())
-
             if (posts != null)
             {
                 return Mapper.Map<PostBusiness>(posts.FirstOrDefault());
@@ -44,40 +34,49 @@ namespace MyForum.Business.Core.Services
             return null;
         }
 
-        public virtual void Add(PostBusiness entity)
+        public async Task<PostBusiness> AddAsync(PostBusiness entity)
         {
             if (entity == null)
             {
-                throw new ValidationException("Unspecified entity");
+                return null;
             }
-
             Database.PostRepository.Add(Mapper.Map<Post>(entity));
-            Database.Commit();
+            await Database.CommitAsync();
+            return entity;
         }
 
-        public virtual void Update(PostBusiness entity)
+        public async Task<PostBusiness> EditAsync(PostBusiness entity)
         {
             if (entity == null)
             {
-                throw new ValidationException("Unspecified entity");
+                return null;
             }
-
-            var post = Database.PostRepository.GetById(entity.Id);
-            post = Mapper.Map(entity, post);
-
-            Database.PostRepository.Update(post);
-            Database.Commit();
+            var Post = Database.PostRepository.GetById(entity.Id);
+            if (Post == null)
+            {
+                return null;
+            }
+            Mapper.Map(entity, Post);
+            Database.PostRepository.Update(Post);
+            await Database.CommitAsync();
+            return entity;
         }
 
-        public virtual void Delete(PostBusiness entity)
+        public async Task<PostBusiness> DeleteAsync(PostBusiness entity)
         {
             if (entity == null)
             {
-                throw new ValidationException("Unspecified entity");
+                return null;
             }
-
             Database.PostRepository.Delete(Mapper.Map<Post>(entity));
-            Database.Commit();
+            await Database.CommitAsync();
+            return entity;
+        }
+
+        public async Task<PostBusiness> GetByIdAsync(int id)
+        {
+            var post = await Task.Run(() => Database.PostRepository.GetById(id));
+            return Mapper.Map<PostBusiness>(post);
         }
     }
 }

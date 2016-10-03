@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Models.Identity;
 
@@ -10,10 +11,14 @@ namespace MyForum.Data.Core.Models
         [MaxLength(1000)]
         public string Content { get; set; }
 
-        public string AuthorId { get; set; }
-        public virtual ApplicationUser Author { get; set; }
+        [Required]
+        public string ApplicationUserId { get; set; }
 
+        [Required]
         public int TopicId { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
         public virtual Topic Topic { get; set; }
     }
 }

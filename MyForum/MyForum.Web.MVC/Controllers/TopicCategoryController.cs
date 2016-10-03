@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MyForum.Business.Core.Services.Interfaces;
@@ -12,20 +13,17 @@ namespace MyForum.Web.MVC.Controllers
     {
         // GET: TopicCategories
         private readonly ITopicCategoriesService _topicCategoriesService;
-        private readonly ITopicsService _topicsService;
 
-        public TopicCategoryController(ITopicCategoriesService topicCategoriesService, ITopicsService topicsService)
+        public TopicCategoryController(ITopicCategoriesService topicCategoriesService)
         {
             _topicCategoriesService = topicCategoriesService;
-            _topicsService = topicsService;
         }
 
         [HttpGet]
-        public ActionResult Show(int id)
+        public async Task<ActionResult> Show(int id)
         {
-            var topicCategory = Mapper.Map<TopicCategoriesViewModel>(_topicCategoriesService.GetByIdWithTopics(id));
-
-            return View("TopicCategory", topicCategory);
+            var topicCategory = await _topicCategoriesService.GetByIdWithTopicsAsync(id);
+            return View("TopicCategory", Mapper.Map<TopicCategoriesViewModel>(topicCategory));
         }
 
         [HttpGet]

@@ -22,10 +22,7 @@ namespace MyForum.Data.Core.Constants
                 {"UserRoleName", "User"}
             };
 
-        public static Dictionary<string, string> GetConstantsAll
-        {
-            get { return _dictionary; }
-        }
+        public static Dictionary<string, string> GetConstantsAll => _dictionary;
 
         /// <summary>
         ///     Access the Dictionary from external sources
@@ -34,7 +31,6 @@ namespace MyForum.Data.Core.Constants
         {
             // Try to get the result in the static Dictionary
             string result;
-
             return !_dictionary.TryGetValue(word, out result) ? null : result;
         }
     }

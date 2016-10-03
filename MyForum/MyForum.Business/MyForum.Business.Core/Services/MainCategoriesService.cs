@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MyForum.Business.Core.Entities;
-using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Data.Core.Common;
@@ -9,7 +9,7 @@ using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services
 {
-    public class MainCategoriesService : BaseService, IMainCategoriesService
+    public class MainCategoriesService : EntityService, IMainCategoriesService
     {
         /// <summary>
         ///     Posts service
@@ -28,96 +28,97 @@ namespace MyForum.Business.Core.Services
             _postsService = postsService;
         }
 
-        public IEnumerable<MainCategoryBusiness> GetAll()
+        public async Task<IEnumerable<MainCategoryBusiness>> GetAllAsync()
         {
-            var mainCategories = Mapper.Map<List<MainCategoryBusiness>>(
-                Database.MainCategoryRepository.GetAll());
-
-            return mainCategories;
+            var mainCategories = await Task.Run(() => Database.MainCategoryRepository.GetAll());
+            var mainCategoriesBusiness = Mapper.Map<List<MainCategoryBusiness>>(mainCategories);
+            return mainCategoriesBusiness;
         }
 
-        public IEnumerable<MainCategoryBusiness> GetAllWithTopicCategories()
+        public async Task<IEnumerable<MainCategoryBusiness>> GetAllWithTopicCategoriesAsync()
         {
-            var mainCategories = Mapper.Map<List<MainCategoryBusiness>>(
-                Database.MainCategoryRepository.Get(includeProperties: "TopicCategories"));
+            var g = Database.MainCategoryRepository.Get(includeProperties: "TopicCategories");
 
-            foreach (var mainCategory in mainCategories)
+            var t = Mapper.Map<List<MainCategoryBusiness>>(g);
+
+            var mainCategories = Database.MainCategoryRepository.Get(includeProperties: "TopicCategories");
+                await Task.Run(() => Database.MainCategoryRepository.Get(includeProperties: "TopicCategories"));
+            var mainCategoriesBusiness = Mapper.Map<List<MainCategoryBusiness>>(mainCategories);
+            foreach (var mainCategory in mainCategoriesBusiness)
             {
                 GetTopicCategoriesStatistic(mainCategory.TopicCategories);
             }
-
-            return mainCategories;
+            return mainCategoriesBusiness;
         }
 
-        public MainCategoryBusiness GetById(int id)
+        public async Task<MainCategoryBusiness> GetByIdAsync(int id)
         {
-            var mainCategory = Mapper.Map<MainCategoryBusiness>(
-                Database.MainCategoryRepository.Get()
-                    .FirstOrDefault(x => x.Id == id));
-
-            return mainCategory;
+            var mainCategory = await Task.Run(() => Database.MainCategoryRepository.Get()
+                .FirstOrDefault(x => x.Id == id));
+            var mainCategoryBusiness = Mapper.Map<MainCategoryBusiness>(mainCategory);
+            return mainCategoryBusiness;
         }
 
-        public MainCategoryBusiness GetByIdWithTopicCategories(int id)
+        public async Task<MainCategoryBusiness> GetByIdWithTopicCategoriesAsync(int id)
         {
-            var mainCategory = Mapper.Map<MainCategoryBusiness>(
-                Database.MainCategoryRepository.Get(
-                    includeProperties: "TopicCategories")
-                    .FirstOrDefault(x => x.Id == id));
-
-            GetTopicCategoriesStatistic(mainCategory.TopicCategories);
-
-            return mainCategory;
+            var mainCategory = await Task.Run(() => Database.MainCategoryRepository.Get(
+                includeProperties: "TopicCategories")
+                .FirstOrDefault(x => x.Id == id));
+            var mainCategoryBusiness = Mapper.Map<MainCategoryBusiness>(mainCategory);
+            GetTopicCategoriesStatistic(mainCategoryBusiness.TopicCategories);
+            return mainCategoryBusiness;
         }
 
-        public virtual void Add(MainCategoryBusiness entity)
+        public async Task<MainCategoryBusiness> AddAsync(MainCategoryBusiness entity)
         {
             if (entity == null)
             {
-                throw new ValidationException("Unspecified entity");
+                return null;
             }
-
             Database.MainCategoryRepository.Add(Mapper.Map<MainCategory>(entity));
-            Database.Commit();
+            await Database.CommitAsync();
+            return entity;
         }
 
-        public virtual void Update(MainCategoryBusiness entity)
+        public async Task<MainCategoryBusiness> EditAsync(MainCategoryBusiness entity)
         {
             if (entity == null)
             {
-                throw new ValidationException("Unspecified entity");
+                return null;
             }
             var mainCategory = Database.MainCategoryRepository.GetById(entity.Id);
+            if (mainCategory == null)
+            {
+                return null;
+            }
             Mapper.Map(entity, mainCategory);
-
             Database.MainCategoryRepository.Update(mainCategory);
-            Database.Commit();
+            await Database.CommitAsync();
+            return entity;
         }
 
-        public virtual void Delete(MainCategoryBusiness entity)
+        public async Task<MainCategoryBusiness> DeleteAsync(MainCategoryBusiness entity)
         {
             if (entity == null)
             {
-                throw new ValidationException("Unspecified entity");
+                return null;
             }
-
             Database.MainCategoryRepository.Delete(Mapper.Map<MainCategory>(entity));
-            Database.Commit();
+            await Database.CommitAsync();
+            return entity;
         }
-
-        private void GetTopicCategoriesStatistic(IEnumerable<TopicCategoryBusiness> topicCategories)
+        // TODO async
+        private void  GetTopicCategoriesStatistic(IEnumerable<TopicCategoryBusiness> topicCategories)
         {
             foreach (var topicCategory in topicCategories)
             {
                 topicCategory.PostsCount = _postsService.GetPostsCount(
                     d => d.Topic.TopicCategory.Id == topicCategory.Id);
-
                 topicCategory.TopicsCount = _topicsService.GetTopicsCount(
                     d => d.TopicCategory.Id == topicCategory.Id);
-
-                topicCategory.LatestPost =
-                    _postsService.GetLatestPost(d => d.Topic.TopicCategory.Id == topicCategory.Id,
-                        q => q.OrderByDescending(d => d.CreatedOn), "Author");
+                topicCategory.LatestPost = _postsService.GetLatestPost(
+                    d => d.Topic.TopicCategory.Id == topicCategory.Id,
+                    q => q.OrderByDescending(d => d.CreatedOn), "ApplicationUser");
             }
         }
     }

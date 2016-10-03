@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using MyForum.Business.Core.Entities;
@@ -9,6 +10,7 @@ namespace MyForum.Web.MVC.Models
 {
     public class PostViewModel : IMapFrom<PostBusiness>
     {
+        [Editable(false)]
         public int Id { get; set; }
 
         public string Name { get; set; }

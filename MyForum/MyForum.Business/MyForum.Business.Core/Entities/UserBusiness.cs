@@ -9,6 +9,8 @@ namespace MyForum.Business.Core.Entities
 {
     public class UserBusiness : IMapFrom<ApplicationUser>, IHaveCustomMappings
     {
+        public string Id { get; set; }
+
         public string Photo { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -29,13 +31,18 @@ namespace MyForum.Business.Core.Entities
 
         public string PasswordHash { get; set; }
 
+        //public ICollection<MainCategoryBusiness> MainCategories { get; set; }
+
+        //public ICollection<TopicCategoryBusiness> TopicCategories { get; set; }
+
+        //public ICollection<TopicBusiness> Topics { get; set; }
+
+        //public ICollection<PostBusiness> Posts { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<ApplicationUser, UserBusiness>()
                .ForMember(r => r.Roles, opts => opts.MapFrom(x => x.Roles));
-            //       .ForMember(r => r.PostsCount, opts => opts.MapFrom(x => x.Topics.SelectMany(y => y.Posts).Count()))
-            //       .ForMember(r => r.LatestPost,
-            //            opts => opts.MapFrom(x => x.Topics.Select(y => y.Posts.OrderByDescending(t => t.CreatedOn).FirstOrDefault())));
         }
     }
 }

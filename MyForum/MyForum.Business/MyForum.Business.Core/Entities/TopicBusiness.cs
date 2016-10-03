@@ -7,25 +7,9 @@ namespace MyForum.Business.Core.Entities
 {
     public class TopicBusiness : BaseModelBusiness<int>, IMapFrom<Topic>, IHaveCustomMappings
     {
-        private ICollection<PostBusiness> _posts;
-
-        #region Constructors
-
-        /// <summary>
-        ///     The class constructor
-        /// </summary>
-        public TopicBusiness()
-        {
-            _posts = new HashSet<PostBusiness>();
-        }
-
-        #endregion Constructors
-
         public string Title { get; set; }
 
         public int TopicCategoryId { get; set; }
-
-        public string TopicCategoryName { get; set; }
 
         public string AuthorId { get; set; }
 
@@ -35,20 +19,13 @@ namespace MyForum.Business.Core.Entities
 
         public int PostsCount { get; set; }
 
-        public virtual ICollection<PostBusiness> Posts
-        {
-            get { return _posts; }
-            set { _posts = value; }
-        }
+        public virtual ICollection<PostBusiness> Posts { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<Topic, TopicBusiness>();
-            //.ForMember(r => r.TopicCategoryId, opts => opts.MapFrom(x => x.TopicCategory.Id))
-            //.ForMember(r => r.TopicCategoryName, opts => opts.MapFrom(x => x.TopicCategory.Name))
-            //.ForMember(r => r.PostCount, opts => opts.MapFrom(x => x.Posts.Count))
-            //.ForMember(r => r.LatestPost,
-            //    opts => opts.MapFrom(x => x.Posts.OrderByDescending(t => t.CreatedOn).FirstOrDefault()));
+            configuration.CreateMap<Topic, TopicBusiness>()
+                .ForMember(r => r.AuthorId, opts => opts.MapFrom(x => x.ApplicationUserId))
+                .ForMember(r => r.Author, opts => opts.MapFrom(x => x.ApplicationUser));
         }
     }
 }

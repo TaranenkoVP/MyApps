@@ -126,11 +126,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\UsersSeeder.cs" />
-    <Compile Include="Infrastructure\Configuration.cs" />
-    <Compile Include="Infrastructure\MainTopicCategorySeeder.cs" />
-    <Compile Include="Infrastructure\MyForumDbContext.cs" />
+    <Compile Include="Migrations\UsersSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\MainTopicCategorySeeder.cs" />
+    <Compile Include="Infrastructure\MyForumDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Common\DeletableEntityRepository.cs" />
     <Compile Include="Repositories\Common\GenericRepository.cs" />

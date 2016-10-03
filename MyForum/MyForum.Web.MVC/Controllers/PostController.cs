@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
-using Microsoft.AspNet.Identity;
-using MyForum.Business.Core.Entities;
+﻿using System.Web.Mvc;
 using MyForum.Business.Core.Services.Interfaces;
-using MyForum.Web.MVC.Areas.User.Models.Posts;
 
 namespace MyForum.Web.MVC.Controllers
 {
@@ -19,7 +11,6 @@ namespace MyForum.Web.MVC.Controllers
         {
             _postsService = postsService;
         }
-
 
         // GET: Post
         public ActionResult Index()

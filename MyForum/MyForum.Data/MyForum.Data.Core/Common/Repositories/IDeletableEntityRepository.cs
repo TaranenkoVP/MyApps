@@ -2,10 +2,13 @@
 
 namespace MyForum.Data.Core.Common.Repositories
 {
-    public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    /// <summary>
+    /// Class <see cref="IDeletableEntityRepository"/>
+    /// </summary>
+    public interface IDeletableEntityRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         /// <summary>
-        ///     Get all deleted entities from db
+        ///      Get all deleted entities from db
         /// </summary>
         IEnumerable<TEntity> AllWithDeleted();
 

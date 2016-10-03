@@ -17,6 +17,7 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Antlr3.Runtime.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\AutoMapper.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\EntityFramework.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\EntityFramework.SqlServer.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Kendo.Mvc.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Core.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Owin.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -36,6 +37,8 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Common.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Mvc.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Owin.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.Mvc.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Helpers.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Mvc.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Optimization.dll
@@ -50,11 +53,14 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Data.EF.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Business.Core.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\AutoMapper.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Kendo.Mvc.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.AspNet.Identity.Owin.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Common.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Ninject.Web.Mvc.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.Mvc.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Mvc.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Helpers.xml
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\System.Web.Optimization.xml
@@ -81,9 +87,3 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Data.EF.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.csprojResolveAssemblyReference.cache
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.pdb
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Kendo.Mvc.dll
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Kendo.Mvc.xml
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.dll
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.Mvc.dll
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.xml
-E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.Mvc.xml

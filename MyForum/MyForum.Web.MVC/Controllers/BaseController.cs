@@ -12,9 +12,7 @@ namespace MyForum.Web.MVC.Controllers
     {
         public BaseController()
         {
-
         }
-
 
         protected IMapper Mapper
         {

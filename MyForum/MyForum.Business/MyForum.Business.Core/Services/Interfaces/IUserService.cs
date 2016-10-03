@@ -4,14 +4,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Infrastructure;
+using MyForum.Business.Core.Services.Common;
 
 namespace MyForum.Business.Core.Services.Interfaces
 {
-    public interface IUserService
+    public interface IUserService : IService
     {
-        Task<OperationDetails> Create(UserBusiness userBusiness);
-        Task<ClaimsIdentity> Authenticate(UserBusiness userBusiness);
+        Task<OperationDetails> CreateAsync(UserBusiness userBusiness);
+
+        Task<ClaimsIdentity> AuthenticateAsync(UserBusiness userBusiness);
+
         Task<IList<UserLoginInfo>> GetLoginsAsync(string userId);
-        UserBusiness FindById(string userId);
+
+        Task<UserBusiness> FindByIdAsync(string userId);
     }
 }

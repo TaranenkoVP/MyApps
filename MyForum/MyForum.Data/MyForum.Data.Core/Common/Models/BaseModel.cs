@@ -16,6 +16,7 @@ namespace MyForum.Data.Core.Common.Models
         public DateTime? DeletedOn { get; set; }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TKey Id { get; set; }
     }
 }

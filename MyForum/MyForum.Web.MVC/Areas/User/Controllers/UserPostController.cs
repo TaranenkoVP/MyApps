@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Services.Description;
-using System.Web.UI.WebControls;
-using AutoMapper;
 using Microsoft.AspNet.Identity;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Services.Interfaces;
@@ -17,12 +13,10 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
 {
     public class UserPostController : BaseController
     {
-        private readonly ITopicsService _topicsService;
         private readonly IPostsService _postsService;
 
-        public UserPostController(ITopicsService topicsService, IPostsService postsService)
+        public UserPostController(IPostsService postsService)
         {
-            this._topicsService = topicsService;
             _postsService = postsService;
         }
 
@@ -34,36 +28,31 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult AddPost(PostInputModel model)
+        public async Task<ActionResult> AddPost(PostInputModel model)
         {
-            var userId = this.User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
             if (model != null && ModelState.IsValid)
             {
                 var post = Mapper.Map<PostBusiness>(model);
-
                 post.Content = model.Content;
                 post.TopicId = model.TopicId;
                 post.AuthorId = userId;
                 post.CreatedOn = DateTime.UtcNow;
-
-                _postsService.Add(post);
-               // return Redirect("/Topic/Show/" + model.TopicId);
+                await _postsService.AddAsync(post);
                 return JavaScript("location.reload(true)");
             }
             var error = string.Join("; ", ModelState.Values
-                                        .SelectMany(x => x.Errors)
-                                        .Select(x => x.ErrorMessage));
-
-            return PartialView("ErrorMessage", new GenericMessageViewModel() { Message = error, MessageType = GenericMessages.Warning});
+                .SelectMany(x => x.Errors)
+                .Select(x => x.ErrorMessage));
+            return PartialView("ShowMessage",
+                new GenericMessageViewModel {Message = error, MessageType = GenericMessages.Warning});
         }
-
 
         [Authorize]
         [HttpGet]
         public ActionResult EditPost(int postId)
         {
-            var post = Mapper.Map<PostInputModel>(_postsService.GetById(postId));
-
+            var post = Mapper.Map<PostInputModel>(_postsService.GetByIdAsync(postId));
             return View("_EditPostPartial", post);
         }
 
@@ -74,11 +63,11 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
             if (ModelState.IsValid)
             {
                 var post = Mapper.Map<PostBusiness>(model);
-                _postsService.Update(post);
-                return RedirectToAction("Show", "Topic", new { area = "", id = model.TopicId });
+                _postsService.EditAsync(post);
+                return RedirectToAction("Show", "Topic", new {area = "", id = model.TopicId});
             }
 
-           // ModelState.AddModelError("", "Invalid text!");
+            // ModelState.AddModelError("", "Invalid text!");
 
             return View("_EditPostPartial", model);
         }

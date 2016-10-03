@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Web.MVC.Models;
 
@@ -15,12 +16,10 @@ namespace MyForum.Web.MVC.Controllers
 
         // GET: MainCategory
         [HttpGet]
-        public ActionResult Show(int id)
+        public async Task<ActionResult> Show(int id)
         {
-            var mainCategory = Mapper.Map<MainCategoriesViewModel>(
-                _mainCategoriesService.GetByIdWithTopicCategories(id));
-
-            return View("MainCategory", mainCategory);
+            var mainCategory = await _mainCategoriesService.GetByIdWithTopicCategoriesAsync(id);
+            return View("MainCategory", Mapper.Map<MainCategoriesViewModel>(mainCategory));
         }
 
         [HttpGet]

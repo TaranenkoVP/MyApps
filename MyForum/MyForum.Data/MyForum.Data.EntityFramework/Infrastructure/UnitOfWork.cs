@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MyForum.Data.Core.Common;
 using MyForum.Data.Core.Common.Repositories;
 using MyForum.Data.Core.Identity;
 using MyForum.Data.Core.Models;
 using MyForum.Data.Core.Models.Identity;
-using MyForum.Data.EF.Repositories;
 using MyForum.Data.EF.Repositories.Common;
 
 namespace MyForum.Data.EF.Infrastructure
@@ -31,11 +31,10 @@ namespace MyForum.Data.EF.Infrastructure
 
         #endregion
 
-        // TODO Implement Factory
-
         #region Fields
 
         private readonly MyForumDbContext _context;
+
         private bool _disposed;
 
         private IDeletableEntityRepository<MainCategory> _mainCategoryRepository;
@@ -60,7 +59,8 @@ namespace MyForum.Data.EF.Infrastructure
         {
             get
             {
-                return _topicCategoryRepository ?? (_topicCategoryRepository = new DeletableEntityRepository<TopicCategory>(_context));
+                return _topicCategoryRepository ??
+                       (_topicCategoryRepository = new DeletableEntityRepository<TopicCategory>(_context));
             }
         }
 
@@ -80,9 +80,9 @@ namespace MyForum.Data.EF.Infrastructure
 
         #endregion
 
-        public void Commit()
+        public async Task CommitAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public void Dispose()

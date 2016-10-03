@@ -155,7 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\AppConstants.cs" />
-    <Compile Include="Identity\SignInManager.cs" />
     <Compile Include="Identity\RoleManager.cs" />
     <Compile Include="Identity\UserManager.cs" />
     <Compile Include="Models\Identity\ApplicationRole.cs" />
@@ -166,7 +165,7 @@
     <Compile Include="Common\Models\IDeletableEntity.cs" />
     <Compile Include="Common\Models\ITKeyEntity.cs" />
     <Compile Include="Common\Repositories\IDeletableEntityRepository.cs" />
-    <Compile Include="Common\Repositories\IRepository.cs" />
+    <Compile Include="Common\Repositories\IGenericRepository.cs" />
     <Compile Include="Common\IUnitOfWork.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Topic.cs" />

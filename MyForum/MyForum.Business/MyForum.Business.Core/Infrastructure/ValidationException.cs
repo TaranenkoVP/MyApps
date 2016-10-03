@@ -8,7 +8,6 @@ namespace MyForum.Business.Core.Infrastructure
         {
             Property = prop;
         }
-
         public string Property { get; protected set; }
     }
 }

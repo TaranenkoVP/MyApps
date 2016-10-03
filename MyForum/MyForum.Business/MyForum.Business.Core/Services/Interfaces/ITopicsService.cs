@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MyForum.Business.Core.Entities;
+using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Data.Core.Models;
 
@@ -13,10 +14,10 @@ namespace MyForum.Business.Core.Services.Interfaces
 
         int GetTopicsCount(Expression<Func<Topic, bool>> rule);
 
-        Task<TopicBusiness> AddAsync(TopicBusiness entity);
+        Task<OperationDetails> AddAsync(TopicBusiness entity);
 
-        Task<TopicBusiness> EditAsync(TopicBusiness entity);
+        Task<OperationDetails> EditAsync(TopicBusiness entity);
 
-        Task<TopicBusiness> DeleteAsync(TopicBusiness entity);
+        Task<OperationDetails> DeleteAsync(TopicBusiness entity);
     }
 }

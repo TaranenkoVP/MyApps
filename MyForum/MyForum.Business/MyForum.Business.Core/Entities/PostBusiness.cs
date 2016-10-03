@@ -21,7 +21,9 @@ namespace MyForum.Business.Core.Entities
                 .ForMember(r => r.Author, opts => opts.MapFrom(x => x.ApplicationUser));
             configuration.CreateMap<PostBusiness, Post>()
                 .ForMember(r => r.ApplicationUserId, opts => opts.MapFrom(x => x.AuthorId))
-                .ForMember(r => r.ApplicationUser, opts => opts.MapFrom(x => x.Author));
+                .ForMember(r => r.ApplicationUser, opts => opts.Ignore())
+                .ForMember(r => r.Topic, opts => opts.Ignore())
+                .ForMember(r => r.CreatedOn, opts => opts.Ignore());
         }
     }
 }

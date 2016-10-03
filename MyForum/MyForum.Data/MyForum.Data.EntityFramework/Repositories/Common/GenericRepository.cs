@@ -150,7 +150,7 @@ namespace MyForum.Data.EF.Repositories.Common
 
         public virtual void Delete(int id)
         {
-            var entity = GetById(id);
+            var entity = DbSet.Find(id);
 
             if (entity != null)
             {

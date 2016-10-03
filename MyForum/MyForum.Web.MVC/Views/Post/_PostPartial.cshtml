@@ -40,8 +40,9 @@
                             </div>
                             <div class="btn-group">
                                 @using (Html.BeginForm("DeletePost", "UserPost", new { area = "User" }, FormMethod.Post))
-                                { 
-                                    <input type="hidden" value="@Model.Id" name="postId" />
+                                {
+                                    <input type="hidden" value="@Model.Id" name="postId"/>
+                                    <input type="hidden" value="@Model.TopicId" name="topicId" />
                                     <input type="submit" value="Delete" class="btn btn-primary"/>
                                 }
                             </div>

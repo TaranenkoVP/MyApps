@@ -26,6 +26,11 @@ namespace MyForum.Business.Core.Entities
             configuration.CreateMap<Topic, TopicBusiness>()
                 .ForMember(r => r.AuthorId, opts => opts.MapFrom(x => x.ApplicationUserId))
                 .ForMember(r => r.Author, opts => opts.MapFrom(x => x.ApplicationUser));
+            configuration.CreateMap<TopicBusiness, Topic>()
+                .ForMember(r => r.ApplicationUserId, opts => opts.MapFrom(x => x.AuthorId))
+                .ForMember(r => r.ApplicationUser, opts => opts.Ignore())
+                .ForMember(r => r.Posts, opts => opts.Ignore())
+                .ForMember(r => r.TopicCategory, opts => opts.Ignore());
         }
     }
 }

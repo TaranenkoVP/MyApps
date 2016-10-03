@@ -30,6 +30,11 @@ namespace MyForum.Business.Core.Entities
             configuration.CreateMap<TopicCategory, TopicCategoryBusiness>()
                 .ForMember(r => r.AuthorId, opts => opts.MapFrom(x => x.ApplicationUserId))
                 .ForMember(r => r.Author, opts => opts.MapFrom(x => x.ApplicationUser));
+            configuration.CreateMap<TopicCategoryBusiness, TopicCategory>()
+                .ForMember(r => r.ApplicationUserId, opts => opts.MapFrom(x => x.AuthorId))
+                .ForMember(r => r.ApplicationUser, opts => opts.Ignore())
+                .ForMember(r => r.MainCategory, opts => opts.Ignore())
+                .ForMember(r => r.Topics, opts => opts.Ignore());
         }
     }
 }

@@ -144,6 +144,7 @@
     <Compile Include="Infrastructure\Mappers\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\Mappers\IMapFrom.cs" />
     <Compile Include="Infrastructure\OperationDetails.cs" />
+    <Compile Include="Infrastructure\CustomDataException.cs" />
     <Compile Include="Services\Common\EntityService.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />

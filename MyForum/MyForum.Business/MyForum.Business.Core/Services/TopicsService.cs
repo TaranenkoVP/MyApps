@@ -7,68 +7,109 @@ using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Data.Core.Common;
-using MyForum.Data.Core.Common.Repositories;
 using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services
 {
     public class TopicsService : EntityService, ITopicsService
     {
-        public TopicsService(IUnitOfWork uow )
+        public TopicsService(IUnitOfWork uow)
             : base(uow)
         {
         }
 
         public async Task<TopicBusiness> GetByIdWithPostsAsync(int id)
         {
-            var topic = await Task.Run(() => Database.TopicRepository.Get(
-                includeProperties: "Posts, Posts.ApplicationUser")
-                .FirstOrDefault(x => x.Id == id));
-            return Mapper.Map<TopicBusiness>(topic);
-        }
-
-        public int GetTopicsCount(Expression<Func<Topic, bool>> rule)
-        {
-            return Database.TopicRepository.GetCount(rule);
-        }
-
-        public async Task<TopicBusiness> AddAsync(TopicBusiness entity)
-        {
-            if (entity == null)
+            if (id == 0)
             {
-                return null;
+                throw new ValidationException("Invalid id");
             }
-            Database.TopicRepository.Add(Mapper.Map<Topic>(entity));
-            await Database.CommitAsync();
-            return entity;
+            try
+            {
+                var topic = await Task.Run(() => Database.TopicRepository.Get(
+                    includeProperties: "Posts, Posts.ApplicationUser")
+                    .FirstOrDefault(x => x.Id == id));
+                return Mapper.Map<TopicBusiness>(topic);
+            }
+            catch (Exception ex)
+            {
+                throw new CustomDataException("Cant't get topic", ex);
+            }
         }
 
-        public async Task<TopicBusiness> EditAsync(TopicBusiness entity)
+        public int GetTopicsCount(Expression<Func<Topic, bool>> rule = null)
         {
-            if (entity == null)
+            try
             {
-                return null;
+                return Database.TopicRepository.GetCount(rule);
             }
-            var topic = Database.TopicRepository.GetById(entity.Id);
-            if (topic == null)
+            catch (Exception ex)
             {
-                return null;
+                throw new CustomDataException("Cant't get topics count", ex);
             }
-            Mapper.Map(entity, topic);
-            Database.TopicRepository.Update(topic);
-            await Database.CommitAsync();
-            return entity;
         }
 
-        public async Task<TopicBusiness> DeleteAsync(TopicBusiness entity)
+        public async Task<OperationDetails> AddAsync(TopicBusiness entity)
         {
             if (entity == null)
             {
-                return null;
+                return new OperationDetails(false, "Topic does not exist", "");
             }
-            Database.TopicRepository.Delete(Mapper.Map<Topic>(entity));
-            await Database.CommitAsync();
-            return entity;
+            try
+            {
+                Database.TopicRepository.Add(Mapper.Map<Topic>(entity));
+                await Database.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                return new OperationDetails(false, ex.Message, "");
+            }
+
+            return new OperationDetails(true, "Success", "");
+        }
+
+        public async Task<OperationDetails> EditAsync(TopicBusiness entity)
+        {
+            if (entity == null)
+            {
+                return new OperationDetails(false, "Topic does not exist", "");
+            }
+            try
+            {
+                var topic = Database.TopicRepository.GetById(entity.Id);
+                if (topic == null)
+                {
+                    return new OperationDetails(false, "Topic does not exist", "");
+                }
+                Mapper.Map(entity, topic);
+                Database.TopicRepository.Update(topic);
+                await Database.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                return new OperationDetails(false, ex.Message, "");
+            }
+
+            return new OperationDetails(true, "Success", "");
+        }
+
+        public async Task<OperationDetails> DeleteAsync(TopicBusiness entity)
+        {
+            if (entity == null)
+            {
+                return new OperationDetails(false, "Topic does not exist", "");
+            }
+            try
+            {
+                Database.TopicRepository.Delete(Mapper.Map<Topic>(entity));
+                await Database.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                return new OperationDetails(false, ex.Message, "");
+            }
+
+            return new OperationDetails(true, "Success", "");
         }
     }
 }

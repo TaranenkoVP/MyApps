@@ -20,12 +20,6 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
             _postsService = postsService;
         }
 
-        // GET: User/UserPost
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddPost(PostInputModel model)
@@ -37,47 +31,77 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
                 post.Content = model.Content;
                 post.TopicId = model.TopicId;
                 post.AuthorId = userId;
-                post.CreatedOn = DateTime.UtcNow;
-                await _postsService.AddAsync(post);
-                return JavaScript("location.reload(true)");
+                var detais = await _postsService.AddAsync(post);
+                if (!detais.Succedeed)
+                {
+                    ModelState.AddModelError("", detais.Message);
+                }
+                else
+                {
+                    //Success!!! Reloading all page...
+                    return JavaScript("location.reload(true)");
+                }
             }
             var error = string.Join("; ", ModelState.Values
                 .SelectMany(x => x.Errors)
                 .Select(x => x.ErrorMessage));
+
             return PartialView("ShowMessage",
                 new GenericMessageViewModel {Message = error, MessageType = GenericMessages.Warning});
         }
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditPost(int postId)
+        public async Task<ActionResult> EditPost(int postId)
         {
-            var post = Mapper.Map<PostInputModel>(_postsService.GetByIdAsync(postId));
-            return View("_EditPostPartial", post);
+            try
+            {
+                var post = await _postsService.GetByIdAsync(postId);
+                return View("_EditPostPartial", Mapper.Map<PostInputModel>(post));
+            }
+            catch
+            {
+                return new HttpNotFoundResult();
+            }
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult EditPost(PostInputModel model)
+        public async Task<ActionResult> EditPost(PostInputModel model)
         {
-            if (ModelState.IsValid)
+            if (model != null && ModelState.IsValid)
             {
                 var post = Mapper.Map<PostBusiness>(model);
-                _postsService.EditAsync(post);
-                return RedirectToAction("Show", "Topic", new {area = "", id = model.TopicId});
+                //post.ModifiedOn = DateTime.Now;
+                var detais = await _postsService.EditAsync(post);
+                if (!detais.Succedeed)
+                {
+                    ModelState.AddModelError("", detais.Message);
+                }
+                else
+                {
+                    //Success!!!
+                    return RedirectToAction("Show", "Topic", new {area = "", id = model.TopicId});
+                }
             }
-
-            // ModelState.AddModelError("", "Invalid text!");
-
             return View("_EditPostPartial", model);
         }
 
-
         [Authorize]
-        [HttpGet]
-        public ActionResult DeletePost(int postId)
+        [HttpPost]
+        public async Task<ActionResult> DeletePost(int postId, int topicid)
         {
-            return View();
+            if (postId == 0)
+            {
+                return RedirectToAction("Show", "Topic", new {area = "", id = topicid});
+            }
+            var detais = await _postsService.DeleteByIdAsync(postId);
+            if (!detais.Succedeed)
+            {
+                ModelState.AddModelError("", detais.Message);
+            }
+
+            return RedirectToAction("Show", "Topic", new {area = "", id = topicid});
         }
 
         [Authorize]

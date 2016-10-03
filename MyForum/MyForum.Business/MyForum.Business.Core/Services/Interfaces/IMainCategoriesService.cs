@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MyForum.Business.Core.Entities;
+using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services.Common;
 
 namespace MyForum.Business.Core.Services.Interfaces
@@ -11,8 +12,8 @@ namespace MyForum.Business.Core.Services.Interfaces
         Task<IEnumerable<MainCategoryBusiness>> GetAllAsync();
         Task<MainCategoryBusiness> GetByIdWithTopicCategoriesAsync(int id);
         Task<IEnumerable<MainCategoryBusiness>> GetAllWithTopicCategoriesAsync();
-        Task<MainCategoryBusiness> AddAsync(MainCategoryBusiness entity);
-        Task<MainCategoryBusiness> EditAsync(MainCategoryBusiness entity);
-        Task<MainCategoryBusiness> DeleteAsync(MainCategoryBusiness entity);
+        Task<OperationDetails> AddAsync(MainCategoryBusiness entity);
+        Task<OperationDetails> EditAsync(MainCategoryBusiness entity);
+        Task<OperationDetails> DeleteAsync(MainCategoryBusiness entity);
     }
 }

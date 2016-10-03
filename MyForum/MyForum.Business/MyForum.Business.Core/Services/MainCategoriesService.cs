@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MyForum.Business.Core.Entities;
+using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
 using MyForum.Data.Core.Common;
@@ -30,85 +32,132 @@ namespace MyForum.Business.Core.Services
 
         public async Task<IEnumerable<MainCategoryBusiness>> GetAllAsync()
         {
-            var mainCategories = await Task.Run(() => Database.MainCategoryRepository.GetAll());
-            var mainCategoriesBusiness = Mapper.Map<List<MainCategoryBusiness>>(mainCategories);
-            return mainCategoriesBusiness;
+            try
+            {
+                var mainCategories = await Task.Run(() => Database.MainCategoryRepository.GetAll());
+                var mainCategoriesBusiness = Mapper.Map<List<MainCategoryBusiness>>(mainCategories);
+                return mainCategoriesBusiness;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<IEnumerable<MainCategoryBusiness>> GetAllWithTopicCategoriesAsync()
         {
-            var g = Database.MainCategoryRepository.Get(includeProperties: "TopicCategories");
-
-            var t = Mapper.Map<List<MainCategoryBusiness>>(g);
-
-            var mainCategories = Database.MainCategoryRepository.Get(includeProperties: "TopicCategories");
-                await Task.Run(() => Database.MainCategoryRepository.Get(includeProperties: "TopicCategories"));
-            var mainCategoriesBusiness = Mapper.Map<List<MainCategoryBusiness>>(mainCategories);
-            foreach (var mainCategory in mainCategoriesBusiness)
+            try
             {
-                GetTopicCategoriesStatistic(mainCategory.TopicCategories);
+                var mainCategories = Database.MainCategoryRepository.Get(includeProperties: "TopicCategories");
+                await Task.Run(() => Database.MainCategoryRepository.Get(includeProperties: "TopicCategories"));
+                var mainCategoriesBusiness = Mapper.Map<List<MainCategoryBusiness>>(mainCategories);
+                foreach (var mainCategory in mainCategoriesBusiness)
+                {
+                    GetTopicCategoriesStatistic(mainCategory.TopicCategories);
+                }
+                return mainCategoriesBusiness;
             }
-            return mainCategoriesBusiness;
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<MainCategoryBusiness> GetByIdAsync(int id)
         {
-            var mainCategory = await Task.Run(() => Database.MainCategoryRepository.Get()
-                .FirstOrDefault(x => x.Id == id));
-            var mainCategoryBusiness = Mapper.Map<MainCategoryBusiness>(mainCategory);
-            return mainCategoryBusiness;
+            try
+            {
+                var mainCategory = await Task.Run(() => Database.MainCategoryRepository.Get()
+                    .FirstOrDefault(x => x.Id == id));
+                var mainCategoryBusiness = Mapper.Map<MainCategoryBusiness>(mainCategory);
+                return mainCategoryBusiness;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<MainCategoryBusiness> GetByIdWithTopicCategoriesAsync(int id)
         {
-            var mainCategory = await Task.Run(() => Database.MainCategoryRepository.Get(
-                includeProperties: "TopicCategories")
-                .FirstOrDefault(x => x.Id == id));
-            var mainCategoryBusiness = Mapper.Map<MainCategoryBusiness>(mainCategory);
-            GetTopicCategoriesStatistic(mainCategoryBusiness.TopicCategories);
-            return mainCategoryBusiness;
+            try
+            {
+                var mainCategory = await Task.Run(() => Database.MainCategoryRepository.Get(
+                    includeProperties: "TopicCategories")
+                    .FirstOrDefault(x => x.Id == id));
+                var mainCategoryBusiness = Mapper.Map<MainCategoryBusiness>(mainCategory);
+                GetTopicCategoriesStatistic(mainCategoryBusiness.TopicCategories);
+                return mainCategoryBusiness;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        public async Task<MainCategoryBusiness> AddAsync(MainCategoryBusiness entity)
+        public async Task<OperationDetails> DeleteAsync(MainCategoryBusiness entity)
         {
             if (entity == null)
             {
-                return null;
+                return new OperationDetails(false, "Main category does not exist", "");
             }
-            Database.MainCategoryRepository.Add(Mapper.Map<MainCategory>(entity));
-            await Database.CommitAsync();
-            return entity;
+            try
+            {
+                Database.MainCategoryRepository.Delete(Mapper.Map<MainCategory>(entity));
+                await Database.CommitAsync();
+                return new OperationDetails(true, "Success", "");
+            }
+            catch (Exception ex)
+            {
+                return new OperationDetails(false, ex.Message, "");
+            }
         }
 
-        public async Task<MainCategoryBusiness> EditAsync(MainCategoryBusiness entity)
+        public async Task<OperationDetails> AddAsync(MainCategoryBusiness entity)
         {
             if (entity == null)
             {
-                return null;
+                return new OperationDetails(false, "Main category does not exist", "");
             }
-            var mainCategory = Database.MainCategoryRepository.GetById(entity.Id);
-            if (mainCategory == null)
+            try
             {
-                return null;
+                Database.MainCategoryRepository.Add(Mapper.Map<MainCategory>(entity));
+                await Database.CommitAsync();
+
+                return new OperationDetails(true, "Success", "");
             }
-            Mapper.Map(entity, mainCategory);
-            Database.MainCategoryRepository.Update(mainCategory);
-            await Database.CommitAsync();
-            return entity;
+            catch (Exception ex)
+            {
+                return new OperationDetails(false, ex.Message, "");
+            }
         }
 
-        public async Task<MainCategoryBusiness> DeleteAsync(MainCategoryBusiness entity)
+        public async Task<OperationDetails> EditAsync(MainCategoryBusiness entity)
         {
             if (entity == null)
             {
-                return null;
+                return new OperationDetails(false, "Main category does not exist", "");
             }
-            Database.MainCategoryRepository.Delete(Mapper.Map<MainCategory>(entity));
-            await Database.CommitAsync();
-            return entity;
+            try
+            {
+                var mainCategory = Database.MainCategoryRepository.GetById(entity.Id);
+                if (mainCategory == null)
+                {
+                    return new OperationDetails(false, "Main category does not exist", "");
+                }
+                Mapper.Map(entity, mainCategory);
+                Database.MainCategoryRepository.Update(mainCategory);
+                await Database.CommitAsync();
+                return new OperationDetails(true, "Success", "");
+            }
+            catch (Exception ex)
+            {
+                return new OperationDetails(false, ex.Message, "");
+            }
         }
+
         // TODO async
-        private void  GetTopicCategoriesStatistic(IEnumerable<TopicCategoryBusiness> topicCategories)
+        private void GetTopicCategoriesStatistic(IEnumerable<TopicCategoryBusiness> topicCategories)
         {
             foreach (var topicCategory in topicCategories)
             {

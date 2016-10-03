@@ -10,8 +10,9 @@ namespace MyForum.Data.Core.Common.Repositories
         /// <summary>
         ///      Get all deleted entities from db
         /// </summary>
-        IEnumerable<TEntity> AllWithDeleted();
+        //IEnumerable<TEntity> AllWithDeleted();
 
-        void ActualDelete(TEntity entity);
+        //void ActualDelete(TEntity entity);
+        //void ActualDeleteById(int id);
     }
 }

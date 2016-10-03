@@ -2,7 +2,6 @@
 using AutoMapper;
 using MyForum.Business.Core.Infrastructure.Mappers;
 using MyForum.Data.Core.Models;
-using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Business.Core.Entities
 {
@@ -23,8 +22,11 @@ namespace MyForum.Business.Core.Entities
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<MainCategory, MainCategoryBusiness>()
-               .ForMember(r => r.AuthorId, opts => opts.MapFrom(x => x.ApplicationUserId))
-               .ForMember(r => r.Author, opts => opts.MapFrom(x => x.ApplicationUser));
+                .ForMember(r => r.AuthorId, opts => opts.MapFrom(x => x.ApplicationUserId))
+                .ForMember(r => r.Author, opts => opts.MapFrom(x => x.ApplicationUser));
+            configuration.CreateMap<MainCategoryBusiness, MainCategory>()
+                .ForMember(x => x.ApplicationUser, opt => opt.Ignore())
+                .ForMember(x => x.TopicCategories, opt => opt.Ignore());
         }
     }
 }

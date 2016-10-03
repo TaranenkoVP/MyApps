@@ -12,35 +12,45 @@ namespace MyForum.Data.EF.Repositories.Common
     ///     Interface <see cref="IDeletableEntityRepository{TEntity}" /> for operations with audits repositories
     /// </summary>
     public class DeletableEntityRepository<TEntity> : GenericRepository<TEntity>, IDeletableEntityRepository<TEntity>
-        where TEntity : class, IDeletableEntity
+        where TEntity : class, IDeletableEntity, ITKeyEntity<int>, IAuditInfo
     {
         public DeletableEntityRepository(DbContext context)
             : base(context)
         {
         }
 
-        public override IEnumerable<TEntity> GetAll()
-        {
-            return DbSet.Where(x => !x.IsDeleted).ToList();
-        }
+        //public override TEntity GetById(object id)
+        //{
+        //    return DbSet.FirstOrDefault(x => x.Id == (int)id);
+        //}
 
-        public IEnumerable<TEntity> AllWithDeleted()
-        {
-            return DbSet.ToList();
-        }
+        //public override IEnumerable<TEntity> GetAll()
+        //{
+        //    return DbSet.Where(x => !x.IsDeleted).ToList();
+        //}
 
-        public override void Delete(TEntity entity)
-        {
-            entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.Now;
+        //public IEnumerable<TEntity> AllWithDeleted()
+        //{
+        //    return DbSet.ToList();
+        //}
 
-            DbEntityEntry entry = Context.Entry(entity);
-            entry.State = EntityState.Modified;
-        }
+        //public override void Delete(TEntity entity)
+        //{
+        //    entity.IsDeleted = true;
+        //    entity.DeletedOn = DateTime.Now;
 
-        public void ActualDelete(TEntity entity)
-        {
-            base.Delete(entity);
-        }
+        //    DbEntityEntry entry = Context.Entry(entity);
+        //    entry.State = EntityState.Modified;
+        //}
+
+        //public void ActualDelete(TEntity entity)
+        //{
+        //    base.Delete(entity);
+        //}
+
+        //public void ActualDeleteById(int id)
+        //{
+        //    base.Delete(id);
+        //}
     }
 }

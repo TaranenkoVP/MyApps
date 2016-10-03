@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MyForum.Data.Core.Common.Models;
-using MyForum.Data.Core.Models;
 
 namespace MyForum.Data.Core.Models.Identity
 {
@@ -28,22 +22,8 @@ namespace MyForum.Data.Core.Models.Identity
         }
 
         #endregion Constructors
-        //public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
-        //{
-        //    var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-        //    return userIdentity;
-        //}
 
         public string Photo { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
-
-        [Index]
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
 
         public virtual ICollection<Post> Posts
         {
@@ -62,5 +42,14 @@ namespace MyForum.Data.Core.Models.Identity
             get { return _topics; }
             set { _topics = value; }
         }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

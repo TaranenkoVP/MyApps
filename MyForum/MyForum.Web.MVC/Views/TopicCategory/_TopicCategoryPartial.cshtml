@@ -1,49 +1,41 @@
 ﻿@model MyForum.Web.MVC.Models.TopicCategoriesViewModel
-
-<div class="forumrow">
-    <div class="foruminfo">
-        <img src="/Content/Images/forum_new-48.png" class="forumicon" id="forum_statusicon_2" alt=""/>
-        <div class="forumdata">
+<div class="container">
+    <div class="row well forumrow">
+        <div class="col-md-8">
+            <img src="/Content/Images/forum_new-48.png" class="forumicon" id="forum_statusicon_2" alt=""/>
             <h4 class="titleline"> @Html.RouteLink(Model.Name, new {controller = "TopicCategory", action = "Show", id = Model.Id})</h4>
-            @if (Model.Description.Length > 150)
-            {
-                <p>@Model.Description.Substring(0, 150)...</p>
-            }
-            else
-            {
-                <p>@Model.Description</p>
-            }
+            <p>@Model.Description</p>
+        </div>
+        <div class="col-md-4">
+            <div class="row forumrowinfo">
+                <div class="col-md-4 forum-row-statistic">
+                    <p>Threads: @Model.TopicsCount</p>
+                    <p>Posts: @Model.PostsCount</p>
+                </div>
+                <div class="col-md-8">
+                    @if (Model.PostsCount > 0)
+                    {
+                        if (Model.LatestPost.Content.Length > 30)
+                        {
+                            <p>@Html.ActionLink(@Model.LatestPost.Content.Substring(0, 30) + "...", "Show/" + Model.Id, "Topic")</p>
+                        }
+                        else
+                        {
+                            <p>@Html.ActionLink(@Model.LatestPost.Content, "Show/" + Model.Id, "Topic")</p>
+                        }
+
+                        if (Model.LatestPost.Author.UserName.Length > 30)
+                        {
+                            <p>by: @Html.ActionLink(@Model.LatestPost.Author.UserName.Substring(0, 30) + "...", "Show/" + Model.Id, "Topic")</p>
+                        }
+                        else
+                        {
+                            <p>by: @Html.ActionLink(@Model.LatestPost.Author.UserName, "Show/" + Model.Id, "Topic")</p>
+                        }
+                        <p> @Model.LatestPost.CreatedOn.ToString("ddd dd MMM yyyy, hh:mm tt")</p>
+                        }
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="forumtopicstatistic">
-        <p>Threads: @Model.TopicsCount</p>
-        <p>Posts: @Model.PostsCount</p>
-    </div>
-
-    <div class="forumlastpost">
-        @if (Model.PostsCount > 0)
-        {
-            if (Model.LatestPost.Content.Length > 30)
-            {
-                <p>@Html.ActionLink(@Model.LatestPost.Content.Substring(0, 30) + "...", "Show/" + Model.Id, "Topic")</p>
-            }
-            else
-            {
-                <p>@Html.ActionLink(@Model.LatestPost.Content, "Show/" + Model.Id, "Topic")</p>
-            }
-
-            if (Model.LatestPost.Author.UserName.Length > 30)
-            {
-                <p>by: @Html.ActionLink(@Model.LatestPost.Author.UserName.Substring(0, 30) + "...", "Show/" + Model.Id, "Topic")</p>
-            }
-            else
-            {
-                <p>by: @Html.ActionLink(@Model.LatestPost.Author.UserName, "Show/" + Model.Id, "Topic")</p>
-            }
-
-            <p> @Model.LatestPost.CreatedOn.ToString("ddd dd MMM yyyy, hh:mm tt")</p>
-        }
-    </div>
 </div>
-

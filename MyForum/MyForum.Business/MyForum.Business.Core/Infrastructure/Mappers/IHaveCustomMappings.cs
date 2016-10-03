@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using AutoMapper;
 
 namespace MyForum.Business.Core.Infrastructure.Mappers
 {
-    using AutoMapper;
-
     public interface IHaveCustomMappings
     {
         void CreateMappings(IMapperConfigurationExpression configuration);

@@ -34,12 +34,14 @@ namespace MyForum.Web.MVC.Controllers
             get { return HttpContext.GetOwinContext().Authentication; }
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
@@ -68,7 +70,7 @@ namespace MyForum.Web.MVC.Controllers
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = string.Empty });
         }
 
         public ActionResult Register()
@@ -84,7 +86,7 @@ namespace MyForum.Web.MVC.Controllers
             {
                 var userBusiness = Mapper.Map<UserBusiness>(model);
 
-                userBusiness.Role = "user";
+                userBusiness.Roles.Add("user");
 
                 OperationDetails operationDetails = await UserService.Create(userBusiness);
                 if (operationDetails.Succedeed)

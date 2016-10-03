@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Services.Common;
-using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services.Interfaces
 {
-    public interface ITopicCategoriesService : IDeletableBaseService<TopicCategory, TopicCategoryBusiness>
+    public interface ITopicCategoriesService : IDeletable<TopicCategoryBusiness>
     {
         IEnumerable<TopicCategoryBusiness> GetAll();
-        TopicCategoryBusiness GetById(int id);
-        //void Add(TopicCategoryBusiness entity);
-        //void Update(TopicCategoryBusiness entity);
-        //void Delete(TopicCategoryBusiness entity);
+        TopicCategoryBusiness GetByIdWithTopics(int id);
+        IEnumerable<TopicCategoryBusiness> GetAllWithTopics();
     }
 }

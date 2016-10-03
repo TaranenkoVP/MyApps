@@ -94,8 +94,16 @@
       <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
@@ -146,9 +154,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Repositories\IPostRepository.cs" />
-    <Compile Include="Common\Repositories\ITopicCategoryRepository.cs" />
-    <Compile Include="Common\Repositories\ITopicRepository.cs" />
+    <Compile Include="Constants\AppConstants.cs" />
+    <Compile Include="Identity\SignInManager.cs" />
     <Compile Include="Identity\RoleManager.cs" />
     <Compile Include="Identity\UserManager.cs" />
     <Compile Include="Models\Identity\ApplicationRole.cs" />
@@ -160,7 +167,7 @@
     <Compile Include="Common\Models\ITKeyEntity.cs" />
     <Compile Include="Common\Repositories\IDeletableEntityRepository.cs" />
     <Compile Include="Common\Repositories\IRepository.cs" />
-    <Compile Include="Common\Repositories\IUnitOfWork.cs" />
+    <Compile Include="Common\IUnitOfWork.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />

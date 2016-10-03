@@ -1,72 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Infrastructure;
-using MyForum.Business.Core.Infrastructure.Mappers;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
-using MyForum.Data.Core.Common.Repositories;
+using MyForum.Data.Core.Common;
 using MyForum.Data.Core.Models;
-using Ninject;
 
 namespace MyForum.Business.Core.Services
 {
-    
-    public class TopicCategoriesService : DeletableBaseService<TopicCategory, TopicCategoryBusiness>, ITopicCategoriesService
+    public class TopicCategoriesService : BaseService, ITopicCategoriesService
     {
-        public TopicCategoriesService(IUnitOfWork uow)
-           : base(uow , uow.TopicCategoryRepository)
+        /// <summary>
+        ///     Posts service
+        /// </summary>
+        private readonly IPostsService _postsService;
+
+        /// <summary>
+        ///     Topics service
+        /// </summary>
+        private readonly ITopicsService _topicsService;
+
+        public TopicCategoriesService(IUnitOfWork uow, ITopicsService topicsService, IPostsService postsService)
+            : base(uow)
         {
+            _topicsService = topicsService;
+            _postsService = postsService;
         }
 
-        public TopicCategoryBusiness GetTopicCategory(int id)
+        public IEnumerable<TopicCategoryBusiness> GetAllWithTopics()
         {
+            var topicCategories = Mapper.Map<List<TopicCategoryBusiness>>(
+                Database.TopicCategoryRepository.Get(includeProperties: "MainCategory, Topics"));
 
-            var topicCategory = Mapper.Map<TopicCategoryBusiness>(Database.TopicCategoryRepository.GetById(id));
-
-            if (topicCategory == null)
+            foreach (var topicCategory in topicCategories)
             {
-                throw new ValidationException("Topic Category not found");
+                GetTopicsStatistic(topicCategory.Topics);
             }
 
-            return topicCategory;
+            return topicCategories;
         }
 
-        public TopicCategoryBusiness GetById(int id)
+        public TopicCategoryBusiness GetByIdWithTopics(int id)
         {
-            var topicCategory = Mapper.Map<TopicCategoryBusiness>(
-                Database.TopicCategoryRepository
-                        .Get(includeProperties: "Topics, Topics.Posts, Topics.Posts.Author")
-                        .FirstOrDefault(x => x.Id == id));
+            var topicCategory = Database.TopicCategoryRepository.Get(x => x.Id == id,
+                includeProperties: "MainCategory, Topics")
+                .FirstOrDefault();
 
-            foreach (var topic in topicCategory.Topics)
-            {
-               // topic.PostCount = GetPostsCountByTopicId
-            }
-            //topicCategory.PostsCount= GetPostsCountByTopicId
+            var topicCategoryBusiness = Mapper.Map<TopicCategoryBusiness>(topicCategory);
 
-            return topicCategory;
+            GetTopicsStatistic(topicCategoryBusiness.Topics);
+
+            return topicCategoryBusiness;
         }
-
-        //public TopicCategoryBusiness GetTopicsByCategoryId(int id)
-        //{
-        //    var topics = Mapper.Map<TopicCategoryBusiness>(Database.TopicCategoryRepository.Get(
-
-        //        ));
-
-        //    if (topics == null)
-        //    {
-        //        throw new ValidationException("Topic Category not found");
-        //    }
-
-        //    return topics;
-        //}
-
 
         public IEnumerable<TopicCategoryBusiness> GetAll()
         {
@@ -80,38 +66,62 @@ namespace MyForum.Business.Core.Services
             return topicCategories;
         }
 
-        //public void Add(TopicCategoryBusiness entity)
-        //{
-        //    if (entity == null)
-        //    {
-        //        throw new ValidationException("Topic Category is unspecified");
-        //    }
+        public virtual void Add(TopicCategoryBusiness entity)
+        {
+            if (entity == null)
+            {
+                throw new ValidationException("Unspecified entity");
+            }
 
-        //    Database.TopicCategoryRepository.Add(Mapper.Map<TopicCategory>(entity));
-        //    Database.Commit();
-        //}
+            Database.TopicCategoryRepository.Add(Mapper.Map<TopicCategory>(entity));
+            Database.Commit();
+        }
 
-        //public void Update(TopicCategoryBusiness entity)
-        //{
-        //    if (entity == null)
-        //    {
-        //        throw new ValidationException("Topic Category is unspecified");
-        //    }
+        public virtual void Update(TopicCategoryBusiness entity)
+        {
+            if (entity == null)
+            {
+                throw new ValidationException("Unspecified entity");
+            }
 
-        //    Database.TopicCategoryRepository.Update(Mapper.Map<TopicCategory>(entity));
-        //    Database.Commit();
-        //}
+            Database.TopicCategoryRepository.Update(Mapper.Map<TopicCategory>(entity));
+            Database.Commit();
+        }
 
-        //public void Delete(TopicCategoryBusiness entity)
-        //{
-        //    if (entity == null)
-        //    {
-        //        throw new ValidationException("Topic Category is unspecified");
-        //    }
+        public virtual void Delete(TopicCategoryBusiness entity)
+        {
+            if (entity == null)
+            {
+                throw new ValidationException("Unspecified entity");
+            }
 
-        //    Database.TopicCategoryRepository.Delete(Mapper.Map<TopicCategory>(entity));
-        //    Database.Commit();
-        //}
+            Database.TopicCategoryRepository.Delete(Mapper.Map<TopicCategory>(entity));
+            Database.Commit();
+        }
 
+        public TopicCategoryBusiness GetTopicCategory(int id)
+        {
+            var topicCategory = Mapper.Map<TopicCategoryBusiness>(Database.TopicCategoryRepository.GetById(id));
+
+            if (topicCategory == null)
+            {
+                throw new ValidationException("Topic Category not found");
+            }
+
+            return topicCategory;
+        }
+
+        private void GetTopicsStatistic(IEnumerable<TopicBusiness> topics)
+        {
+            foreach (var topic in topics)
+            {
+                topic.PostsCount = _postsService.GetPostsCount(
+                    d => d.Topic.Id == topic.Id);
+
+                topic.LatestPost =
+                    _postsService.GetLatestPost(d => d.Topic.Id == topic.Id, q => q.OrderByDescending(d => d.CreatedOn),
+                        "Author");
+            }
+        }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Models.Identity;
 
@@ -11,11 +8,9 @@ namespace MyForum.Data.Core.Models
 {
     public class TopicCategory : BaseModel<int>
     {
-        private ICollection<Topic> _topics;
-
         public TopicCategory()
         {
-            this._topics = new HashSet<Topic>();
+            Topics = new HashSet<Topic>();
         }
 
         [Required]
@@ -26,15 +21,16 @@ namespace MyForum.Data.Core.Models
         [MaxLength(1000)]
         public string Description { get; set; }
 
+        [ForeignKey("MainCategory")]
+        public int MainCategoryId { get; set; }
+
         public virtual MainCategory MainCategory { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public int ApplicationUserId { get; set; }
 
-        public ICollection<Topic> Topics
-        {
-            get { return this._topics; }
-            set { this._topics = value; }
-        }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
+        public ICollection<Topic> Topics { get; set; }
     }
 }

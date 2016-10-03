@@ -1,0 +1,17 @@
+﻿
+@using (Ajax.BeginForm("InputPostMenu", new AjaxOptions
+{
+    HttpMethod = "POST", UpdateTargetId = "addmenu",
+    OnBegin = "AjaxAddBlockBegin", OnComplete = "Scroll"
+}))
+{
+    <div id="div_AddBlock">
+        <input type="hidden" value="@Model.Id" name="topicId"/>
+        <div class="form-group text-center">
+            <input type="submit" value="AddPost" class="btn btn-primary text-center"/>
+        </div>
+    </div>
+}
+
+<div id="addmenu">
+</div>

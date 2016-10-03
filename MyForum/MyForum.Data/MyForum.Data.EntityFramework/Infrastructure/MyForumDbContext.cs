@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define DEBUG
+using System;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
@@ -11,36 +12,42 @@ namespace MyForum.Data.EF.Infrastructure
 {
     public class MyForumDbContext : IdentityDbContext<ApplicationUser>
     {
-        public IDbSet<MainCategory> MainCategory { get; set; }
-        public IDbSet<TopicCategory> TopicCategory { get; set; }
-        public IDbSet<Topic> Topic { get; set; }
-        public IDbSet<Post> Post { get; set; }
-        
-        
-
-        public MyForumDbContext() { }
+        public MyForumDbContext()
+        {
+        }
 
         public MyForumDbContext(string connectionString)
             : base(connectionString)
         {
-            Database.Log = (e) => { Debug.WriteLine(e); };
+            Database.Log = e => { Debug.WriteLine(e); };
             Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MyForumDbContext, Configuration>());
         }
+
+        public IDbSet<MainCategory> MainCategory { get; set; }
+        public IDbSet<TopicCategory> TopicCategory { get; set; }
+        public IDbSet<Topic> Topic { get; set; }
+        public IDbSet<Post> Post { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Entity<IdentityUserLogin>().HasKey(l => l.UserId);
-            //modelBuilder.Entity<IdentityRole>().HasKey(r => r.Id);
-            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
 
         public override int SaveChanges()
         {
-            this.ApplyAuditInfoRules();
+#if DEBUG
+            var entries =
+                ChangeTracker.Entries().Where(e => (e.State == EntityState.Added) || (e.State == EntityState.Modified));
+            foreach (var entry in entries)
+            {
+                Debug.WriteLine("Entity Name: {0}", entry.Entity.GetType().FullName);
+                Debug.WriteLine("Status: {0}", entry.State);
+            }
+#endif
+            ApplyAuditInfoRules();
+
             return base.SaveChanges();
         }
 
@@ -48,12 +55,13 @@ namespace MyForum.Data.EF.Infrastructure
         {
             // Approach via @julielerman: http://bit.ly/123661P
             foreach (var entry in
-                this.ChangeTracker.Entries()
+                ChangeTracker.Entries()
                     .Where(
                         e =>
-                        e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
+                            e.Entity is IAuditInfo &&
+                            ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
             {
-                var entity = (IAuditInfo)entry.Entity;
+                var entity = (IAuditInfo) entry.Entity;
                 if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
                 {
                     entity.CreatedOn = DateTime.Now;

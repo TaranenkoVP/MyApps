@@ -1,0 +1,43 @@
+﻿@using Kendo.Mvc.UI
+
+@*@(Html.Kendo().DatePicker().Name("datepicker"))*@
+
+@(Html.Kendo().Grid<MyForum.Web.MVC.Areas.Admin.Models.AdminMainCategoriesViewModel>()
+          .Name("grid")
+          .Columns(columns =>
+          {
+              columns.Bound(c => c.Name);
+              columns.Bound(c => c.Description).ClientTemplate(
+          "<div style='overflow-y: scroll; height:120px;'>#: Description #</div>"
+      ).Width(400); ;
+              columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+          })
+          .ToolBar(toolbar =>
+          {
+              toolbar.Create();
+          })
+          .ColumnMenu()
+          .Editable(editable => editable.Mode(GridEditMode.PopUp))
+          .Pageable()
+          .Sortable(sortable =>
+          {
+              sortable.SortMode(GridSortMode.SingleColumn);
+          })
+          .Filterable()
+          .Scrollable()
+          .DataSource(dataSource => dataSource
+              .Ajax()
+              .Model(model => model.Id(p => p.Id))
+              .Read(read => read.Action("MainCategories_Read", "AdminMainCategory"))
+              .Create(create => create.Action("MainCategories_Create", "AdminMainCategory"))
+              .Update(update => update.Action("MainCategories_Update", "AdminMainCategory"))
+              .Destroy(destroy => destroy.Action("MainCategories_Destroy", "AdminMainCategory"))
+          )
+    )
+    <script>
+        $("#grid").kendoGrid({
+            height: 700
+        });
+    </script>
+
+

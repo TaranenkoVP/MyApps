@@ -1,66 +1,83 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+using System.Linq.Expressions;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Infrastructure;
-using MyForum.Business.Core.Infrastructure.Mappers;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Business.Core.Services.Interfaces;
-using MyForum.Data.Core.Common.Repositories;
+using MyForum.Data.Core.Common;
 using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services
 {
-    public class PostsService : DeletableBaseService<Post, PostBusiness>, IPostsService
+    public class PostsService : BaseService, IPostsService
     {
         public PostsService(IUnitOfWork uow)
-            : base(uow, uow.PostRepository)
+            : base(uow)
         {
-            
-        }
-        public TopicCategoryBusiness GetTopicCategory(int id)
-        {
-
-            var topicCategory = Mapper.Map<TopicCategoryBusiness>(
-                    Database.TopicCategoryRepository.GetById(id));
-
-            if (topicCategory == null)
-            {
-                throw new ValidationException("Topic Category not found");
-            }
-
-            return topicCategory;
         }
 
-        public int GetPostsCountByTopicId(int id)
+        public PostBusiness GetById(int id)
         {
-            var postCount = Database.PostRepository.Get(
-                filter: d => d.Topic.Id == id)
-                .Count();
+            return Mapper.Map<PostBusiness>(Database.PostRepository.GetById(id));
+        }
+
+        public int GetPostsCount(Expression<Func<Post, bool>> rule)
+        {
+            var postCount = Database.PostRepository.GetCount(rule);
 
             return postCount;
         }
 
-        public PostBusiness GetLastCreated()
+        public PostBusiness GetLatestPost(Expression<Func<Post, bool>> filter = null,
+            Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = null,
+            string includeProperties = "")
         {
-            throw new ValidationException("Topic Category not found");
-            //var post = Mapper.Map<PostBusiness>(
-            //        _database.PostRepository.Get(
-            //            filter: d => d. == departmentID,
-            //            orderBy: q => q.OrderBy(d => d.CourseID).,
-            //            includeProperties: "Department"));
-            //            ));
+            var posts = Database.PostRepository.Get(filter, orderBy, includeProperties, 1);
 
-            //if (post == null)
-            //{
-            //    throw new ValidationException("Post not found");
-            //}
+            // if (posts.ToList())
 
-            //return post;
+            if (posts != null)
+            {
+                return Mapper.Map<PostBusiness>(posts.FirstOrDefault());
+            }
+            return null;
         }
 
+        public virtual void Add(PostBusiness entity)
+        {
+            if (entity == null)
+            {
+                throw new ValidationException("Unspecified entity");
+            }
+
+            Database.PostRepository.Add(Mapper.Map<Post>(entity));
+            Database.Commit();
+        }
+
+        public virtual void Update(PostBusiness entity)
+        {
+            if (entity == null)
+            {
+                throw new ValidationException("Unspecified entity");
+            }
+
+            var post = Database.PostRepository.GetById(entity.Id);
+            post = Mapper.Map(entity, post);
+
+            Database.PostRepository.Update(post);
+            Database.Commit();
+        }
+
+        public virtual void Delete(PostBusiness entity)
+        {
+            if (entity == null)
+            {
+                throw new ValidationException("Unspecified entity");
+            }
+
+            Database.PostRepository.Delete(Mapper.Map<Post>(entity));
+            Database.Commit();
+        }
     }
 }

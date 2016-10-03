@@ -1,25 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services.Interfaces
 {
-    public interface ITopicsService : IDeletableBaseService<Topic, TopicBusiness>
+    public interface ITopicsService : IDeletable<TopicBusiness>
     {
-        //IEnumerable<TopicBusiness> GetAllTopics();
-        //TopicBusiness GetTopic(int id);
-        TopicBusiness GetById(int id);
-        //TopicBusiness GetLastCreatedByCategoryId(int id);
-        //int GetTopicsCountByCategoryId(int id);
-        //int GetPostsCountByCategoryId(int id);
-        //PostBusiness GetLatestPostByCategoryId(int id);
-        //void Add(TopicBusiness entity);
-        //void Update(TopicBusiness entity);
-        //void Delete(TopicBusiness entity);
+        TopicBusiness GetByIdWithPosts(int id);
+        int GetTopicsCount(Expression<Func<Topic, bool>> rule);
     }
 }

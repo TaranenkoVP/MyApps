@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MyForum.Data.Core.Common.Repositories
 {
     public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         /// <summary>
-        /// Get all deleted entities from db
-        /// </summary> 
+        ///     Get all deleted entities from db
+        /// </summary>
         IEnumerable<TEntity> AllWithDeleted();
 
         void ActualDelete(TEntity entity);

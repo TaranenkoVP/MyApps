@@ -14,50 +14,50 @@ using MyForum.Business.Core.Infrastructure.Mappers;
 
 namespace MyForum.Business.Core.Services.Common
 {
-    public abstract class DeletableBaseService<TEntity, TEntityBusiness> : BaseService,
-                                                                           IDeletableBaseService<TEntity, TEntityBusiness>
-                                                                                where TEntity : class
-                                                                                where TEntityBusiness : class      
-    {
-        protected readonly IRepository<TEntity> Repository;
+    //public abstract class DeletableBaseService<TEntity, TEntityBusiness> : BaseService,
+    //                                                                       IDeletableBaseService<TEntityBusiness>
+    //                                                                            where TEntity : class
+    //                                                                            where TEntityBusiness : class      
+    //{
+    //    protected readonly IRepository<TEntity> Repository;
 
-        protected DeletableBaseService(IUnitOfWork uow, IRepository<TEntity> repository)
-            : base(uow)
-        {
-            Repository = repository;
-        }
+    //    protected DeletableBaseService(IUnitOfWork uow, IRepository<TEntity> repository)
+    //        : base(uow)
+    //    {
+    //        Repository = repository;
+    //    }
 
-        public virtual void Add(TEntityBusiness entity)
-        {
-            if (entity == null)
-            {
-                throw new ValidationException("Unspecified entity");
-            }
+        //public virtual void Add(TEntityBusiness entity)
+        //{
+        //    if (entity == null)
+        //    {
+        //        throw new ValidationException("Unspecified entity");
+        //    }
 
-            Repository.Add(Mapper.Map<TEntity>(entity));
-            Database.Commit();
-        }
+        //    Repository.Add(Mapper.Map<TEntity>(entity));
+        //    Database.Commit();
+        //}
 
-        public virtual void Update(TEntityBusiness entity)
-        {
-            if (entity == null)
-            {
-                throw new ValidationException("Unspecified entity");
-            }
+        //public virtual void Update(TEntityBusiness entity)
+        //{
+        //    if (entity == null)
+        //    {
+        //        throw new ValidationException("Unspecified entity");
+        //    }
 
-            Repository.Update(Mapper.Map<TEntity>(entity));
-            Database.Commit();
-        }
+        //    Repository.Update(Mapper.Map<TEntity>(entity));
+        //    Database.Commit();
+        //}
 
-        public virtual void Delete(TEntityBusiness entity)
-        {
-            if (entity == null)
-            {
-                throw new ValidationException("Unspecified entity");
-            }
+        //public virtual void Delete(TEntityBusiness entity)
+        //{
+        //    if (entity == null)
+        //    {
+        //        throw new ValidationException("Unspecified entity");
+        //    }
 
-            Repository.Delete(Mapper.Map<TEntity>(entity));
-            Database.Commit();
-        }
-    }
+        //    Repository.Delete(Mapper.Map<TEntity>(entity));
+        //    Database.Commit();
+        //}
+   // }
 }

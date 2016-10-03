@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Models.Identity;
 
@@ -11,22 +6,14 @@ namespace MyForum.Data.Core.Models
 {
     public class Post : BaseModel<int>
     {
-   
-        #region Constructors
-
-        #endregion Constructors
-
         [Required]
         [MaxLength(1000)]
         public string Content { get; set; }
 
-        public int AuthorId { get; set; }
-
+        public string AuthorId { get; set; }
         public virtual ApplicationUser Author { get; set; }
 
         public int TopicId { get; set; }
-
         public virtual Topic Topic { get; set; }
-
     }
 }

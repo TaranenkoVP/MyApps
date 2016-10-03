@@ -16,14 +16,14 @@ namespace MyForum.Web.MVC.Controllers
 
         public TopicCategoryController(ITopicCategoriesService topicCategoriesService, ITopicsService topicsService)
         {
-            this._topicCategoriesService = topicCategoriesService;
-            this._topicsService = topicsService;
+            _topicCategoriesService = topicCategoriesService;
+            _topicsService = topicsService;
         }
 
         [HttpGet]
         public ActionResult Show(int id)
         {
-            var topicCategory = Mapper.Map<TopicCategoriesViewModel>(_topicCategoriesService.GetById(id));
+            var topicCategory = Mapper.Map<TopicCategoriesViewModel>(_topicCategoriesService.GetByIdWithTopics(id));
 
             return View("TopicCategory", topicCategory);
         }

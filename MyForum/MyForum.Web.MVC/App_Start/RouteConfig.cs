@@ -13,23 +13,17 @@ namespace MyForum.Web.MVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "TopicUrls",
-                "Topic/{id}", // URL with parameters
-                new { controller = "Topic", action = "Show", id = UrlParameter.Optional } // Parameter defaults
-            );
+            //routes.MapRoute(
+            //    "TopicAddPost",
+            //    "Post/{action}", // URL with parameters
+            //    new { controller = "Post", action = "AddPost" } // Parameter defaults
+            //);
 
-            routes.MapRoute(
-                "TopicCategoryUrls",
-                "TopicCategory/{id}", // URL with parameters
-                new { controller = "TopicCategory", action = "Show", id = UrlParameter.Optional } // Parameter defaults
-            );
-
-            routes.MapRoute(
-                "MainCategoryUrls", 
-                "MainCategory/{id}", // URL with parameters
-                new { controller = "MainCategory", action = "Show", id = UrlParameter.Optional } // Parameter defaults
-            );
+            //routes.MapRoute(
+            //    name: "Actions",
+            //    url: "{controller}/{action}",
+            //    defaults: new { controller = "Home", action = "Index"}
+            //);
 
             routes.MapRoute(
                 name: "Default",

@@ -12,13 +12,19 @@ namespace MyForum.Web.MVC.Areas.Admin
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
+            //context.MapRoute(
+            //    "Admin_LogOut", 
+            //    "Admin/Account/Logout",
+            //    new {controller = "Home", action = "Index", id = UrlParameter.Optional}
+            //    );
+
             context.MapRoute(
-                "Admin_defaultnew",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+                    "Admin_defaultnew",
+                    "Admin/{controller}/{action}/{id}",
+                    new { action = "Index", id = UrlParameter.Optional }
+                );
         }
     }
 }

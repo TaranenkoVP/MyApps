@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using MyForum.Data.Core.Models.Identity;
 
@@ -11,7 +7,7 @@ namespace MyForum.Data.Core.Identity
     public class UserManager : UserManager<ApplicationUser>
     {
         public UserManager(IUserStore<ApplicationUser> store)
-                : base(store)
+            : base(store)
         {
             UserValidator = new UserValidator<ApplicationUser>(this)
             {
@@ -25,13 +21,13 @@ namespace MyForum.Data.Core.Identity
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
                 RequireLowercase = false,
-                RequireUppercase = false,
+                RequireUppercase = false
             };
 
             // Configure user lockout defaults
-            //UserLockoutEnabledByDefault = true;
-           // DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            //MaxFailedAccessAttemptsBeforeLockout = 5;
+            UserLockoutEnabledByDefault = true;
+            DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            MaxFailedAccessAttemptsBeforeLockout = 5;
         }
     }
 }

@@ -1,17 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Services.Common;
 using MyForum.Data.Core.Models;
 
 namespace MyForum.Business.Core.Services.Interfaces
 {
-    public interface IPostsService : IDeletableBaseService<Post, PostBusiness>
+    public interface IPostsService : IDeletable<PostBusiness>
     {
-        PostBusiness GetLastCreated();
-        int GetPostsCountByTopicId(int id);
+        PostBusiness GetById(int id);
+        int GetPostsCount(Expression<Func<Post, bool>> rule);
+
+        PostBusiness GetLatestPost(Expression<Func<Post, bool>> filter = null,
+            Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = null,
+            string includeProperties = "");
     }
 }

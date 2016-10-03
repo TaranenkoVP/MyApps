@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using MyForum.Data.Core.Models;
-using MyForum.Data.Core.Models.Identity;
+using MyForum.Data.Core.Constants;
 
 namespace MyForum.Data.EF.Infrastructure
 {
@@ -20,11 +13,16 @@ namespace MyForum.Data.EF.Infrastructure
             AutomaticMigrationDataLossAllowed = true;
         }
 
-
         protected override void Seed(MyForumDbContext context)
         {
-            new UsersSeeder().Seed(context);
-            new MainTopicCategorySeeder().Seed(context);
+            var masterAdminUserName = AppConstants.GetConstant("MasterAdminUserName");
+            var isMasterAdminSeeded = context.Users.Any(u => u.UserName == masterAdminUserName);
+
+            if (!isMasterAdminSeeded)
+            {
+                new UsersSeeder().Seed(context);
+                new MainTopicCategorySeeder().Seed(context);
+            }
         }
     }
 }

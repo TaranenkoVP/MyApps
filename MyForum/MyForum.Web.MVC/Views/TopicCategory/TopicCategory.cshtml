@@ -1,8 +1,9 @@
-﻿
-@model MyForum.Web.MVC.Models.TopicCategoriesViewModel
+﻿@model MyForum.Web.MVC.Models.TopicCategoriesViewModel
 
 <ol class="breadcrumb">
-    <li><a>@Html.ActionLink("Home", "Index", "Home")</a></li>
+    <li>
+        <a>@Html.ActionLink("Home", "Index", "Home")</a>
+    </li>
     <li class="active">@Model.Name</li>
 </ol>
 

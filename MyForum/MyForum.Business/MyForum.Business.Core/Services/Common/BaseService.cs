@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using AutoMapper;
-using MyForum.Business.Core.Entities;
-using MyForum.Business.Core.Infrastructure;
-using MyForum.Data.Core.Common.Repositories;
-using MyForum.Data.Core.Models;
 using MyForum.Business.Core.Infrastructure.Mappers;
+using MyForum.Data.Core.Common;
 
 namespace MyForum.Business.Core.Services.Common
 {
-    public abstract class BaseService 
+    public abstract class BaseService
     {
-        protected IUnitOfWork Database;
         private static IMapper _mapper;
+        protected IUnitOfWork Database;
 
         protected BaseService(IUnitOfWork uow)
         {

@@ -16,6 +16,12 @@
     {
         @Html.Partial("~/Views/Post/_PostPartial.cshtml", post)
     }
-</div>
 
-@*@Html.Partial("_TopicPartial", Model)*@
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            @Html.Partial("~/Views/Topic/_InputPostMenu.cshtml")
+        }
+    </div>
+</div>

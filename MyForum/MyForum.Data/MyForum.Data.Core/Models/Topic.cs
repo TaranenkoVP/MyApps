@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Models.Identity;
 
@@ -16,7 +12,7 @@ namespace MyForum.Data.Core.Models
         #region Constructors
 
         /// <summary>
-        /// The class constructor
+        ///     The class constructor
         /// </summary>
         public Topic()
         {
@@ -34,15 +30,15 @@ namespace MyForum.Data.Core.Models
         public string Content { get; set; }
 
         public string AuthorId { get; set; }
-
         public virtual ApplicationUser Author { get; set; }
 
+        public int TopicCategoryId { get; set; }
         public virtual TopicCategory TopicCategory { get; set; }
 
         public virtual ICollection<Post> Posts
         {
-            get { return this._posts; }
-            set { this._posts = value; }
+            get { return _posts; }
+            set { _posts = value; }
         }
     }
 }

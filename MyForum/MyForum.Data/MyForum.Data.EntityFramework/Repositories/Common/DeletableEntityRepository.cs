@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Common.Repositories;
 
@@ -34,7 +31,7 @@ namespace MyForum.Data.EF.Repositories.Common
             entity.IsDeleted = true;
             entity.DeletedOn = DateTime.Now;
 
-            DbEntityEntry entry = this.Context.Entry(entity);
+            DbEntityEntry entry = Context.Entry(entity);
             entry.State = EntityState.Modified;
         }
 

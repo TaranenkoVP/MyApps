@@ -81,3 +81,9 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\MyForum.Data.EF.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.csprojResolveAssemblyReference.cache
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\obj\Debug\MyForum.Web.MVC.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Kendo.Mvc.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\Kendo.Mvc.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.Mvc.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.xml
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Web.MVC\bin\PagedList.Mvc.xml

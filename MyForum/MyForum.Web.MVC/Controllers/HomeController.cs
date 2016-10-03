@@ -35,7 +35,7 @@ namespace MyForum.Web.MVC.Controllers
         [ChildActionOnly]
         public ActionResult GetListMainCategoriesPartial()
         {
-            var categories = Mapper.Map<List<MainCategoriesViewModel>>(_mainCategoriesService.GetAll());
+            var categories = Mapper.Map<List<MainCategoriesViewModel>>(_mainCategoriesService.GetAllWithTopicCategories());
 
             return PartialView("_MainCategoriesListPartial", categories);
 

@@ -1,22 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using MyForum.Data.Core.Common.Repositories;
 
 namespace MyForum.Data.EF.Repositories.Common
 {
     /// <summary>
-    /// Class <see cref="GenericRepository"/> define generic repository
+    ///     Class <see cref="GenericRepository" /> define generic repository
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        #region .ctor
+
+        /// <summary>
+        ///     The class constructor
+        /// </summary>
+        /// <param name="context"></param>
+        public GenericRepository(DbContext context)
+        {
+            Context = context;
+            DbSet = context.Set<TEntity>();
+        }
+
+        #endregion .ctor
+
         #region Fields
 
         protected DbContext Context;
@@ -24,54 +35,40 @@ namespace MyForum.Data.EF.Repositories.Common
 
         #endregion Fields
 
-        #region .ctor
-
-        /// <summary>
-        /// The class constructor
-        /// </summary>
-        /// <param name="context"></param>
-        public GenericRepository(DbContext context)
-        {
-            this.Context = context;
-            this.DbSet = context.Set<TEntity>();
-        }
-
-        #endregion .ctor
-
         #region Methods
-        #region Search Functionality
 
-        public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
-        {
-            return DbSet.SqlQuery(query, parameters).ToList();
-        }
+        #region Search Functionality
 
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
-            Func< IQueryable<TEntity>, IOrderedQueryable < TEntity >> orderBy = null,
-            string includeProperties = "")
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "",
+            int count = 0)
         {
-                IQueryable<TEntity> query = DbSet;
+            IQueryable<TEntity> query = DbSet;
 
-                if (filter != null)
-                {
-                    query = query.Where(filter);
-                }
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
 
-                foreach (var includeProperty in includeProperties.Split
-                    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProperty);
-                }
+            foreach (var includeProperty in includeProperties.Split
+                (new[] {','}, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
 
-                if (orderBy != null)
-                {
-                    return orderBy(query);
-                }
-                else
-                {
-                    return query;
-                }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            if (count > 0)
+            {
+                return query.Take(count);
+            }
+
+            return query.ToList();
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -79,9 +76,39 @@ namespace MyForum.Data.EF.Repositories.Common
             return DbSet.ToList();
         }
 
-        public virtual TEntity GetById(int id)
+        public virtual TEntity GetById(object id)
         {
-            return this.DbSet.Find(id);
+            return DbSet.Find(id);
+        }
+
+        public virtual int GetCount(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "")
+        {
+            IQueryable<TEntity> query = DbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new[] {','}, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                return orderBy(query).Count();
+            }
+            return query.Count();
+        }
+
+        public virtual IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)
+        {
+            return DbSet.SqlQuery(query, parameters).ToList();
         }
 
         #endregion
@@ -90,23 +117,23 @@ namespace MyForum.Data.EF.Repositories.Common
 
         public virtual void Add(TEntity entity)
         {
-            DbEntityEntry entry = this.Context.Entry(entity);
+            DbEntityEntry entry = Context.Entry(entity);
             if (entry.State != EntityState.Detached)
             {
                 entry.State = EntityState.Added;
             }
             else
             {
-                this.DbSet.Add(entity);
+                DbSet.Add(entity);
             }
         }
 
         public virtual void Update(TEntity entity)
         {
-            DbEntityEntry entry = this.Context.Entry(entity);
+            DbEntityEntry entry = Context.Entry(entity);
             if (entry.State == EntityState.Detached)
             {
-                this.DbSet.Attach(entity);
+                DbSet.Attach(entity);
             }
 
             entry.State = EntityState.Modified;
@@ -114,31 +141,31 @@ namespace MyForum.Data.EF.Repositories.Common
 
         public virtual void Delete(TEntity entity)
         {
-            DbEntityEntry entry = this.Context.Entry(entity);
+            DbEntityEntry entry = Context.Entry(entity);
             if (entry.State != EntityState.Deleted)
             {
                 entry.State = EntityState.Deleted;
             }
             else
             {
-                this.DbSet.Attach(entity);
-                this.DbSet.Remove(entity);
+                DbSet.Attach(entity);
+                DbSet.Remove(entity);
             }
         }
 
         public virtual void Delete(int id)
         {
-            var entity = this.GetById(id);
+            var entity = GetById(id);
 
             if (entity != null)
             {
-                this.Delete(entity);
+                Delete(entity);
             }
         }
 
         public virtual void Detach(TEntity entity)
         {
-            DbEntityEntry entry = this.Context.Entry(entity);
+            DbEntityEntry entry = Context.Entry(entity);
 
             entry.State = EntityState.Detached;
         }
@@ -147,7 +174,7 @@ namespace MyForum.Data.EF.Repositories.Common
 
         public void Dispose()
         {
-            this.Context.Dispose();
+            Context.Dispose();
         }
 
         #endregion

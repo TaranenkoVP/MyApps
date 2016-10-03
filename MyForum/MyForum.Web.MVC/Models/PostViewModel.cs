@@ -17,7 +17,7 @@ namespace MyForum.Web.MVC.Models
 
         public string Content { get; set; }
 
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public UserViewModel Author { get; set; }
 

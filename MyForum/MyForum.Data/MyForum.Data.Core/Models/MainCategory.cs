@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 using MyForum.Data.Core.Common.Models;
 
 namespace MyForum.Data.Core.Models
 {
-    public class MainCategory : ITKeyEntity<int>
+    public class MainCategory : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
-        private ICollection<TopicCategory> _topicCategories;
-
         public MainCategory()
         {
-            this._topicCategories = new HashSet<TopicCategory>();
+            TopicCategories = new HashSet<TopicCategory>();
         }
+
+        [ForeignKey("ApplicationUser")]
+        public int ApplicationUserId { get; set; }
 
         [Required]
         [MaxLength(200)]
@@ -27,10 +22,6 @@ namespace MyForum.Data.Core.Models
         [MaxLength(200)]
         public string Description { get; set; }
 
-        public ICollection<TopicCategory> TopicCategories
-        {
-            get { return this._topicCategories; }
-            set { this._topicCategories = value; }
-        }
+        public ICollection<TopicCategory> TopicCategories { get; set; }
     }
 }

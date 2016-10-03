@@ -23,7 +23,7 @@ namespace MyForum.Web.MVC.Models
 
         public string Photo { get; set; }
 
-        public string Role { get; set; }
+        public List<string> Roles { get; set; }
 
         public string Email { get; set; }
 

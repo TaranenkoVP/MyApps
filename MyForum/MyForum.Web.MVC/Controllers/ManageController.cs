@@ -14,7 +14,6 @@ namespace MyForum.Web.MVC.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-
         private readonly IUserService _userService;
 
         public ManageController(IUserService userService)
@@ -57,11 +56,7 @@ namespace MyForum.Web.MVC.Controllers
         private bool HasPassword()
         {
             var user = UserService.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PasswordHash != null;
-            }
-            return false;
+            return user?.PasswordHash != null;
         }
 
         public enum ManageMessageId

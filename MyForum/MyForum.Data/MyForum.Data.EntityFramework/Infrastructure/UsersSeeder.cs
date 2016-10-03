@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using MyForum.Data.Core.Models;
+using MyForum.Data.Core.Constants;
 using MyForum.Data.Core.Models.Identity;
 
 namespace MyForum.Data.EF.Infrastructure
@@ -14,29 +11,28 @@ namespace MyForum.Data.EF.Infrastructure
     {
         public void Seed(MyForumDbContext context)
         {
-            var masterAdminUserName = "Administrator";
-            
-            var adminRoleName = "admin";
-            var moderatorRoleName = "moderator";
-            var userRoleName = "user";
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<ApplicationRole>(new RoleStore<ApplicationRole>(context));
 
-            var isMasterAdminSeeded = context.Users.Any(u => u.UserName == masterAdminUserName);
-
-            if (!isMasterAdminSeeded)
+            userManager.Create(new ApplicationUser
             {
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                UserName = AppConstants.GetConstant("MasterAdminUserName"),
+                Email = AppConstants.GetConstant("MasterAdminEmail"),
+                CreatedOn = DateTime.UtcNow,
+                Photo = AppConstants.GetConstant("MasterAdminPhoto")
+            },
+                AppConstants.GetConstant("MasterAdminStartPassword"));
 
-                userManager.Create(new ApplicationUser() { UserName = masterAdminUserName, Email = "Administrator@gmail.com", CreatedOn = DateTime.UtcNow, Photo = " /Content/Images/default_photo.png" }, "123456");
+            roleManager.Create(new ApplicationRole { Name = AppConstants.GetConstant("MasterAdminRoleName")});
+            roleManager.Create(new ApplicationRole { Name = AppConstants.GetConstant("ModeratorRoleName")});
+            roleManager.Create(new ApplicationRole { Name = AppConstants.GetConstant("UserRoleName")});
 
-                roleManager.Create(new IdentityRole() { Name = adminRoleName });
-                roleManager.Create(new IdentityRole() { Name = moderatorRoleName });
-                roleManager.Create(new IdentityRole() { Name = userRoleName });
+            var masterAdminUserName = AppConstants.GetConstant("MasterAdminUserName");
+            var admin = context.Users.FirstOrDefault(u => u.UserName == masterAdminUserName);
 
-                var admin = context.Users.FirstOrDefault(u => u.UserName == masterAdminUserName);
-
-                userManager.AddToRole(admin.Id, adminRoleName);
-            }
+            userManager.AddToRole(admin.Id, AppConstants.GetConstant("MasterAdminRoleName"));
+            userManager.AddToRole(admin.Id, AppConstants.GetConstant("ModeratorRoleName"));
+            userManager.AddToRole(admin.Id, AppConstants.GetConstant("UserRoleName"));
         }
     }
 }

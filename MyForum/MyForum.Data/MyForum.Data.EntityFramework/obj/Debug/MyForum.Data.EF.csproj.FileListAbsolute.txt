@@ -90,6 +90,14 @@ D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.EntityFramework\bin\Debug\System.
 D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.csprojResolveAssemblyReference.cache
 D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.dll
 D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.pdb
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.csprojResolveAssemblyReference.cache
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.pdb
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.EF.dll.config
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.EF.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.EF.pdb
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.Core.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.Core.pdb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.EF.dll.config
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.EF.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\MyForum.Data.EF.pdb
@@ -98,3 +106,6 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.csprojResolveAssemblyReference.cache
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\obj\Debug\MyForum.Data.EF.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\Microsoft.Owin.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\Owin.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Data\MyForum.Data.EntityFramework\bin\Debug\Microsoft.Owin.xml

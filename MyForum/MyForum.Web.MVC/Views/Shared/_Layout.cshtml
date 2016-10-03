@@ -1,12 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using MyForum.Web.MVC.Infrastructure
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 
+   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,6 +21,28 @@
                 @Html.ActionLink("Works&Talks", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Main Categories", "Index", "AdminMainCategory", new { Area = "Admin" }, null)</li>
+                        <li>@Html.ActionLink("Topic Categories", "Index", "AdminTopicCategory", new { Area = "Admin" }, null)</li>
+                        <li>@Html.ActionLink("Topics", "Index", "AdminTopic", new { Area = "Admin" }, null)</li>
+                        <li>@Html.ActionLink("Posts", "Index", "AdminPost", new { Area = "Admin" }, null)</li>
+                    }
+                    @if (User.IsInRole("moderator"))
+                    {
+                        <li>@Html.ActionLink("TopicCategories", "Index", "ModeratorTopicCategory", new { Area = "Moderator" }, null)</li>
+                        <li>@Html.ActionLink("Topics", "Index", "ModeratorTopic", new { Area = "Moderator" }, null)</li>
+                        <li>@Html.ActionLink("Posts", "Index", "ModeratorPost", new { Area = "Moderator" }, null)</li>
+                    }
+
+                    @*@if (User.IsInRole("user"))
+                        {
+                            <li>@Html.ActionLink("Main Categories", "Index", "Categories", new { Area = "Admin" }, null)</li>
+                        }*@
+
+                </ul>
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -32,8 +55,14 @@
         </footer>
     </div>
 
+    @Scripts.Render("~/Scripts/forum.js")
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval-ajax")
+    @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+   
+    @RenderSection("styles", required: false)
 </body>
 </html>

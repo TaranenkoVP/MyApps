@@ -112,3 +112,16 @@ E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Deb
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\obj\Debug\MyForum.Business.Core.csprojResolveAssemblyReference.cache
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\obj\Debug\MyForum.Business.Core.dll
 E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\obj\Debug\MyForum.Business.Core.pdb
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\MyForum.Business.Core.dll.config
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\MyForum.Business.Core.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\MyForum.Business.Core.pdb
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\MyForum.Data.Core.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\MyForum.Data.EF.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\MyForum.Data.Core.pdb
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\MyForum.Data.EF.pdb
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\obj\Debug\MyForum.Business.Core.csprojResolveAssemblyReference.cache
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\obj\Debug\MyForum.Business.Core.dll
+D:\oneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\obj\Debug\MyForum.Business.Core.pdb
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\Microsoft.Owin.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\Owin.dll
+E:\OneDrive\c#\epam\forum\MyForum\MyForum.Business\MyForum.Business.Core\bin\Debug\Microsoft.Owin.xml

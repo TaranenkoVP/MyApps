@@ -77,7 +77,7 @@ namespace MyForum.Business.Core.Services
             {
                 return null;
             }
-            var topicCategory = Database.TopicCategoryRepository.GetById(entity.Id);
+            var topicCategory = Database.TopicCategoryRepository.Get(x => x.Id == entity.Id).FirstOrDefault();
             if (topicCategory == null)
             {
                 return null;

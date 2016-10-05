@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace MyForum.Web.MVC.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminTopicCategoryController : Controller
     {
         // GET: Admin/TopicCategories

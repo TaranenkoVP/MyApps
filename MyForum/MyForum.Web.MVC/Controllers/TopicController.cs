@@ -27,9 +27,9 @@ namespace MyForum.Web.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult InputPostMenu(int topicId)
+        public ActionResult AddPostMenu(int topicId)
         {
-            return PartialView("~/Areas/User/Views/UserPost/_AddPostPartial.cshtml", new PostInputModel(topicId));
+            return PartialView("~/Areas/User/Views/UserPost/_AddPostPartial.cshtml", new UserAddPostViewModel(topicId));
         }
     }
 }

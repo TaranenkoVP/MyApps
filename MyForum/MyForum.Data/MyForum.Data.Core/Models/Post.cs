@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using MyForum.Data.Core.Common.Models;
 using MyForum.Data.Core.Models.Identity;
 
@@ -8,6 +7,7 @@ namespace MyForum.Data.Core.Models
     public class Post : BaseModel<int>
     {
         [Required]
+        [MinLength(5)]
         [MaxLength(1000)]
         public string Content { get; set; }
 

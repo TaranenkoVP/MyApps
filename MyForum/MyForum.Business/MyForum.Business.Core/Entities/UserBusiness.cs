@@ -30,20 +30,15 @@ namespace MyForum.Business.Core.Entities
 
         public string PasswordHash { get; set; }
 
-        //public ICollection<MainCategoryBusiness> MainCategories { get; set; }
-
-        //public ICollection<TopicCategoryBusiness> TopicCategories { get; set; }
-
-        //public ICollection<TopicBusiness> Topics { get; set; }
-
-        //public ICollection<PostBusiness> Posts { get; set; }
-
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<ApplicationUser, UserBusiness>()
                 .ForMember(r => r.Roles, opts => opts.MapFrom(x => x.Roles));
             configuration.CreateMap<UserBusiness, ApplicationUser>()
-                .ForMember(r => r.Roles, opts => opts.Ignore());
+                .ForMember(r => r.Roles, opts => opts.Ignore())
+                .ForMember(r => r.Id, opts => opts.Ignore())
+                .ForMember(r => r.CreatedOn, opts => opts.Ignore())
+                .ForMember(r => r.IsDeleted, opts => opts.Ignore());
         }
     }
 }

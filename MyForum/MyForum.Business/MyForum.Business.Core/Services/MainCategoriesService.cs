@@ -140,7 +140,7 @@ namespace MyForum.Business.Core.Services
             }
             try
             {
-                var mainCategory = Database.MainCategoryRepository.GetById(entity.Id);
+                var mainCategory = Database.MainCategoryRepository.Get(x => x.Id == entity.Id).FirstOrDefault();
                 if (mainCategory == null)
                 {
                     return new OperationDetails(false, "Main category does not exist", "");

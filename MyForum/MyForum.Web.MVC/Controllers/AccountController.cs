@@ -1,33 +1,27 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using MyForum.Web.MVC.Models;
+
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MyForum.Business.Core.Entities;
 using MyForum.Business.Core.Infrastructure;
 using MyForum.Business.Core.Services.Interfaces;
+using MyForum.Web.MVC.Models;
 
 namespace MyForum.Web.MVC.Controllers
 {
     //[Authorize]
     public class AccountController : BaseController
     {
-        private readonly IUserService _userService;
-
         public AccountController(IUserService userService)
         {
-            _userService = userService;
+            UserService = userService;
         }
 
-        private IUserService UserService
-        {
-            get { return _userService; }
-        }
+        private IUserService UserService { get; }
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -49,7 +43,7 @@ namespace MyForum.Web.MVC.Controllers
             {
                 var userBusiness = Mapper.Map<UserBusiness>(model);
 
-                ClaimsIdentity claim = await UserService.AuthenticateAsync(userBusiness);
+                var claim = await UserService.AuthenticateAsync(userBusiness);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Invalid username or password!");
@@ -70,9 +64,11 @@ namespace MyForum.Web.MVC.Controllers
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home", new { area = string.Empty });
+            return RedirectToAction("Index", "Home", new {area = string.Empty});
         }
 
+
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
@@ -82,15 +78,26 @@ namespace MyForum.Web.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (model != null && ModelState.IsValid)
             {
                 var userBusiness = Mapper.Map<UserBusiness>(model);
-                userBusiness.Roles.Add("user");
-                var operationDetails = await UserService.CreateAsync(userBusiness);
-                if (operationDetails.Succedeed)
-                    return View("SuccessRegister");
-                else
+                userBusiness.Roles = new List<string> {"User"};
+                userBusiness.Photo = "/Content/Images/default_photo.png";
+                OperationDetails operationDetails = null;
+                try
+                {
+                    operationDetails = await UserService.CreateAsync(userBusiness);
+                    if (operationDetails.Succedeed)
+                    {
+                        //SuccessRegister
+                        return View("SuccessRegister");
+                    }
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
             return View(model);
         }

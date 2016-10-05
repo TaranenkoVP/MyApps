@@ -34,6 +34,38 @@ namespace MyForum.Data.EF.Migrations
             userManager.AddToRole(admin.Id, AppConstants.GetConstant("MasterAdminRoleName"));
             userManager.AddToRole(admin.Id, AppConstants.GetConstant("ModeratorRoleName"));
             userManager.AddToRole(admin.Id, AppConstants.GetConstant("UserRoleName"));
+
+            // TODO: Remove in production
+            
+            //moder
+
+            userManager.Create(new ApplicationUser
+            {
+                UserName = "Moder1",
+                Email = "moder1@gmail.com",
+                CreatedOn = DateTime.UtcNow,
+                Photo = AppConstants.GetConstant("ModeratorRoleName")
+            },
+            AppConstants.GetConstant("MasterAdminStartPassword"));
+
+            var moder1 = context.Users.FirstOrDefault(u => u.UserName == "Moder1");
+            userManager.AddToRole(moder1.Id, AppConstants.GetConstant("ModeratorRoleName"));
+            userManager.AddToRole(moder1.Id, AppConstants.GetConstant("UserRoleName"));
+            
+            //user
+
+            userManager.Create(new ApplicationUser
+            {
+                UserName = "User1",
+                Email = "user1@gmail.com",
+                CreatedOn = DateTime.UtcNow,
+                Photo = AppConstants.GetConstant("MasterAdminPhoto")
+            },
+            AppConstants.GetConstant("MasterAdminStartPassword"));
+
+            var user1 = context.Users.FirstOrDefault(u => u.UserName == "User1");
+            userManager.AddToRole(user1.Id, AppConstants.GetConstant("UserRoleName"));
+            context.SaveChanges();
         }
     }
 }

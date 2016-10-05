@@ -206,7 +206,8 @@
     <Compile Include="Areas\Admin\Models\AdminMainCategoriesViewModel.cs" />
     <Compile Include="Areas\Moderator\ModeratorAreaRegistration.cs" />
     <Compile Include="Areas\User\Controllers\UserPostController.cs" />
-    <Compile Include="Areas\User\Models\Posts\PostInputModel.cs" />
+    <Compile Include="Areas\User\Models\Posts\UserEditPostViewModel.cs" />
+    <Compile Include="Areas\User\Models\Posts\UserAddPostViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -233,6 +234,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\default_photo.png" />
@@ -287,8 +290,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Infrastructure\Libraries\Kendo.Mvc.dll" />
     <Content Include="Infrastructure\Libraries\Kendo.Mvc.xml" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Moderator\Views\web.config" />
     <Content Include="Areas\User\Views\web.config" />
@@ -297,10 +298,20 @@
     <Content Include="Areas\User\Views\UserPost\_AddPostPartial.cshtml" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\forum.js" />
     <Content Include="Areas\User\Views\UserPost\_Error.cshtml" />
     <Content Include="Areas\User\Views\UserPost\_EditPostPartial.cshtml" />
     <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -349,10 +360,9 @@
     <Content Include="Views\MainCategory\MainCategory.cshtml" />
     <Content Include="Views\TopicCategory\TopicCategory.cshtml" />
     <Content Include="Views\Topic\_TopicPartial.cshtml" />
-    <Content Include="Views\Post\Post.cshtml" />
     <Content Include="Views\Post\_PostPartial.cshtml" />
     <Content Include="Views\Account\SuccessRegister.cshtml" />
-    <Content Include="Views\Topic\_InputPostMenu.cshtml" />
+    <Content Include="Views\Topic\_AddPostMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,9 +374,6 @@
     <Folder Include="Areas\User\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>

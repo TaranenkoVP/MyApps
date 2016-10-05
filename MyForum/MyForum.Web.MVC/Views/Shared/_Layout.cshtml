@@ -24,23 +24,17 @@
                 <ul class="nav navbar-nav">
                     @if (User.IsInRole("admin"))
                     {
-                        <li>@Html.ActionLink("Main Categories", "Index", "AdminMainCategory", new { Area = "Admin" }, null)</li>
+                        @*<li>@Html.ActionLink("Main Categories", "Index", "AdminMainCategory", new { Area = "Admin" }, null)</li>
                         <li>@Html.ActionLink("Topic Categories", "Index", "AdminTopicCategory", new { Area = "Admin" }, null)</li>
                         <li>@Html.ActionLink("Topics", "Index", "AdminTopic", new { Area = "Admin" }, null)</li>
-                        <li>@Html.ActionLink("Posts", "Index", "AdminPost", new { Area = "Admin" }, null)</li>
+                        <li>@Html.ActionLink("Posts", "Index", "AdminPost", new { Area = "Admin" }, null)</li>*@
                     }
                     @if (User.IsInRole("moderator"))
                     {
-                        <li>@Html.ActionLink("TopicCategories", "Index", "ModeratorTopicCategory", new { Area = "Moderator" }, null)</li>
+                        @*<li>@Html.ActionLink("TopicCategories", "Index", "ModeratorTopicCategory", new { Area = "Moderator" }, null)</li>
                         <li>@Html.ActionLink("Topics", "Index", "ModeratorTopic", new { Area = "Moderator" }, null)</li>
-                        <li>@Html.ActionLink("Posts", "Index", "ModeratorPost", new { Area = "Moderator" }, null)</li>
+                        <li>@Html.ActionLink("Posts", "Index", "ModeratorPost", new { Area = "Moderator" }, null)</li>*@
                     }
-
-                    @*@if (User.IsInRole("user"))
-                        {
-                            <li>@Html.ActionLink("Main Categories", "Index", "Categories", new { Area = "Admin" }, null)</li>
-                        }*@
-
                 </ul>
 
                 @Html.Partial("_LoginPartial")

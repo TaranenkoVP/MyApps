@@ -52,5 +52,30 @@ namespace MyForum.Data.EF.Repositories.Common
         //{
         //    base.Delete(id);
         //}
+
+        public override void Add(TEntity entity)
+        {
+            DbEntityEntry entry = Context.Entry(entity);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                entity.CreatedOn = DateTime.Now;
+                DbSet.Add(entity);
+            }
+        }
+
+        //public override void Update(TEntity entity)
+        //{
+        //    DbEntityEntry entry = Context.Entry(entity);
+        //    if (entry.State == EntityState.Detached)
+        //    {
+        //        DbSet.Attach(entity);
+        //    }
+
+        //    entry.State = EntityState.Modified;
+        //}
     }
 }

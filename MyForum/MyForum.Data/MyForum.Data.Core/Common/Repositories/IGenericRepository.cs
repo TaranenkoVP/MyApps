@@ -54,7 +54,7 @@ namespace MyForum.Data.Core.Common.Repositories
         /// <returns>IEnumerable object.</returns>
         IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters);
 
-        TEntity GetById(object id);
+        TEntity FindById(object id);
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);

@@ -11,6 +11,7 @@ using MyForum.Web.MVC.Models;
 
 namespace MyForum.Web.MVC.Areas.User.Controllers
 {
+    [Authorize]
     public class UserPostController : BaseController
     {
         private readonly IPostsService _postsService;
@@ -20,17 +21,15 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
             _postsService = postsService;
         }
 
-        [Authorize]
         [HttpPost]
-        public async Task<ActionResult> AddPost(PostInputModel model)
+        public async Task<ActionResult> AddPost(UserAddPostViewModel model)
         {
-            var userId = User.Identity.GetUserId();
             if (model != null && ModelState.IsValid)
             {
                 var post = Mapper.Map<PostBusiness>(model);
                 post.Content = model.Content;
                 post.TopicId = model.TopicId;
-                post.AuthorId = userId;
+                post.AuthorId = User.Identity.GetUserId();
                 var detais = await _postsService.AddAsync(post);
                 if (!detais.Succedeed)
                 {
@@ -57,7 +56,7 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
             try
             {
                 var post = await _postsService.GetByIdAsync(postId);
-                return View("_EditPostPartial", Mapper.Map<PostInputModel>(post));
+                return View("_EditPostPartial", Mapper.Map<UserEditPostViewModel>(post));
             }
             catch
             {
@@ -67,21 +66,30 @@ namespace MyForum.Web.MVC.Areas.User.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> EditPost(PostInputModel model)
+        [HandleError(View = "Error")]
+        public async Task<ActionResult> EditPost(UserEditPostViewModel model)
         {
             if (model != null && ModelState.IsValid)
             {
-                var post = Mapper.Map<PostBusiness>(model);
-                //post.ModifiedOn = DateTime.Now;
-                var detais = await _postsService.EditAsync(post);
-                if (!detais.Succedeed)
+                try
                 {
-                    ModelState.AddModelError("", detais.Message);
+                    var post = await _postsService.GetByIdAsync(model.Id);
+                    Mapper.Map(model, post);
+                    var detais = await _postsService.EditAsync(post);
+                    if (!detais.Succedeed)
+                    {
+                        ModelState.AddModelError("", detais.Message);
+                    }
+                    else
+                    {
+                        //Success!!!
+                        return RedirectToAction("Show", "Topic", new { area = "", id = model.TopicId });
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //Success!!!
-                    return RedirectToAction("Show", "Topic", new {area = "", id = model.TopicId});
+                    ModelState.AddModelError("", ex.Message);
+                    View("_EditPostPartial", model);
                 }
             }
             return View("_EditPostPartial", model);

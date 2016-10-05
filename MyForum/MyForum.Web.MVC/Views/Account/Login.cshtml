@@ -11,7 +11,6 @@
         <h2>Use a local account to log in.</h2>
         <hr/>
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-        @*<h4>Login</h4>*@
         <div class="form-group">
             @Html.LabelFor(m => m.UserName, new {@class = "col-md-2 control-label" })
             <div class="col-md-10">
@@ -22,13 +21,13 @@
 
         @*<h4>Or Email</h4>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
-            </div>
-        </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control myCustomTextBox" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+        </div>
+    </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Password, new {@class = "control-label col-md-2"})

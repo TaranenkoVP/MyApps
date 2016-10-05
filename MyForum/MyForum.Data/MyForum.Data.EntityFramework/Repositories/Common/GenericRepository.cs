@@ -71,7 +71,7 @@ namespace MyForum.Data.EF.Repositories.Common
             return DbSet.ToList();
         }
 
-        public virtual TEntity GetById(object id)
+        public virtual TEntity FindById(object id)
         {
             return DbSet.Find(id);
         }

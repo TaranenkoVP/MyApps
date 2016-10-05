@@ -42,7 +42,7 @@ namespace MyForum.Business.Core.Services
             }
             try
             {
-                var post = await Task.Run(() => Database.PostRepository.GetById(id));
+                var post = await Task.Run(() => Database.PostRepository.Get(x => x.Id == id).FirstOrDefault());
                 return Mapper.Map<PostBusiness>(post);
             }
             catch (Exception ex)
@@ -72,7 +72,6 @@ namespace MyForum.Business.Core.Services
             try
             {
                 Database.PostRepository.Add(Mapper.Map<Post>(entity));
-                entity.CreatedOn = DateTime.Now;
                 await Database.CommitAsync();
             }
             catch (Exception ex)
@@ -91,12 +90,13 @@ namespace MyForum.Business.Core.Services
             }
             try
             {
-                var post = Database.PostRepository.GetById(entity.Id);
+                var post = Database.PostRepository.Get(x => x.Id == entity.Id).FirstOrDefault();
                 if (post == null)
                 {
                     return new OperationDetails(false, "Post does not exist", "");
                 }
                 Mapper.Map(entity, post);
+                post.ModifiedOn = DateTime.Now;
                 Database.PostRepository.Update(post);
                 await Database.CommitAsync();
             }

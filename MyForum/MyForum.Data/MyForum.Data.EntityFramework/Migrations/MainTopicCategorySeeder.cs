@@ -53,6 +53,12 @@ namespace MyForum.Data.EF.Migrations
 
             // TODO: Remove in production
 
+            var moderUserName = "Moder1";
+            var authormoder = context.Users.FirstOrDefault(u => u.UserName == moderUserName);
+
+            var user1Name = "User1";
+            var authoruser1 = context.Users.FirstOrDefault(u => u.UserName == user1Name);
+
             var topicCategory1 = new TopicCategory
             {
                 Name = "HTML",
@@ -69,7 +75,7 @@ namespace MyForum.Data.EF.Migrations
                 Name = "XML",
                 Description =
                     "Discussion and technical support for using and deploying XML applications and websites.",
-                ApplicationUser = author,
+                ApplicationUser = authormoder,
                 MainCategory = mainCategory1,
                 CreatedOn = DateTime.Now.AddHours(-2),
                 IsDeleted = false
@@ -89,7 +95,7 @@ namespace MyForum.Data.EF.Migrations
             {
                 Name = "Domain Names",
                 Description = "Discussion of various issues involving domain names.",
-                ApplicationUser = author,
+                ApplicationUser = authormoder,
                 MainCategory = mainCategory3,
                 CreatedOn = DateTime.Now,
                 IsDeleted = false
@@ -110,7 +116,7 @@ namespace MyForum.Data.EF.Migrations
             {
                 Name = "Forum Feedback",
                 Description = "If you have feedback about the forums, we'd love to read it!",
-                ApplicationUser = author,
+                ApplicationUser = authormoder,
                 MainCategory = mainCategory4,
                 CreatedOn = DateTime.Now.AddHours(-9),
                 IsDeleted = false
@@ -152,7 +158,7 @@ namespace MyForum.Data.EF.Migrations
                 Title = "HTML",
                 Content =
                     "Discussion and technical support for building, using and deploying HTML sites. For articles, check out our HTML5 Development Center.",
-                ApplicationUser = author,
+                ApplicationUser = authormoder,
                 TopicCategory = topicCategory2,
                 CreatedOn = DateTime.Now.AddHours(-3),
                 IsDeleted = false
@@ -173,7 +179,7 @@ namespace MyForum.Data.EF.Migrations
                 Title = "Forum, Blog, Wiki & CMS",
                 Content =
                     "Discuss the various forum / message board / blogging formats,customizations,settings,features,and troubleshooting here",
-                ApplicationUser = author,
+                ApplicationUser = authormoder,
                 TopicCategory = topicCategory3,
                 CreatedOn = DateTime.Now.AddHours(-1),
                 IsDeleted = false
@@ -209,7 +215,7 @@ namespace MyForum.Data.EF.Migrations
             var post2 = new Post
             {
                 Content = "Extend Site to Fill Screen",
-                ApplicationUser = author,
+                ApplicationUser = authormoder,
                 Topic = topic2,
                 CreatedOn = DateTime.Now.AddHours(-3),
                 IsDeleted = false
@@ -217,8 +223,8 @@ namespace MyForum.Data.EF.Migrations
 
             var post3 = new Post
             {
-                Content = "getElementByID and iFrames",
-                ApplicationUser = author,
+                Content = "getElementByID and iFrames user",
+                ApplicationUser = authoruser1,
                 Topic = topic1,
                 CreatedOn = DateTime.Now.AddHours(-1),
                 IsDeleted = false

@@ -76,7 +76,7 @@ namespace MyForum.Business.Core.Services
             }
             try
             {
-                var topic = Database.TopicRepository.GetById(entity.Id);
+                var topic = Database.TopicRepository.Get(x => x.Id == entity.Id).FirstOrDefault();
                 if (topic == null)
                 {
                     return new OperationDetails(false, "Topic does not exist", "");

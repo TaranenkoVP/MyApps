@@ -1,55 +1,50 @@
 ﻿@model MyForum.Web.MVC.Models.PostViewModel
 
-<div class="container">
-    <div class="row well forumrow">
-        <div class="col-md-1">
-            <div class="postprofile">
-                <img src="@Model.Author.Photo" class="forumavatar" alt=""/>
-                <div class="nickname">@Model.Author.UserName</div>
-            </div>
+<div class="media well well-sm well-forum-row">
+    <div class="media-left">
+        <img src="@Model.Author.Photo" class=" forum-photo" alt=""/>
+        <div class="caption forum-photo-buttom">
+            @Model.Author.UserName
         </div>
-        <div class="col-md-11">
+    </div>
+    <div class="media-body">
+        <div>
+            <p style="color: darkgreen;">Posted on: @Model.CreatedOn.ToString("ddd dd MMM yyyy, hh:mm tt")</p>
+        </div>
+        <div>
+            <p>@Model.Content</p>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
             <div>
-                <p style="color: darkgreen;">Posted on: @Model.CreatedOn.ToString("ddd dd MMM yyyy, hh:mm tt")</p>
-            </div>
-
-            <div class="content">
-                <p>@Model.Content</p>
-            </div>
-
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div>
-                    @if (User.IsInRole("Moderator"))
-                    {
-
-                        <div class="btn-toolbar">
-                            <div class="btn-group">
-                                @using (Html.BeginForm("ReplyPost", "UserPost", new {area="User" }, FormMethod.Get))
-                                {
-                                    <input type="hidden" value="@Model.Id" name="postId" />
-                                    <input type="submit" value="Reply" class="btn btn-primary btn-disabled" disabled />
-                                }
-                            </div>
-                            <div class="btn-group">
-                                @using (Html.BeginForm("EditPost", "UserPost", new { area = "User" }, FormMethod.Get))
-                                {
-                                    <input type="hidden" value="@Model.Id" name="postId" />
-                                    <input type="submit" value="Edit" class="btn btn-primary"/>
-                                }
-                            </div>
-                            <div class="btn-group">
-                                @using (Html.BeginForm("DeletePost", "UserPost", new { area = "User" }, FormMethod.Post))
-                                {
-                                    <input type="hidden" value="@Model.Id" name="postId"/>
-                                    <input type="hidden" value="@Model.TopicId" name="topicId" />
-                                    <input type="submit" value="Delete" class="btn btn-primary"/>
-                                }
-                            </div>
+                @if (User.IsInRole("Moderator") || Model.Author.UserName.Equals(User.Identity.Name))
+                {
+                    <div class="btn-toolbar pull-right">
+                        @*<div class="btn-group">
+                            @using (Html.BeginForm("ReplyPost", "UserPost", new {area="User" }, FormMethod.Get))
+                            {
+                                <input type="hidden" value="@Model.Id" name="postId" />
+                                <input type="submit" value="Reply" class="btn btn-primary btn-disabled" disabled />
+                            }
+                        </div>*@
+                        <div class="btn-group">
+                            @using (Html.BeginForm("EditPost", "UserPost", new {area = "User"}, FormMethod.Get))
+                            {
+                                <input type="hidden" value="@Model.Id" name="postId"/>
+                                <input type="submit" value="Edit" class="btn btn-primary"/>
+                            }
                         </div>
-                    }
-                </div>
-            }
-        </div>
+                        <div class="btn-group">
+                            @using (Html.BeginForm("DeletePost", "UserPost", new {area = "User"}, FormMethod.Post))
+                            {
+                                <input type="hidden" value="@Model.Id" name="postId"/>
+                                <input type="hidden" value="@Model.TopicId" name="topicId"/>
+                                <input type="submit" value="Delete" class="btn btn-primary"/>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
     </div>
 </div>

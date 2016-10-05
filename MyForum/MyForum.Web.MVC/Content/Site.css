@@ -43,13 +43,15 @@
 .forumrowinfo {
     margin-top: 0;
     line-height: 0.7;
+    width: 30%; 
 }
 
 .foruminfo {
     /*position: absolute;*/
-    width: 60%;
+    width: 90%;
     float: left;
     height: inherit;
+    margin-top: 5px;
     /*border: 10px;*/
     border-bottom: 2px #00ced1;
  /*background: none repeat-x scroll 0 0 #e9e9e9;*/
@@ -67,7 +69,7 @@
     margin-left: 0;
 }
 .forumicon{
-    left:7px;
+    left:10px;
     Height: auto;
     display : inline;
     float: left;
@@ -82,38 +84,20 @@
 }
 .forum-row-statistic {
     text-align: right;
+    padding-right: 0px; 
+    padding-left: 0px;
+    /*float: left;*/
 }
-
-/*.forumlastpost {
-    padding-left: 5%;
-    width: 25%;
-    float: right;
-    height: inherit;
-    text-align: left;
-    line-height: 0.7;
-}*/
-
-/*.postrow {
-   width: 100%;
-   height: auto;
-   min-height:90px;
-   /*display : inline;
-   margin-top: 5px;
-   background: #F5F5F5;
- }*/
+.lastpost {
+    padding-right: 1%; 
+}
 
 .postprofile {
-    width: 15%;
     float: left;
-    /*display: block;*/
-    /*margin-left: 5px;*/
-    /*margin-right: auto;*/
-
 }
 .forumavatar {
-    display: block;
-    width:  70px;
-    height: 70px;
+    max-width:  70px;
+    max-height: 70px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -122,42 +106,65 @@
     display: block;
     text-align: center;
     margin-left: -5px;
+    margin-top: 10px;
 }
 
 .postbody {
-    /*padding: 0;*/
-    /*line-height: 1.48em;*/
-    /*color: #333333;*/
     min-height: inherit;
-    width: 85%;
+    width: 90%;
     float: right;
-    /*clear: right;*/
  }
 .myCustomTextBox {
     width:  200px;
 }
 
 .forumrow {
-   /*width: 100%;
+   width: 100%;
    height: auto;
-   min-height:90px;*/
-   /*display : inline;*/
-   /*min-height: 80px;*/
-   /*Height: 60px;
-   margin-top: 5px;*/
+   min-height:90px;
    padding-top: 10px;
    padding-left: 0;
    padding-right: 0;
    padding-bottom: 5px;
    margin-top: 2px;
    margin-bottom: 2px;
-   /*background: #F5F5F5;*/
  }
 .forumrow .btn {
-    /*position: absolute;*/
     bottom: 0px;
 }
 
+.media-margin-left {
+	padding-right: 0;
+    margin-left: 5px;
+}
+
+.stats{
+    padding-left: 0;
+}
+
+.forumwell {
+    min-height: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+.forumtable {
+    border-width: 0px;
+    border-style: solid none none solid;
+}
+.forum-input {
+    max-width: 200px;
+}
+
+.forum-photo {
+    max-width: 70px;
+}
+.forum-photo-buttom {
+    text-align: center;
+    min-width: 10px;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -170,6 +177,11 @@
 */
 .dl-horizontal dt {
     white-space: normal;
+}
+
+.well-forum-row {
+    margin-bottom: 0;
+    margin-top: 3px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */

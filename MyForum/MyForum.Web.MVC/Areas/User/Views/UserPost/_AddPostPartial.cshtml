@@ -1,4 +1,4 @@
-﻿@model MyForum.Web.MVC.Areas.User.Models.Posts.PostInputModel
+﻿@model MyForum.Web.MVC.Areas.User.Models.Posts.UserAddPostViewModel
 @{
     ViewBag.Title = "_AddPostPartial";
 }
@@ -19,27 +19,7 @@
     </form>
     <br/>
 }
-
 <div id="info">
-
 </div>
-
-@*@using (Html.BeginForm("AddPost", "UserPost", new {area = User }))
-{
-    
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <form class="form-inline" role="form">
-        <div class="form-group">
-            @Html.LabelFor(m => m.Content)
-            @Html.EditorFor(m => m.Content)
-            @Html.ValidationMessageFor(m => m.Content)
-            @Html.HiddenFor(m => m.TopicId)
-        </div>
-        <div class="form-group text-center">
-            <input type = "submit" value="Create Post" class="btn btn-info text-center" />
-        </div>
-    </form>
-    <br />
-}*@
 
 @Scripts.Render("~/bundles/jqueryval")
